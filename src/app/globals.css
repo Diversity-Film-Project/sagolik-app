@@ -3,3 +3,12 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  /* font */
+  --font-body: system-ui, sans-serif;
+
+  /* font size */
+  --body-sm: 13px;
+  --body-md: 14px;
+}
