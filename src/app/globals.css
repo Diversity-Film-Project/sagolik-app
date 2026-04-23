@@ -11,4 +11,7 @@
   /* font size */
   --body-sm: 13px;
   --body-md: 14px;
+
+  /* font weight */
+  --weight-medium: 500;
 }
