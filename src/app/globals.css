@@ -21,6 +21,16 @@
   . */
 
   /* color */
-  --color-primary: #000000;
-  --color-border: #D1D5DC;
+  --color-primary: #FF6700;
+  --color-secondary: #FF300B;
+  --color-border: #FFB380;
+  --color-text-primary: #000000;
+  --color-text-secondary: #403F3F;
+  --color-text-body: #807D7D;
+  --color-progressBar-notActive: #E5E1E1;
+  --color-card-background: #FFFFFF;
+  --color-button-text-primary: #FFFFFF;
+  --color-button-text-secondary: #000000;
+  --color-primary-button-background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
+  --color-progressBar-active: linear-gradient(271deg, #FF6700 9.29%, #FF300B 85.64%);
 }
