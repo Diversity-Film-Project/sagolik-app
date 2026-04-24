@@ -1,6 +1,6 @@
 import styles from './PageLayout.module.css'
 import React from 'react'
-import { Dot, BadgeInfo } from 'lucide-react'
+import { BadgeInfo } from 'lucide-react'
 // import StepHeader from '@/components/common/StepHeader/StepHeader'
 
 interface PageLayoutProps {
