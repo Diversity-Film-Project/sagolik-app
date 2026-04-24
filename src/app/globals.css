@@ -9,12 +9,18 @@
   --font-body: system-ui, sans-serif;
 
   /* font size */
-  --body-sm: 13px;
-  --body-md: 14px;
+  --font-size-heading-h1: 24px;
+  --font-size-heading-h2: 13px;
+  --font-size-body-sm: 13px;
+  --font-size-body-md: 15px;
+  --font-size-button: 15px;
+  --font-size-caption-sm: 10px;
+  --font-size-caption-md: 12px;
 
   /* font weight */
-  --weight-medium: 500;
-
+  --font-weigth-bold: 600;
+  --font-weigth-medium: 500;
+  --font-weight-light: 400;
   /* .
   .
   .
@@ -24,6 +30,7 @@
   --color-primary: #FF6700;
   --color-secondary: #FF300B;
   --color-border: #FFB380;
+  --color-page-background: #FFFAFA;
   --color-text-primary: #000000;
   --color-text-secondary: #403F3F;
   --color-text-body: #807D7D;
