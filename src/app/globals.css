@@ -1,26 +1,39 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* change background for body  if needed */
+
+body {
+    background: linear-gradient(
+        to bottom,
+        #ffe8d9 0px,
+        #fffbf7 90px,
+        #fffafa 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 :root {
-  /* font */
-  --font-body: system-ui, sans-serif;
+    /* font */
+    --font-body: system-ui, sans-serif;
 
-  /* font size */
-  --body-sm: 13px;
-  --body-md: 14px;
+    /* font size */
+    --body-sm: 13px;
+    --body-md: 14px;
 
-  /* font weight */
-  --weight-medium: 500;
+    /* font weight */
+    --weight-medium: 500;
 
-  /* .
+    /* .
   .
   .
   . */
 
-  /* color */
-  --color-primary: #000000;
-  --color-border: #D1D5DC;
+    /* color */
+    --color-primary: #000000;
+    --color-border: #d1d5dc;
 }

@@ -6,15 +6,18 @@ Project conventions, tooling notes etc.
 
 ## Imports
 
-Always use path aliases — never relative paths going up more than one level.
+Use `@/` aliases when importing across different parts of the project. Use `./` for files in the same folder.
 
 ```ts
-// Good
-import { Button } from '@/components/Button/Button'
+// Cross-folder imports — always use @/ alias
+import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/hooks/useStory'
 import type { Story } from '@/types/story'
 
-// Bad
+// Same-folder imports — use relative ./
+import styles from './Button.module.css'
+
+// Bad — going up multiple levels without alias
 import { Button } from '../../components/Button/Button'
 ```
 
