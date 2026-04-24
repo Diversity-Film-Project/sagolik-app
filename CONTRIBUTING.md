@@ -28,13 +28,15 @@ Alias `@/` maps to `src/` (configured in `tsconfig.json`).
 - File name matches component name: `Button.tsx`, not `button.tsx`
 - CSS Module file lives next to the component: `Button.module.css`
 - Export as named export, not default (easier to refactor and find in IDEs)
+- **Exception:** `app/**/page.tsx` and `app/**/layout.tsx` use `export default` — required by Next.js
 
 ```tsx
-// Good
+// Components — named export (why? Enforces a single consistent name across the codebase. IDEs auto-suggest the correct import — no accidental renaming.)
 export function Button({ label }: ButtonProps) { ... }
 
-// Avoid
-export default function Button({ label }: ButtonProps) { ... }
+// Pages — default export (why? Required by Next.js. The framework imports page files internally and expects a default export. This is not a style choice.)
+
+export default function UploadPhotoPage() { ... }
 ```
 
 ---
@@ -47,7 +49,7 @@ CSS Modules only — no inline styles, no Tailwind, no styled-components.
 import styles from './Button.module.css'
 
 export function Button({ label }: ButtonProps) {
-  return <button className={styles.root}>{label}</button>
+    return <button className={styles.root}>{label}</button>
 }
 ```
 
@@ -67,16 +69,16 @@ Material UI components can be used directly. To override MUI styles, use CSS Mod
 // Shared type
 // src/types/story.ts
 export type Story = {
-  id: string
-  title: string
-  theme: 'adventure' | 'friendship' | 'magic'
+    id: string
+    title: string
+    theme: 'adventure' | 'friendship' | 'magic'
 }
 
 // Local props
 interface ButtonProps {
-  label: string
-  onClick: () => void
-  disabled?: boolean
+    label: string
+    onClick: () => void
+    disabled?: boolean
 }
 ```
 

@@ -1,0 +1,50 @@
+/* Step 1 — Upload Photo - styles  */
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.header {
+}
+.logo {
+}
+.stepLabel {
+}
+.progressBar {
+}
+.stepActive {
+}
+.stepInactive {
+}
+.content {
+}
+.title {
+}
+.subtitle {
+}
+.uploadArea {
+}
+.uploadIcon {
+}
+.uploadPrimary {
+}
+.uploadSecondary {
+}
+.uploadHint {
+}
+.tipCard {
+}
+.tipTitle {
+}
+.tipText {
+}
+.actions {
+}
+.continueButton {
+}
+.sampleButton {
+}
