@@ -15,6 +15,7 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    gap: 20px;
 }
 
 .logoSection {
@@ -34,24 +35,55 @@
 .logo {
     font-size: 36px;
     font-weight: bold;
-    background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
+    /* background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    margin: 0 2px 0 0;
+    padding: 0;
+
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    background: linear-gradient(
+        135deg,
+        oklch(92% 0.08 55) 0%,
+        oklch(88% 0.12 30) 40%,
+        oklch(88% 0.1 350) 100%
+    );
+    background: linear-gradient(135deg, #ff7d00, #ff3023, #ff0084);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0;
-    padding: 0;
+    background-clip: text;
 }
 
 .dot {
-    font-size: 40px;
+    /* font-size: 40px;
     font-weight: bold;
     color: #ff4a00;
     margin: 0 0 -1px 0;
-    padding: 0;
+    padding: 0; */
+
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
+    box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
 }
 
 .infoButton {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ff7144;
+    color: #ff4a00;
+}
+
+.stepCounter {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    color: #403f3f;
+    font-weight: var(--weight-medium);
 }

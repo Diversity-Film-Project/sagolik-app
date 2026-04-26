@@ -15,7 +15,7 @@ export function PageLayout({ children, currentStep }: PageLayoutProps) {
                 <div className={styles.logoSection}>
                     <div className={styles.logoContainer}>
                         <span className={styles.logo}>Tales</span>
-                        <span className={styles.dot}>.</span>
+                        <span className={styles.dot}></span>
                     </div>
                     <button className={styles.infoButton}>
                         <BadgeInfo />
