@@ -1,39 +1,89 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* change background for body  if needed */
 
 body {
-    background: linear-gradient(
-        to bottom,
-        #ffe8d9 0px,
-        #fffbf7 90px,
-        #fffafa 100%
-    );
-    background-attachment: fixed;
-    min-height: 100vh;
+  background: linear-gradient(to bottom,
+      #ffe8d9 0px,
+      #fffbf7 90px,
+      #fffafa 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 :root {
-    /* font */
-    --font-body: system-ui, sans-serif;
+  /* font size */
+  --font-size-heading-h1: 24px;
+  --font-size-heading-h2: 13px;
+  --font-size-body-sm: 13px;
+  --font-size-body-md: 15px;
+  --font-size-button: 15px;
+  --font-size-caption-sm: 10px;
+  --font-size-caption-md: 12px;
 
-    /* font size */
-    --body-sm: 13px;
-    --body-md: 14px;
+  /* font weight */
+  --font-weigth-bold: 600;
+  --font-weigth-medium: 500;
+  --font-weight-light: 400;
 
-    /* font weight */
-    --weight-medium: 500;
+  /* border */
+  --border-radius: 10px;
+  --border-radius-full: 999px;
 
-    /* .
-  .
-  .
-  . */
+  /* spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
 
-    /* color */
-    --color-primary: #000000;
-    --color-border: #d1d5dc;
+  /* color */
+  --color-primary: #FF6700;
+  --color-secondary: #FF300B;
+  --color-border: #FFB380;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #403F3F;
+  --color-text-body: #807D7D;
+  --color-progressBar-notActive: #E5E1E1;
+  --color-button-text-primary: #FFFFFF;
+  --color-button-text-secondary: #000000;
+
+  --color-input-background: #FFFFFF;
+  --color-card-background: #FFFFFF;
+
+  --color-primary-button-background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
+  --color-progressBar-active: linear-gradient(271deg, #FF6700 9.29%, #FF300B 85.64%);
+  --color-icon-background: linear-gradient(158deg, #FF300B -27.14%, #FF6700 73.82%);
+
+  /* border shadow */
+  --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
+  --var-progressBar-active: 0 2px 6px 0 rgba(0, 0, 0, 0.20);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(to bottom,
+        #2a1500 0px,
+        #1a0d00 90px,
+        #111010 100%);
+  }
+
+  :root {
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #C4C2C2;
+    --color-text-body: #9E9B9B;
+
+    --color-input-background: #1E1E1E;
+    --color-card-background: #1E1E1E;
+    --color-border: #FF8C42;
+
+    --color-progressBar-notActive: #3A3A3A;
+
+    --color-button-text-secondary: #FFFFFF;
+  }
 }

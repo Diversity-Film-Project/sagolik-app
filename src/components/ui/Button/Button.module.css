@@ -1,7 +1,14 @@
 .root {
-    /* style for all buttons */
+    display: flex;
+    width: 336px;
+    padding: 14px 115px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
 }
 
 .primary {
-    /* style for primary button */
+    background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
+    box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
 }
