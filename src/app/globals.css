@@ -59,6 +59,10 @@ body {
   --color-primary-button-background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
   --color-progressBar-active: linear-gradient(271deg, #FF6700 9.29%, #FF300B 85.64%);
   --color-icon-background: linear-gradient(158deg, #FF300B -27.14%, #FF6700 73.82%);
+
+  /* border shadow */
+  --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
+  --var-progressBar-active: 0 2px 6px 0 rgba(0, 0, 0, 0.20);
 }
 
 @media (prefers-color-scheme: dark) {
