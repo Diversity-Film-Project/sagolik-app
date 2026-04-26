@@ -16,9 +16,6 @@ body {
 }
 
 :root {
-  /* font */
-  --font-body: system-ui, sans-serif;
-
   /* font size */
   --font-size-heading-h1: 24px;
   --font-size-heading-h2: 13px;
