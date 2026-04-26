@@ -1,22 +1,24 @@
 import styles from './PageLayout.module.css'
 import React from 'react'
 import { BadgeInfo } from 'lucide-react'
+import Link from 'next/link'
 // import StepHeader from '@/components/common/StepHeader/StepHeader'
 
 interface PageLayoutProps {
     children: React.ReactNode
     currentStep: 1 | 2 | 3 | 4
+    href: string
 }
 
-export function PageLayout({ children, currentStep }: PageLayoutProps) {
+export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
     return (
         <div className={styles.page}>
             <header className={styles.header}>
                 <div className={styles.logoSection}>
-                    <div className={styles.logoContainer}>
+                    <Link className={styles.logoContainer} href={href}>
                         <span className={styles.logo}>Tales</span>
                         <span className={styles.dot}></span>
-                    </div>
+                    </Link>
                     <button className={styles.infoButton}>
                         <BadgeInfo />
                     </button>
