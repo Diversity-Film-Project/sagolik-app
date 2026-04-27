@@ -1,4 +1,5 @@
 //Step 1 — Upload Photo
+'use client'
 
 // import styles from './page.module.css'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
