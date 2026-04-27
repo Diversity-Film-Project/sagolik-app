@@ -1,18 +1,18 @@
 import styles from './Button.module.css'
 
-interface buttonProps {
+interface ButtonProps {
     label: string
     variant?: 'primary' | 'secondary' | 'outlined'
     disabled?: boolean
     onClick?: () => void
 }
 
-export const Button = ({
+export function Button({
     label,
     variant = 'primary',
     disabled = false,
     onClick,
-}: buttonProps) => {
+}: ButtonProps) {
     return (
         <button
             disabled={disabled}
