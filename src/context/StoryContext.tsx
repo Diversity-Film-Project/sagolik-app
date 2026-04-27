@@ -7,6 +7,8 @@ interface StoryData {
     characterName: string
     storyTheme: string
     sidekick: string
+    generatedPrompt: string
+    finalPrompt: string
 }
 
 interface StoryContextType {
@@ -26,6 +28,8 @@ export function StoryProvider({ children }: StoryProviderProps) {
         characterName: '',
         storyTheme: '',
         sidekick: '',
+        generatedPrompt: '',
+        finalPrompt: '',
     })
 
     const updateStoryData = (data: Partial<StoryData>) => {
