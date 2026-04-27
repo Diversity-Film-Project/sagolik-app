@@ -18,7 +18,7 @@ type StoryProviderProps = {
 
 const StoryContext = createContext<StoryContextType | null>(null)
 
-const StoryProvider = ({ children }: StoryProviderProps) => {
+export function StoryProvider({ children }: StoryProviderProps) {
     const [storyData, setStoryData] = useState<StoryData>({
         photo: null,
         characterName: '',
