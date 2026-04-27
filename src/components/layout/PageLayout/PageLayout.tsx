@@ -14,24 +14,28 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
     return (
         <div className={styles.page}>
             <header className={styles.header}>
-                <div className={styles.logoSection}>
-                    <Link className={styles.logoContainer} href={href}>
-                        <span className={styles.logo}>Tales</span>
-                        <span className={styles.dot}></span>
-                    </Link>
-                    <button className={styles.infoButton}>
-                        <BadgeInfo />
-                    </button>
-                </div>
+                <div className={styles.container}>
+                    <div className={styles.logoSection}>
+                        <Link className={styles.logoContainer} href={href}>
+                            <span className={styles.logo}>Tales</span>
+                            <span className={styles.dot}></span>
+                        </Link>
+                        <button className={styles.infoButton}>
+                            <BadgeInfo />
+                        </button>
+                    </div>
 
-                <span className={styles.stepCounter}>
-                    Step {currentStep} of 4
-                </span>
+                    <span className={styles.stepCounter}>
+                        Step {currentStep} of 4
+                    </span>
+                </div>
             </header>
 
             {/* space for StepHeader */}
 
-            <main className={styles.content}>{children}</main>
+            <main className={`${styles.content} ${styles.container}`}>
+                {children}
+            </main>
         </div>
     )
 }
