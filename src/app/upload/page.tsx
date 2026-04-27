@@ -3,11 +3,13 @@
 
 // import styles from './page.module.css'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
+import { UploadPhotoCard } from '@/components/common/uploadPhotoCard/UploadPhotoCard'
 
 export default function UploadPhotoPage() {
     return (
         <PageLayout currentStep={1} href="/upload">
             <h1>Upload photo content</h1>
+            <UploadPhotoCard />
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
                 nam consectetur sunt voluptates doloribus pariatur quia ad saepe

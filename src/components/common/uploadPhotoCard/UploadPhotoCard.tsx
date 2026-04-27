@@ -2,7 +2,6 @@ import { useState } from 'react'
 import styles from './UploadPhotoCard.module.css'
 import { Image as ImageIcon, LoaderCircle, Check, X } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
-import Image from 'next/image'
 
 type CardState = 'default' | 'loading' | 'selected'
 
@@ -74,8 +73,14 @@ export function UploadPhotoCard({
                         <Check />
                     </div>
                     <p>Your photo is uploaded</p>
-                    <X onClick={resetUpload} />
-                    {/* <Image src={JSON.stringify(storyData.photo)} alt="test" /> */}
+                    <p
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            resetUpload()
+                        }}
+                    >
+                        or choose another photo
+                    </p>
                 </>
             )}
         </div>
