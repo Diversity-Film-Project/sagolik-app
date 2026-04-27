@@ -1,14 +1,28 @@
 .root {
+    cursor: pointer;
+    background: none;
+    border: none;
     display: flex;
-    width: 336px;
-    padding: 14px 115px;
+    width: 100%;
+    padding: 14px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-button);
 }
 
 .primary {
-    background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
-    box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
+    color: var(--color-button-text-primary);
+    background: var(--color-primary-button-background);
+    box-shadow: var(--var-button-box-shadow);
+}
+
+.secondary {
+    color: var(--color-text-secondary);
+}
+
+.outlined {
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-secondary);
 }
