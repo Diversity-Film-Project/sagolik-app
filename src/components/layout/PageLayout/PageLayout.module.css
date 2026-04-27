@@ -1,12 +1,26 @@
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        /* transform: translateY(5px); */
+    }
+    to {
+        opacity: 1;
+        /* transform: translateY(0); */
+    }
+}
+/* maybe delete this animation later - might be annoying for users */
+
 .page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: 0 20px;
     max-width: 800px;
     margin: 0 auto;
+    animation: pageEnter 1.9s ease;
+    position: relative;
 }
 
 .header {
@@ -15,7 +29,26 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(15px);
+    padding: 40px 20px 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
+
+.content {
+    width: 100%;
+    padding: 0 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 24px;
+}
+
 
 .logoSection {
     display: flex;
@@ -29,29 +62,61 @@
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    text-decoration: none;
 }
 
 .logo {
     font-size: 36px;
     font-weight: bold;
-    background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
+    /* background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    margin: 0 2px 0 0;
+    padding: 0;
+
+    font-family: var
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    background: linear-gradient(
+        135deg,
+        oklch(92% 0.08 55) 0%,
+        oklch(88% 0.12 30) 40%,
+        oklch(88% 0.1 350) 100%
+    );
+    background: linear-gradient(135deg, #ff7d00, #ff3023, #ff0084);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0;
-    padding: 0;
+    background-clip: text;
 }
 
 .dot {
-    font-size: 40px;
+    /* font-size: 40px;
     font-weight: bold;
     color: #ff4a00;
     margin: 0 0 -1px 0;
-    padding: 0;
+    padding: 0; */
+
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
+    box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
 }
 
 .infoButton {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ff7144;
+    color: #ff4a00;
+}
+
+.stepCounter {
+    font-family: var(--font-primary), sans-serif;
+    font-size: 12px;
+    color: #403f3f;
+    font-weight: var(--weight-medium);
 }
