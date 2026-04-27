@@ -1,27 +1,28 @@
 .root {
+    cursor: pointer;
+    background: none;
+    border: none;
     display: flex;
     width: 100%;
     padding: 14px;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-weight: var(--font-weigth-bold);
+    font-size: var(--font-size-button);
 }
 
 .primary {
-    color: #fff;
-    border: none;
+    color: var(--color-button-text-primary);
     background: var(--color-primary-button-background);
     box-shadow: var(--var-button-box-shadow);
 }
 
 .secondary {
-    color: #000;
-    border: none;
-    background: none;
+    color: var(--color-text-secondary);
 }
 
 .outlined {
+    color: var(--color-text-secondary);
     border: 1px solid var(--color-secondary);
-    background: none;
 }
