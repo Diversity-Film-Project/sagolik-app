@@ -71,5 +71,17 @@
 
 
 .selected {
-    border: 1px dashed green
+    border: 1px solid green
+}
+
+.previewWrapper {
+    position: relative;
+    width: 100%;
+    height: 164px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.previewImage {
+    object-fit: cover;
 }

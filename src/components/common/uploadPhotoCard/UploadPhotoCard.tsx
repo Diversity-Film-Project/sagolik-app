@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import styles from './UploadPhotoCard.module.css'
-import { Image as ImageIcon, LoaderCircle, Check, X } from 'lucide-react'
+import { Image as ImageIcon, LoaderCircle, Check } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
+import Image from 'next/image'
 
 type CardState = 'default' | 'loading' | 'selected'
 
@@ -33,56 +34,57 @@ export function UploadPhotoCard({
         }
     }
 
-    const resetUpload = () => {
-        setCardState('loading')
-        setTimeout(() => {
-            updateStoryData({ photo: null })
-            setCardState('default')
-        }, 1000)
-    }
-
     return (
-        <div
-            className={`${styles.root} ${styles[cardState]}`}
-            onClick={cardState === 'default' ? handleClick : undefined}
-        >
-            <input
-                ref={setSelectedFile}
-                type="file"
-                accept="image/*"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-            />
-            {cardState === 'default' && (
-                <>
-                    <div className={styles.iconWrapper}>
-                        <ImageIcon />
-                    </div>
-                    <div className={styles.textContainer}>
-                        <p>Upload a photo</p>
-                        <p className={styles.lowerText}>or tap to browse</p>
-                    </div>
-                </>
+        <>
+            <div
+                className={`${styles.root} ${styles[cardState]}`}
+                onClick={cardState !== 'loading' ? handleClick : undefined}
+            >
+                <input
+                    ref={setSelectedFile}
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
+                {cardState === 'default' && (
+                    <>
+                        <div className={styles.iconWrapper}>
+                            <ImageIcon />
+                        </div>
+                        <div className={styles.textContainer}>
+                            <p>Upload a photo</p>
+                            <p className={styles.lowerText}>or tap to browse</p>
+                        </div>
+                    </>
+                )}
+                {cardState === 'loading' && (
+                    <LoaderCircle className={styles.spinner} />
+                )}
+                {cardState === 'selected' && (
+                    <>
+                        <div className={styles.iconWrapper}>
+                            <Check />
+                        </div>
+                        <div className={styles.textContainer}>
+                            <p>Your photo is uploaded</p>
+                            <p className={styles.lowerText}>
+                                or Choose another photo
+                            </p>
+                        </div>
+                    </>
+                )}
+            </div>
+            {storyData.photo && (
+                <div className={styles.previewWrapper}>
+                    <Image
+                        src={URL.createObjectURL(storyData.photo)}
+                        alt="uploaded photo"
+                        fill
+                        className={styles.previewImage}
+                    />
+                </div>
             )}
-            {cardState === 'loading' && (
-                <LoaderCircle className={styles.spinner} />
-            )}
-            {cardState === 'selected' && (
-                <>
-                    <div className={styles.iconWrapper}>
-                        <Check />
-                    </div>
-                    <p>Your photo is uploaded</p>
-                    <p
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            resetUpload()
-                        }}
-                    >
-                        or choose another photo
-                    </p>
-                </>
-            )}
-        </div>
+        </>
     )
 }
