@@ -12,7 +12,7 @@ export const Button = ({
     variant = 'primary',
     disabled = false,
     onClick,
-}: buttonProps) => {
+}: ButtonProps) => {
     return (
         <button
             disabled={disabled}
