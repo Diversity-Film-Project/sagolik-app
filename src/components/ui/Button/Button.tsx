@@ -1,6 +1,6 @@
 import styles from './Button.module.css'
 
-interface buttonProps {
+interface ButtonProps {
     label: string
     variant?: 'primary' | 'secondary' | 'outlined'
     disabled?: boolean
@@ -17,7 +17,7 @@ export const Button = ({
         <button
             disabled={disabled}
             onClick={onClick}
-            className={`${styles.root} ${variant ? styles[variant] : ''}`}
+            className={`${styles.root} ${styles[variant]}`}
         >
             {label}
         </button>
