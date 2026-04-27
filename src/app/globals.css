@@ -17,7 +17,7 @@ body {
 
 :root {
   /* font */
-  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-primary: 'Inter', sans-serif;
   --font-secondary: 'Lora', serif;
   /* font size */
   --font-size-heading-h1: 24px;
