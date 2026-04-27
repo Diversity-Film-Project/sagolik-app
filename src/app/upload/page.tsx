@@ -1,9 +1,13 @@
 //Step 1 — Upload Photo
+'use client'
 
 // import styles from './page.module.css'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
+import { useStory } from '@/context/StoryContext'
 
 export default function UploadPhotoPage() {
+    const { storyData, updateStoryData } = useStory()
+
     return (
         <PageLayout currentStep={1} href="/upload">
             <h1>Upload photo content</h1>
