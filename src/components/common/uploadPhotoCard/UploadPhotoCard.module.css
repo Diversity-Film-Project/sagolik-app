@@ -29,6 +29,7 @@
 
 .default .iconWrapper {
     background: var(--color-icon-background);
+    cursor: pointer;
 }
 
 .selected .iconWrapper {
