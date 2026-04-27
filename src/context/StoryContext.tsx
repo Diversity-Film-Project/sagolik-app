@@ -1,4 +1,6 @@
-import { createContext, useState } from 'react'
+'use client'
+
+import { createContext, useState, useContext } from 'react'
 
 interface StoryData {
     photo: File | null
@@ -35,4 +37,10 @@ export function StoryProvider({ children }: StoryProviderProps) {
             {children}
         </StoryContext.Provider>
     )
+}
+
+export function useStory() {
+    const context = useContext(StoryContext)
+    if (!context) throw new Error('useStory must be wrapped in a StoryProvider')
+    return context
 }

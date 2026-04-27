@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Lora } from 'next/font/google'
 import './globals.css'
+import { StoryProvider } from '@/context/StoryContext'
 
 const inter = Inter({
     variable: '--font-primary',
@@ -62,7 +63,9 @@ export default function RootLayout({
             <head>
                 <meta name="apple-mobile-web-app-title" content="Tales" />
             </head>
-            <body className="min-h-full flex flex-col">{children}</body>
+            <body className="min-h-full flex flex-col">
+                <StoryProvider>{children}</StoryProvider>
+            </body>
         </html>
     )
 }
