@@ -7,12 +7,12 @@ interface ButtonProps {
     onClick?: () => void
 }
 
-export const Button = ({
+export function Button({
     label,
     variant = 'primary',
     disabled = false,
     onClick,
-}: ButtonProps) => {
+}: ButtonProps) {
     return (
         <button
             disabled={disabled}
