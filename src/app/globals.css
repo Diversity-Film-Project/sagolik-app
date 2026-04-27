@@ -43,6 +43,7 @@ body {
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
+  --spacing-xxl: 52px;
 
   /* color */
   --color-primary: #ff6700;
@@ -58,6 +59,7 @@ body {
 
   --color-input-background: #ffffff;
   --color-card-background: #ffffff;
+  --color-default-icon: #ffffff;
 
   --color-primary-button-background: linear-gradient(92deg,
       rgba(255, 103, 0, 0.75) 13.9%,
@@ -68,6 +70,7 @@ body {
   --color-icon-background: linear-gradient(158deg,
       #ff300b -27.14%,
       #ff6700 73.82%);
+  --color-icon-background-success: linear-gradient(166deg, #00AA4C 10.23%, #004E23 175.13%);
 
   /* border shadow */
   --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);

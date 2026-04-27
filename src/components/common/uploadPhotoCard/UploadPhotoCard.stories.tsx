@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { UploadPhotoCard } from './UploadPhotoCard'
 import '@/app/globals.css'
+import { StoryProvider } from '@/context/StoryContext'
 
 const meta: Meta<typeof UploadPhotoCard> = {
     title: 'components/UploadPhotoCard',
     component: UploadPhotoCard,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <StoryProvider>
+                <Story />
+            </StoryProvider>
+        ),
+    ],
 }
 export default meta
 
@@ -13,21 +21,18 @@ type Story = StoryObj<typeof UploadPhotoCard>
 
 export const Default: Story = {
     args: {
-        label: 'pick your image',
-        variant: 'default',
+        initialState: 'default',
     },
 }
 
 export const Loading: Story = {
     args: {
-        label: 'loading text',
-        variant: 'loading',
+        initialState: 'loading',
     },
 }
 
 export const Selected: Story = {
     args: {
-        label: 'selected text',
-        variant: 'selected',
+        initialState: 'selected',
     },
 }
