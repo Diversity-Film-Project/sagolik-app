@@ -1,7 +1,22 @@
 .root {
-    /* style for all buttons */
+    display: flex;
+    width: 100%;
+    padding: 14px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .primary {
-    /* style for primary button */
+    color: #fff;
+    border: none;
+    background: linear-gradient(92deg, rgba(255, 103, 0, 0.75) 13.9%, rgba(255, 48, 11, 0.75) 74.85%);
+    box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
+}
+
+.secondary {
+    color: #000;
+    border: none;
+    background: none;
 }
