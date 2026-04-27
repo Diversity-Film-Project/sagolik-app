@@ -33,7 +33,7 @@
 }
 
 .selected .iconWrapper {
-    background: var(--color-icon-background-success);
+    background: var(--color-icon-background);
 }
 
 .textContainer {
@@ -71,7 +71,7 @@
 
 
 .selected {
-    border: 1px solid green
+    border: 1px solid var(--color-border)
 }
 
 .previewWrapper {

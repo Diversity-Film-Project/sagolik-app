@@ -54,7 +54,9 @@ export function UploadPhotoCard({
                         </div>
                         <div className={styles.textContainer}>
                             <p>Upload a photo</p>
-                            <p className={styles.lowerText}>or tap to browse</p>
+                            <p className={styles.lowerText}>
+                                from your library
+                            </p>
                         </div>
                     </>
                 )}
@@ -69,7 +71,7 @@ export function UploadPhotoCard({
                         <div className={styles.textContainer}>
                             <p>Your photo is uploaded</p>
                             <p className={styles.lowerText}>
-                                or Choose another photo
+                                or choose another photo
                             </p>
                         </div>
                     </>

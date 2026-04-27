@@ -70,8 +70,6 @@ body {
   --color-icon-background: linear-gradient(158deg,
       #ff300b -27.14%,
       #ff6700 73.82%);
-  --color-icon-background-success: linear-gradient(166deg, #00AA4C 10.23%, #037436 175.13%);
-  ;
 
   /* border shadow */
   --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
