@@ -1,50 +1,212 @@
-/* Step 1 — Upload Photo - styles  */
-
 .page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-secondary), serif;
+    background: #0f0a1a;
+}
+
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(
+            ellipse 80% 60% at 20% 10%,
+            oklch(32% 0.16 30 / 0.75) 0%,
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse 65% 50% at 82% 80%,
+            oklch(30% 0.18 350 / 0.65) 0%,
+            transparent 52%
+        ),
+        radial-gradient(
+            ellipse 50% 40% at 55% 50%,
+            oklch(22% 0.1 55 / 0.4) 0%,
+            transparent 60%
+        ),
+        #0f0a1a;
+}
+
+.blobs {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+}
+
+.blob1 {
+    width: 500px;
+    height: 500px;
+    background: oklch(72% 0.2 55 / 0.14);
+    top: -120px;
+    left: -100px;
+    animation: floatA 18s ease-in-out infinite;
+}
+
+.blob2 {
+    width: 420px;
+    height: 420px;
+    background: oklch(65% 0.22 350 / 0.12);
+    bottom: -80px;
+    right: -80px;
+    animation: floatB 22s ease-in-out infinite;
+}
+
+.blob3 {
+    width: 280px;
+    height: 280px;
+    background: oklch(78% 0.16 50 / 0.1);
+    top: 40%;
+    left: 10%;
+    animation: floatC 26s ease-in-out infinite;
+}
+
+.blob4 {
+    width: 220px;
+    height: 220px;
+    background: oklch(68% 0.2 15 / 0.1);
+    top: 15%;
+    right: 12%;
+    animation: floatA 20s ease-in-out 2s infinite;
+}
+
+.stage {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    justify-content: center;
+    gap: 16px;
 }
-.header {
+
+.logoWrap {
+    animation: fadeUp 1.2s ease 0.2s both;
+    margin-bottom: 12px;
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 30px;
 }
-.logo {
+
+.logoWrap::after {
+    content: '';
+    position: absolute;
+    top: -80%;
+    width: 40%;
+    height: 240%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    animation: shimmer 3.5s ease-in-out 1.5s infinite;
+    transform: rotate(25deg);
 }
-.stepLabel {
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-bottom: 3px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
+    box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
 }
-.progressBar {
+
+.wordmark {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-family: var(--font-secondary), serif;
+    font-weight: 600;
+    font-size: 64px;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    background: linear-gradient(
+        135deg,
+        oklch(92% 0.08 55) 0%,
+        oklch(88% 0.12 30) 40%,
+        oklch(88% 0.1 350) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 1.8s ease 0.6s both;
 }
-.stepActive {
+
+.tagline {
+    font-family: var(--font-secondary), serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: oklch(80% 0.06 40 / 0.6);
+    animation: fadeUp 1.8s ease 1.1s both;
 }
-.stepInactive {
+
+@keyframes fadeUp {
+    from {
+        transform: translateY(14px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-.content {
+
+@keyframes floatA {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(22px, 18px);
+    }
+    66% {
+        transform: translate(-12px, 28px);
+    }
 }
-.title {
+
+@keyframes floatB {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-20px, -22px);
+    }
 }
-.subtitle {
+
+@keyframes floatC {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(16px, -16px);
+    }
 }
-.uploadArea {
-}
-.uploadIcon {
-}
-.uploadPrimary {
-}
-.uploadSecondary {
-}
-.uploadHint {
-}
-.tipCard {
-}
-.tipTitle {
-}
-.tipText {
-}
-.actions {
-}
-.continueButton {
-}
-.sampleButton {
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-120%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(300%) rotate(25deg);
+    }
 }

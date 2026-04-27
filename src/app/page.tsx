@@ -1,12 +1,41 @@
-//Step 1 — Upload Photo
+import Image from 'next/image'
+import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
+import { AutoRedirect } from '@/components/common/AutoRedirect/AutoRedirect'
+import styles from './page.module.css'
 
-// import styles from './page.module.css'
-import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
-
-export default function UploadPhotoPage() {
+export default function SplashPage() {
     return (
-        <PageLayout currentStep={1}>
-            <h1>Upload photo content</h1>
-        </PageLayout>
+        <div className={styles.page}>
+            <AutoRedirect to="/upload" delay={3000} />
+
+            {/* Background */}
+            <div className={styles.bg} />
+            <StarCanvas />
+            <div className={styles.blobs}>
+                <div className={`${styles.blob} ${styles.blob1}`} />
+                <div className={`${styles.blob} ${styles.blob2}`} />
+                <div className={`${styles.blob} ${styles.blob3}`} />
+                <div className={`${styles.blob} ${styles.blob4}`} />
+            </div>
+
+            {/* Content */}
+            <div className={styles.stage}>
+                <div className={styles.logoWrap}>
+                    <Image
+                        src="/logo.svg"
+                        alt="Tales logo"
+                        width={108}
+                        height={108}
+                    />
+                </div>
+
+                <h1 className={styles.wordmark}>
+                    Tales<span className={styles.dot}></span>
+                </h1>
+
+                <p className={styles.tagline}>Stories you make together</p>
+                {/* todo: change slogan */}
+            </div>
+        </div>
     )
 }
