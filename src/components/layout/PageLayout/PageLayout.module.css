@@ -71,6 +71,7 @@
     flex-direction: row;
     align-items: flex-end;
     text-decoration: none;
+    gap: 2px;
 }
 
 .logo {
@@ -79,8 +80,8 @@
     /* background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
-    margin: 0 2px 0 0;
-    padding: 0;
+    margin: 0;
+    padding: 0 2px 0 0;
 
     font-family: var
     font-weight: 600;
@@ -100,16 +101,10 @@
 }
 
 .dot {
-    /* font-size: 40px;
-    font-weight: bold;
-    color: #ff4a00;
-    margin: 0 0 -1px 0;
-    padding: 0; */
-
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     flex-shrink: 0;
     background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
     box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
