@@ -32,4 +32,5 @@
 
 .active .stepIndicator {
     background: var(--color-progressBar-active);
+    box-shadow: 0px 2px 6px 0px #00000033;
 }
