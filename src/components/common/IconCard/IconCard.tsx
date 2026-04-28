@@ -3,19 +3,19 @@ import styles from './IconCard.module.css'
 interface IconCardProps {
     icon: React.ReactElement
     label: string
-    variant: 'default' | 'selected'
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    isSelected: boolean
+    onClick?: () => void
 }
 
 export function IconCard({
     icon,
     label = 'any theme',
-    variant = 'default',
     onClick,
+    isSelected = false,
 }: IconCardProps) {
     return (
         <button
-            className={`${styles.cardContainer} ${styles[variant]}`}
+            className={`${styles.cardContainer} ${styles[isSelected ? 'selected' : 'default']}`}
             onClick={onClick}
         >
             {icon}
