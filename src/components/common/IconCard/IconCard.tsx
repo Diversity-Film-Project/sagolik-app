@@ -14,15 +14,12 @@ export function IconCard({
     onClick,
 }: IconCardProps) {
     return (
-        <>
-            <h1>icon card</h1>
-            <button
-                className={`${styles.cardContainer} ${styles[variant]}`}
-                onClick={onClick}
-            >
-                {icon}
-                {label}
-            </button>
-        </>
+        <button
+            className={`${styles.cardContainer} ${styles[variant]}`}
+            onClick={onClick}
+        >
+            {icon}
+            {label}
+        </button>
     )
 }
