@@ -26,7 +26,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
     const [storyData, setStoryData] = useState<StoryData>({
         photo: null,
         characterName: '',
-        storyTheme: '',
+        storyTheme: 'Any Theme',
         sidekick: '',
         generatedPrompt: '',
         finalPrompt: '',

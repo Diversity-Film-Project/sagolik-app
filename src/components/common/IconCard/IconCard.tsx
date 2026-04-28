@@ -9,7 +9,7 @@ interface IconCardProps {
 
 export function IconCard({
     icon,
-    label = 'any theme',
+    label,
     onClick,
     isSelected = false,
 }: IconCardProps) {
