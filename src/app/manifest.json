@@ -1,6 +1,7 @@
 {
   "name": "Tales",
   "short_name": "Tales",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
