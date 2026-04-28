@@ -14,4 +14,18 @@
     font-size: var(--font-size-heading-h1);
     color: var(--color-text-primary);
     font-weight: var(--font-weight-bold);
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+.pageDescription {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-md);
+    color: var(--color-text-body);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.23px;
+    font-family: Inter;
+    letter-spacing: -0.23px;
+    margin: 0 0 20px;
+    padding: 0;
 }
