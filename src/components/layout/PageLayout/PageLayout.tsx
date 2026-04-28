@@ -2,7 +2,7 @@ import styles from './PageLayout.module.css'
 import React from 'react'
 import { BadgeInfo } from 'lucide-react'
 import Link from 'next/link'
-// import StepHeader from '@/components/common/StepHeader/StepHeader'
+import { StepHeader } from '@/components/common/StepHeader/StepHeader'
 
 interface PageLayoutProps {
     children: React.ReactNode
@@ -25,13 +25,14 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
                         </button>
                     </div>
 
-                    <span className={styles.stepCounter}>
-                        Step {currentStep} of 4
-                    </span>
+                    <div className={styles.stepsWrapper}>
+                        <span className={styles.stepCounter}>
+                            Step {currentStep} of 4
+                        </span>
+                        <StepHeader currentStep={currentStep} />
+                    </div>
                 </div>
             </header>
-
-            {/* space for StepHeader */}
 
             <main className={`${styles.content} ${styles.container}`}>
                 {children}

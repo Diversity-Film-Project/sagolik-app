@@ -9,6 +9,7 @@ interface StoryData {
     sidekick: string
     generatedPrompt: string
     finalPrompt: string
+    videoUrl: string
 }
 
 interface StoryContextType {
@@ -30,6 +31,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
         sidekick: '',
         generatedPrompt: '',
         finalPrompt: '',
+        videoUrl: '',
     })
 
     const updateStoryData = (data: Partial<StoryData>) => {

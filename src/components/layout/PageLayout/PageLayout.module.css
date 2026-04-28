@@ -17,13 +17,10 @@
     justify-content: flex-start;
     min-height: 100vh;
     padding: 0;
-    /* max-width: 800px; */
     margin: 0 auto;
     animation: pageEnter 1.9s ease;
     position: relative;
 }
-
-
 
 .header {
     display: flex;
@@ -54,12 +51,9 @@
 .content {
     width: 100%;
     padding: 0 20px;
-    /* flex: 1; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-    gap: 24px;
+    /* gap: 24px; */
 }
 
 
@@ -69,6 +63,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .logoContainer {
@@ -76,6 +71,7 @@
     flex-direction: row;
     align-items: flex-end;
     text-decoration: none;
+    gap: 2px;
 }
 
 .logo {
@@ -84,8 +80,8 @@
     /* background: linear-gradient(90deg, #ffc1a4, #ffb8d6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
-    margin: 0 2px 0 0;
-    padding: 0;
+    margin: 0;
+    padding: 0 2px 0 0;
 
     font-family: var
     font-weight: 600;
@@ -105,16 +101,10 @@
 }
 
 .dot {
-    /* font-size: 40px;
-    font-weight: bold;
-    color: #ff4a00;
-    margin: 0 0 -1px 0;
-    padding: 0; */
-
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     flex-shrink: 0;
     background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
     box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
@@ -129,7 +119,15 @@
 
 .stepCounter {
     font-family: var(--font-primary), sans-serif;
-    font-size: 12px;
-    color: #403f3f;
-    font-weight: var(--weight-medium);
+    font-size: var(--font-size-caption-md);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.stepsWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
 }
