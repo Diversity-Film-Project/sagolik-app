@@ -1,101 +1,111 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* change background for body  if needed */
 
 body {
-  background: linear-gradient(to bottom,
-      #ffe8d9 0px,
-      #fffbf7 90px,
-      #fffafa 100%);
-  background-attachment: fixed;
-  min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        #ffe8d9 0px,
+        #fffbf7 90px,
+        #fffafa 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 :root {
-  /* font */
-  --font-primary: 'Inter', sans-serif;
-  --font-secondary: 'Lora', serif;
-  /* font size */
-  --font-size-heading-h1: 24px;
-  --font-size-heading-h2: 13px;
-  --font-size-body-sm: 13px;
-  --font-size-body-md: 15px;
-  --font-size-button: 15px;
-  --font-size-caption-sm: 10px;
-  --font-size-caption-md: 12px;
+    /* font */
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Lora', serif;
+    /* font size */
+    --font-size-heading-h1: 24px;
+    --font-size-heading-h2: 13px;
+    --font-size-body-sm: 13px;
+    --font-size-body-md: 15px;
+    --font-size-button: 15px;
+    --font-size-caption-sm: 10px;
+    --font-size-caption-md: 12px;
 
-  /* font weight */
-  --font-weight-bold: 600;
-  --font-weight-medium: 500;
-  --font-weight-light: 400;
+    /* font weight */
+    --font-weight-bold: 600;
+    --font-weight-medium: 500;
+    --font-weight-light: 400;
 
-  /* border */
-  --border-radius: 10px;
-  --border-radius-full: 999px;
+    /* border */
+    --border-radius: 10px;
+    --border-radius-full: 999px;
 
-  /* spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 52px;
+    /* spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 52px;
 
-  /* color */
-  --color-primary: #ff6700;
-  --color-secondary: #ff300b;
-  --color-border: #ffb380;
+    /* color */
+    --color-primary: #ff6700;
+    --color-secondary: #ff300b;
+    --color-border: #ffb380;
 
-  --color-text-primary: #000000;
-  --color-text-secondary: #403f3f;
-  --color-text-body: #807d7d;
-  --color-progressBar-notActive: #e5e1e1;
-  --color-button-text-primary: #ffffff;
-  --color-button-text-secondary: #000000;
+    --color-text-primary: #000000;
+    --color-text-secondary: #403f3f;
+    --color-text-body: #807d7d;
+    --color-progressBar-notActive: #e5e1e1;
+    --color-button-text-primary: #ffffff;
+    --color-button-text-secondary: #000000;
 
-  --color-input-background: #ffffff;
-  --color-card-background: #ffffff;
-  --color-default-icon: #ffffff;
+    --color-input-background: #ffffff;
+    --color-card-background: #ffffff;
+    --color-default-icon: #ffffff;
 
-  --color-primary-button-background: linear-gradient(92deg,
-      rgba(255, 103, 0, 0.75) 13.9%,
-      rgba(255, 48, 11, 0.75) 74.85%);
-  --color-progressBar-active: linear-gradient(271deg,
-      #ff6700 9.29%,
-      #ff300b 85.64%);
-  --color-icon-background: linear-gradient(158deg,
-      #ff300b -27.14%,
-      #ff6700 73.82%);
+    --color-primary-button-background: linear-gradient(
+        92deg,
+        rgba(255, 103, 0, 0.75) 13.9%,
+        rgba(255, 48, 11, 0.75) 74.85%
+    );
+    --color-progressBar-active: linear-gradient(
+        271deg,
+        #ff6700 9.29%,
+        #ff300b 85.64%
+    );
+    --color-icon-background: linear-gradient(
+        158deg,
+        #ff300b -27.14%,
+        #ff6700 73.82%
+    );
 
-  /* border shadow */
-  --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
-  --var-progressBar-active: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    /* border shadow */
+    --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
+    --var-progressBar-active: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
-  /* temporary commented. Some users (Anna at least, haha) prefer dark mode for their devices -> app recognizes the theme and applies it - now it looks bad */
-  /* body {
+    /* temporary commented. Some users (Anna at least, haha) prefer dark mode for their devices -> app recognizes the theme and applies it - now it looks bad */
+    /* body {
     background: linear-gradient(to bottom,
         #2a1500 0px,
         #1a0d00 90px,
         #111010 100%);
   } */
 
-  :root {
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #c4c2c2;
-    --color-text-body: #9e9b9b;
+    :root {
+        /* temporary commented. Some users (Anna at least, haha) prefer dark mode for their devices -> app recognizes the theme and applies it - now it looks bad */
 
-    --color-input-background: #1e1e1e;
-    --color-card-background: #1e1e1e;
-    --color-border: #ff8c42;
+        /* --color-text-primary: #ffffff;
+        --color-text-secondary: #c4c2c2;
+        --color-text-body: #9e9b9b;
 
-    --color-progressBar-notActive: #3a3a3a;
+        --color-input-background: #1e1e1e;
+        --color-card-background: #1e1e1e;
+        --color-border: #ff8c42; */
 
-    --color-button-text-secondary: #ffffff;
-  }
+        /* --color-progressBar-notActive: #3a3a3a; */
+
+        /* --color-button-text-secondary: #ffffff; */
+    }
 }
