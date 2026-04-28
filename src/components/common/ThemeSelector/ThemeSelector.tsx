@@ -3,7 +3,7 @@ import { IconCard } from '../IconCard/IconCard'
 import { Star } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
 
-export function ThemeSelector({}) {
+export function ThemeSelector() {
     const { storyData, updateStoryData } = useStory()
 
     return (
