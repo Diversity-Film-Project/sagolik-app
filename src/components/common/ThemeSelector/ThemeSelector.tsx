@@ -1,7 +1,7 @@
 import styles from './ThemeSelector.module.css'
 import { IconCard } from '../IconCard/IconCard'
-import { Star } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
+import { Questionmark } from '@/components/ui/Icon/Questionmark'
 import { Rocket } from '@/components/ui/Icon/Rocket'
 import { Wave } from '@/components/ui/Icon/Wave'
 import { Castle } from '@/components/ui/Icon/Castle'
@@ -15,7 +15,7 @@ export function ThemeSelector() {
         <div className={styles.wrapperContainer}>
             <div className={styles.flexContainer}>
                 <IconCard
-                    icon={<Star />}
+                    icon={<Questionmark />}
                     label="Any Theme"
                     isSelected={storyData.storyTheme === 'Any Theme'}
                     onClick={() => updateStoryData({ storyTheme: 'Any Theme' })}

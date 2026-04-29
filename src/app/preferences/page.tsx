@@ -14,7 +14,6 @@ export default function PreferencesPage() {
                 text="Personalise the story"
                 description="We'll use these to create a personalized story"
             />
-            <h1>Preferences content</h1>
             <ThemeSelector />
         </PageLayout>
     )
