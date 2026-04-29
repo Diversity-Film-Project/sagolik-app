@@ -3,11 +3,11 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import styles from './page.module.css'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
 import { UploadPhotoCard } from '@/components/common/uploadPhotoCard/UploadPhotoCard'
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
+import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
@@ -24,14 +24,11 @@ export default function UploadPhotoPage() {
 
     return (
         <PageLayout currentStep={1} href="/upload">
-            <h1 className={styles.pageTitle}>Add your child&apos;s photo</h1>
-            <p className={styles.pageDescription}>
-                We&apos;ll place them as the hero of the story
-            </p>
+            <PageTitle
+                text="Add your child's photo"
+                description="We'll place them as the hero of the story"
+            />
             <UploadPhotoCard />
-            <p style={{ margin: '30px', fontSize: '14px', color: '#666' }}>
-                space for infoCard Component - Roujeh&apos; ticket
-            </p>
 
             <Button label="Continue" onClick={handleContinue} />
             {error && <p className="error">{error}</p>}
