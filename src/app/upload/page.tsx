@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
-import { UploadPhotoCard } from '@/components/common/uploadPhotoCard/UploadPhotoCard'
+import { UploadPhotoCard } from '@/components/common/UploadPhotoCard/UploadPhotoCard'
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
