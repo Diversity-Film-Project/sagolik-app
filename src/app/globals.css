@@ -7,14 +7,13 @@
 /* change background for body  if needed */
 
 body {
-    background: linear-gradient(
-        to bottom,
-        #ffe8d9 0px,
-        #fffbf7 90px,
-        #fffafa 100%
-    );
+    background: linear-gradient(to bottom,
+            #ffe8d9 0px,
+            #fffbf7 90px,
+            #fffafa 100%);
     background-attachment: fixed;
     min-height: 100vh;
+    font-family: var(--font-primary);
 }
 
 :root {
@@ -63,21 +62,15 @@ body {
     --color-card-background: #ffffff;
     --color-default-icon: #ffffff;
 
-    --color-primary-button-background: linear-gradient(
-        92deg,
-        rgba(255, 103, 0, 0.75) 13.9%,
-        rgba(255, 48, 11, 0.75) 74.85%
-    );
-    --color-progressBar-active: linear-gradient(
-        271deg,
-        #ff6700 9.29%,
-        #ff300b 85.64%
-    );
-    --color-icon-background: linear-gradient(
-        158deg,
-        #ff300b -27.14%,
-        #ff6700 73.82%
-    );
+    --color-primary-button-background: linear-gradient(92deg,
+            rgba(255, 103, 0, 0.75) 13.9%,
+            rgba(255, 48, 11, 0.75) 74.85%);
+    --color-progressBar-active: linear-gradient(271deg,
+            #ff6700 9.29%,
+            #ff300b 85.64%);
+    --color-icon-background: linear-gradient(158deg,
+            #ff300b -27.14%,
+            #ff6700 73.82%);
 
     /* border shadow */
     --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
@@ -89,6 +82,7 @@ body {
         opacity: 0;
         transform: translateY(-4px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
