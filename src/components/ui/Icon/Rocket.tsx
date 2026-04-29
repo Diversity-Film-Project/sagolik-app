@@ -8,10 +8,10 @@ export function Rocket() {
                 viewBox="0 0 32 32"
                 fill="none"
             >
-                <g clip-path="url(#clip0_163_3202)">
+                <g clipPath="url(#clip0_163_3202)">
                     <mask
                         id="mask0_163_3202"
-                        style="mask-type:luminance"
+                        // style="mask-type:luminance"
                         maskUnits="userSpaceOnUse"
                         x="0"
                         y="0"
@@ -147,12 +147,9 @@ export function Rocket() {
                         width="22.3965"
                         height="22.6592"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -190,12 +187,9 @@ export function Rocket() {
                         width="8.71875"
                         height="8.71875"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
                             in="SourceAlpha"
                             type="matrix"
@@ -274,12 +268,9 @@ export function Rocket() {
                         width="7.57373"
                         height="7.2166"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -317,12 +308,9 @@ export function Rocket() {
                         width="7.625"
                         height="8.4375"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
-                        <feFlood
-                            flood-opacity="0"
-                            result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                             mode="normal"
                             in="SourceGraphic"
@@ -342,8 +330,8 @@ export function Rocket() {
                         y2="16.4847"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#EE9D24" />
-                        <stop offset="1" stop-color="#F6AD3E" />
+                        <stop stopColor="#EE9D24" />
+                        <stop offset="1" stopColor="#F6AD3E" />
                     </linearGradient>
                     <radialGradient
                         id="paint1_radial_163_3202"
@@ -353,12 +341,8 @@ export function Rocket() {
                         gradientTransform="matrix(7.52114 -2.73117 0.46436 1.27875 2.39827 17.0637)"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop offset="0.164" stop-color="#FFD28D" />
-                        <stop
-                            offset="1"
-                            stop-color="#FFD28D"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.164" stopColor="#FFD28D" />
+                        <stop offset="1" stopColor="#FFD28D" stopOpacity="0" />
                     </radialGradient>
                     <linearGradient
                         id="paint2_linear_163_3202"
@@ -368,12 +352,8 @@ export function Rocket() {
                         y2="18.9387"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop offset="0.491" stop-color="#DDA146" />
-                        <stop
-                            offset="1"
-                            stop-color="#DDA146"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.491" stopColor="#DDA146" />
+                        <stop offset="1" stopColor="#DDA146" stopOpacity="0" />
                     </linearGradient>
                     <linearGradient
                         id="paint3_linear_163_3202"
@@ -383,8 +363,8 @@ export function Rocket() {
                         y2="26.5517"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#F8A932" />
-                        <stop offset="1" stop-color="#BE31FF" />
+                        <stop stopColor="#F8A932" />
+                        <stop offset="1" stopColor="#BE31FF" />
                     </linearGradient>
                     <radialGradient
                         id="paint4_radial_163_3202"
@@ -396,10 +376,10 @@ export function Rocket() {
                     >
                         <stop
                             offset="0.757"
-                            stop-color="#AD59D4"
-                            stop-opacity="0"
+                            stopColor="#AD59D4"
+                            stopOpacity="0"
                         />
-                        <stop offset="0.951" stop-color="#AD59D4" />
+                        <stop offset="0.951" stopColor="#AD59D4" />
                     </radialGradient>
                     <radialGradient
                         id="paint5_radial_163_3202"
@@ -409,12 +389,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(13.4543 26.2347) rotate(-57.346) scale(5.27051 2.31507)"
                     >
-                        <stop stop-color="#CA58FF" />
-                        <stop
-                            offset="1"
-                            stop-color="#CA58FF"
-                            stop-opacity="0"
-                        />
+                        <stop stopColor="#CA58FF" />
+                        <stop offset="1" stopColor="#CA58FF" stopOpacity="0" />
                     </radialGradient>
                     <linearGradient
                         id="paint6_linear_163_3202"
@@ -424,8 +400,8 @@ export function Rocket() {
                         y2="17.5471"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#C7BBCC" />
-                        <stop offset="1" stop-color="#E4D2EC" />
+                        <stop stopColor="#C7BBCC" />
+                        <stop offset="1" stopColor="#E4D2EC" />
                     </linearGradient>
                     <radialGradient
                         id="paint7_radial_163_3202"
@@ -437,10 +413,10 @@ export function Rocket() {
                     >
                         <stop
                             offset="0.811"
-                            stop-color="#E5E7E7"
-                            stop-opacity="0"
+                            stopColor="#E5E7E7"
+                            stopOpacity="0"
                         />
-                        <stop offset="1" stop-color="#E5E7E7" />
+                        <stop offset="1" stopColor="#E5E7E7" />
                     </radialGradient>
                     <radialGradient
                         id="paint8_radial_163_3202"
@@ -450,12 +426,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(9.1811 21.3101) rotate(-56.929) scale(9.80381 4.6077)"
                     >
-                        <stop offset="0.281" stop-color="#AFA3B5" />
-                        <stop
-                            offset="1"
-                            stop-color="#AFA3B5"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.281" stopColor="#AFA3B5" />
+                        <stop offset="1" stopColor="#AFA3B5" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint9_radial_163_3202"
@@ -465,12 +437,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(6.34442 20.0909) rotate(-73.625) scale(8.69119 1.4727)"
                     >
-                        <stop offset="0.208" stop-color="#B2A48F" />
-                        <stop
-                            offset="1"
-                            stop-color="#B2A48F"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.208" stopColor="#B2A48F" />
+                        <stop offset="1" stopColor="#B2A48F" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint10_radial_163_3202"
@@ -480,12 +448,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(27.1101 7.1101) rotate(137.284) scale(13.175 4.09069)"
                     >
-                        <stop stop-color="#ECFAF8" />
-                        <stop
-                            offset="1"
-                            stop-color="#ECFAF8"
-                            stop-opacity="0"
-                        />
+                        <stop stopColor="#ECFAF8" />
+                        <stop offset="1" stopColor="#ECFAF8" stopOpacity="0" />
                     </radialGradient>
                     <linearGradient
                         id="paint11_linear_163_3202"
@@ -495,8 +459,8 @@ export function Rocket() {
                         y2="11.0621"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#A296A7" />
-                        <stop offset="1" stop-color="#A095A5" />
+                        <stop stopColor="#A296A7" />
+                        <stop offset="1" stopColor="#A095A5" />
                     </linearGradient>
                     <radialGradient
                         id="paint12_radial_163_3202"
@@ -506,12 +470,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(21.1424 11.0621) rotate(90) scale(3.35938)"
                     >
-                        <stop offset="0.587" stop-color="#94859B" />
-                        <stop
-                            offset="1"
-                            stop-color="#94859B"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.587" stopColor="#94859B" />
+                        <stop offset="1" stopColor="#94859B" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint13_radial_163_3202"
@@ -521,9 +481,9 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(21.14 13.3886) rotate(-90) scale(4.84559 4.45626)"
                     >
-                        <stop stop-color="#5FE4D4" />
-                        <stop offset="0.738" stop-color="#66FFED" />
-                        <stop offset="1" stop-color="#8526FE" />
+                        <stop stopColor="#5FE4D4" />
+                        <stop offset="0.738" stopColor="#66FFED" />
+                        <stop offset="1" stopColor="#8526FE" />
                     </radialGradient>
                     <radialGradient
                         id="paint14_radial_163_3202"
@@ -533,8 +493,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(8.19168 24.2471) rotate(135) scale(5.80645 4.56401)"
                     >
-                        <stop stop-color="#D48713" />
-                        <stop offset="1" stop-color="#D8A353" />
+                        <stop stopColor="#D48713" />
+                        <stop offset="1" stopColor="#D8A353" />
                     </radialGradient>
                     <radialGradient
                         id="paint15_radial_163_3202"
@@ -546,10 +506,10 @@ export function Rocket() {
                     >
                         <stop
                             offset="0.871"
-                            stop-color="#FFCE84"
-                            stop-opacity="0"
+                            stopColor="#FFCE84"
+                            stopOpacity="0"
                         />
-                        <stop offset="1" stop-color="#FFCE84" />
+                        <stop offset="1" stopColor="#FFCE84" />
                     </radialGradient>
                     <linearGradient
                         id="paint16_linear_163_3202"
@@ -559,8 +519,8 @@ export function Rocket() {
                         y2="27.3589"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#4E2860" />
-                        <stop offset="1" stop-color="#86509F" />
+                        <stop stopColor="#4E2860" />
+                        <stop offset="1" stopColor="#86509F" />
                     </linearGradient>
                     <radialGradient
                         id="paint17_radial_163_3202"
@@ -570,12 +530,8 @@ export function Rocket() {
                         gradientTransform="matrix(0.34375 1.59375 -1.40812 0.30371 6.83027 21.4529)"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#93839A" />
-                        <stop
-                            offset="1"
-                            stop-color="#93839A"
-                            stop-opacity="0"
-                        />
+                        <stop stopColor="#93839A" />
+                        <stop offset="1" stopColor="#93839A" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint18_radial_163_3202"
@@ -587,10 +543,10 @@ export function Rocket() {
                     >
                         <stop
                             offset="0.86"
-                            stop-color="#9D61B9"
-                            stop-opacity="0"
+                            stopColor="#9D61B9"
+                            stopOpacity="0"
                         />
-                        <stop offset="1" stop-color="#9D61B9" />
+                        <stop offset="1" stopColor="#9D61B9" />
                     </radialGradient>
                     <linearGradient
                         id="paint19_linear_163_3202"
@@ -600,8 +556,8 @@ export function Rocket() {
                         y2="6.55233"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FFAF37" />
-                        <stop offset="1" stop-color="#ED9C22" />
+                        <stop stopColor="#FFAF37" />
+                        <stop offset="1" stopColor="#ED9C22" />
                     </linearGradient>
                     <radialGradient
                         id="paint20_radial_163_3202"
@@ -611,12 +567,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(28.7391 4.34825) rotate(135) scale(8.24677 1.9797)"
                     >
-                        <stop offset="0.189" stop-color="#FFBD59" />
-                        <stop
-                            offset="1"
-                            stop-color="#FFBD59"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.189" stopColor="#FFBD59" />
+                        <stop offset="1" stopColor="#FFBD59" stopOpacity="0" />
                     </radialGradient>
                     <linearGradient
                         id="paint21_linear_163_3202"
@@ -626,12 +578,8 @@ export function Rocket() {
                         y2="6.41433"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#D2A157" />
-                        <stop
-                            offset="1"
-                            stop-color="#F9AA32"
-                            stop-opacity="0"
-                        />
+                        <stop stopColor="#D2A157" />
+                        <stop offset="1" stopColor="#F9AA32" stopOpacity="0" />
                     </linearGradient>
                     <linearGradient
                         id="paint22_linear_163_3202"
@@ -641,8 +589,8 @@ export function Rocket() {
                         y2="23.5517"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FFA926" />
-                        <stop offset="1" stop-color="#BB29FF" />
+                        <stop stopColor="#FFA926" />
+                        <stop offset="1" stopColor="#BB29FF" />
                     </linearGradient>
                     <radialGradient
                         id="paint23_radial_163_3202"
@@ -652,12 +600,8 @@ export function Rocket() {
                         gradientUnits="userSpaceOnUse"
                         gradientTransform="translate(6.23627 19.4227) rotate(-20.865) scale(7.45782 1.95239)"
                     >
-                        <stop stop-color="#FFD595" />
-                        <stop
-                            offset="1"
-                            stop-color="#FFD595"
-                            stop-opacity="0"
-                        />
+                        <stop stopColor="#FFD595" />
+                        <stop offset="1" stopColor="#FFD595" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint24_radial_163_3202"
@@ -667,12 +611,8 @@ export function Rocket() {
                         gradientTransform="matrix(3.27669 3.24305 -0.95797 0.9679 5.39827 20.3087)"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop offset="0.382" stop-color="#E1A346" />
-                        <stop
-                            offset="1"
-                            stop-color="#E1A346"
-                            stop-opacity="0"
-                        />
+                        <stop offset="0.382" stopColor="#E1A346" />
+                        <stop offset="1" stopColor="#E1A346" stopOpacity="0" />
                     </radialGradient>
                     <radialGradient
                         id="paint25_radial_163_3202"
@@ -684,10 +624,10 @@ export function Rocket() {
                     >
                         <stop
                             offset="0.832"
-                            stop-color="#C47BE6"
-                            stop-opacity="0"
+                            stopColor="#C47BE6"
+                            stopOpacity="0"
                         />
-                        <stop offset="1" stop-color="#C47BE6" />
+                        <stop offset="1" stopColor="#C47BE6" />
                     </radialGradient>
                     <linearGradient
                         id="paint26_linear_163_3202"
@@ -697,8 +637,8 @@ export function Rocket() {
                         y2="22.4221"
                         gradientUnits="userSpaceOnUse"
                     >
-                        <stop stop-color="#FFBD59" />
-                        <stop offset="1" stop-color="#CA57FF" />
+                        <stop stopColor="#FFBD59" />
+                        <stop offset="1" stopColor="#CA57FF" />
                     </linearGradient>
                     <clipPath id="clip0_163_3202">
                         <rect width="32" height="32" fill="white" />

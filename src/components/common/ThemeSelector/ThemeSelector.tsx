@@ -2,6 +2,11 @@ import styles from './ThemeSelector.module.css'
 import { IconCard } from '../IconCard/IconCard'
 import { Star } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
+import { Rocket } from '@/components/ui/Icon/Rocket'
+import { Wave } from '@/components/ui/Icon/Wave'
+import { Castle } from '@/components/ui/Icon/Castle'
+import { Dino } from '@/components/ui/Icon/Dino'
+import { Starfall } from '@/components/ui/Icon/Starfall'
 
 export function ThemeSelector() {
     const { storyData, updateStoryData } = useStory()
@@ -16,7 +21,7 @@ export function ThemeSelector() {
                     onClick={() => updateStoryData({ storyTheme: 'Any Theme' })}
                 />
                 <IconCard
-                    icon={<Star />}
+                    icon={<Rocket />}
                     label="Space Quest"
                     isSelected={storyData.storyTheme === 'Space Quest'}
                     onClick={() =>
@@ -24,7 +29,7 @@ export function ThemeSelector() {
                     }
                 />
                 <IconCard
-                    icon={<Star />}
+                    icon={<Wave />}
                     label="Ocean Deep"
                     isSelected={storyData.storyTheme === 'Ocean Deep'}
                     onClick={() =>
@@ -34,7 +39,7 @@ export function ThemeSelector() {
             </div>
             <div className={styles.flexContainer}>
                 <IconCard
-                    icon={<Star />}
+                    icon={<Castle />}
                     label="Royal Castle"
                     isSelected={storyData.storyTheme === 'Royal Castle'}
                     onClick={() =>
@@ -42,7 +47,7 @@ export function ThemeSelector() {
                     }
                 />
                 <IconCard
-                    icon={<Star />}
+                    icon={<Dino />}
                     label="Dino World"
                     isSelected={storyData.storyTheme === 'Dino World'}
                     onClick={() =>
@@ -50,7 +55,7 @@ export function ThemeSelector() {
                     }
                 />
                 <IconCard
-                    icon={<Star />}
+                    icon={<Starfall />}
                     label="Fairy Tales"
                     isSelected={storyData.storyTheme === 'Fairy Tales'}
                     onClick={() =>
