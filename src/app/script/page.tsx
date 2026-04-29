@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
 import { Button } from '@/components/ui/Button/Button'
 import styles from './page.module.css'
+import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 // import {generatePrompt} from '@/services/lib/generatePrompt'
 // call this function on "Regenerate" (script page)
 
@@ -14,7 +15,10 @@ export default function ScriptPage() {
 
     return (
         <PageLayout currentStep={3} href="/script">
-            <h1>gemini API</h1>
+            <PageTitle
+                text="Your script is ready"
+                description="Here's a preview of the story"
+            />
             <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
