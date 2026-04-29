@@ -12,56 +12,61 @@ export function ThemeSelector() {
     const { storyData, updateStoryData } = useStory()
 
     return (
-        <div className={styles.wrapperContainer}>
-            <div className={styles.flexContainer}>
-                <IconCard
-                    icon={<Questionmark />}
-                    label="Any Theme"
-                    isSelected={storyData.storyTheme === 'Any Theme'}
-                    onClick={() => updateStoryData({ storyTheme: 'Any Theme' })}
-                />
-                <IconCard
-                    icon={<Rocket />}
-                    label="Space Quest"
-                    isSelected={storyData.storyTheme === 'Space Quest'}
-                    onClick={() =>
-                        updateStoryData({ storyTheme: 'Space Quest' })
-                    }
-                />
-                <IconCard
-                    icon={<Wave />}
-                    label="Ocean Deep"
-                    isSelected={storyData.storyTheme === 'Ocean Deep'}
-                    onClick={() =>
-                        updateStoryData({ storyTheme: 'Ocean Deep' })
-                    }
-                />
-            </div>
-            <div className={styles.flexContainer}>
-                <IconCard
-                    icon={<Castle />}
-                    label="Royal Castle"
-                    isSelected={storyData.storyTheme === 'Royal Castle'}
-                    onClick={() =>
-                        updateStoryData({ storyTheme: 'Royal Castle' })
-                    }
-                />
-                <IconCard
-                    icon={<Dino />}
-                    label="Dino World"
-                    isSelected={storyData.storyTheme === 'Dino World'}
-                    onClick={() =>
-                        updateStoryData({ storyTheme: 'Dino World' })
-                    }
-                />
-                <IconCard
-                    icon={<Starfall />}
-                    label="Fairy Tales"
-                    isSelected={storyData.storyTheme === 'Fairy Tales'}
-                    onClick={() =>
-                        updateStoryData({ storyTheme: 'Fairy Tales' })
-                    }
-                />
+        <div className={styles.flexWrapper}>
+            <label>Story theme</label>
+            <div className={styles.wrapperContainer}>
+                <div className={styles.flexContainer}>
+                    <IconCard
+                        icon={<Questionmark />}
+                        label="Any Theme"
+                        isSelected={storyData.storyTheme === 'Any Theme'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Any Theme' })
+                        }
+                    />
+                    <IconCard
+                        icon={<Rocket />}
+                        label="Space Quest"
+                        isSelected={storyData.storyTheme === 'Space Quest'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Space Quest' })
+                        }
+                    />
+                    <IconCard
+                        icon={<Wave />}
+                        label="Ocean Deep"
+                        isSelected={storyData.storyTheme === 'Ocean Deep'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Ocean Deep' })
+                        }
+                    />
+                </div>
+                <div className={styles.flexContainer}>
+                    <IconCard
+                        icon={<Castle />}
+                        label="Royal Castle"
+                        isSelected={storyData.storyTheme === 'Royal Castle'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Royal Castle' })
+                        }
+                    />
+                    <IconCard
+                        icon={<Dino />}
+                        label="Dino World"
+                        isSelected={storyData.storyTheme === 'Dino World'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Dino World' })
+                        }
+                    />
+                    <IconCard
+                        icon={<Starfall />}
+                        label="Fairy Tales"
+                        isSelected={storyData.storyTheme === 'Fairy Tales'}
+                        onClick={() =>
+                            updateStoryData({ storyTheme: 'Fairy Tales' })
+                        }
+                    />
+                </div>
             </div>
         </div>
     )
