@@ -1,7 +1,28 @@
 .root {
-    /* style for all buttons */
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    width: 100%;
+    padding: 14px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-button);
 }
 
 .primary {
-    /* style for primary button */
+    color: var(--color-button-text-primary);
+    background: var(--color-primary-button-background);
+    box-shadow: var(--var-button-box-shadow);
+}
+
+.secondary {
+    color: var(--color-text-secondary);
+}
+
+.outlined {
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-secondary);
 }

@@ -1,50 +1,41 @@
-//Step 1 — Upload Photo
-
+import Image from 'next/image'
+import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
+import { AutoRedirect } from '@/components/common/AutoRedirect/AutoRedirect'
 import styles from './page.module.css'
 
-export default function UploadPhotoPage() {
+export default function SplashPage() {
     return (
-        <main className={styles.page}>
-            {/* Header */}
-            {/* from common components */}
-            <div>Header placeholder</div>
+        <div className={styles.page}>
+            <AutoRedirect to="/upload" delay={3000} />
 
-            {/* Progress bar */}
-            {/* from common components */}
-            <div>Progress bar placeholder</div>
+            {/* Background */}
+            <div className={styles.bg} />
+            <StarCanvas />
+            <div className={styles.blobs}>
+                <div className={`${styles.blob} ${styles.blob1}`} />
+                <div className={`${styles.blob} ${styles.blob2}`} />
+                <div className={`${styles.blob} ${styles.blob3}`} />
+                <div className={`${styles.blob} ${styles.blob4}`} />
+            </div>
 
-            {/* Page title */}
-            <section className={styles.content}>
-                <h1 className={styles.title}>Add your child&apos;s photo</h1>
-                <p className={styles.subtitle}>
-                    We&apos;ll place them as the hero of the story
-                </p>
-
-                {/* Upload area */}
-                <div className={styles.uploadArea}>
-                    <span className={styles.uploadIcon}>[image icon]</span>
-                    <p className={styles.uploadPrimary}>Upload a photo</p>
-                    <p className={styles.uploadSecondary}>or drag and drop</p>
-                    <p className={styles.uploadHint}>PNG, JPG up to 10MB</p>
+            {/* Content */}
+            <div className={styles.stage}>
+                <div className={styles.logoWrap}>
+                    <Image
+                        src="/logo.svg"
+                        alt="Tales logo"
+                        width={108}
+                        height={108}
+                    />
                 </div>
 
-                {/* Tip card */}
-                {/* it's might be reusable part, then -> paste tipcard from common components */}
-                <div className={styles.tipCard}>
-                    <p className={styles.tipTitle}>Best results</p>
-                    <p className={styles.tipText}>
-                        Use a clear photo with good lighting and a single child
-                        facing the camera
-                    </p>
-                </div>
-            </section>
+                <h1 className={styles.wordmark}>
+                    Tales<span className={styles.dot}></span>
+                </h1>
 
-            {/* Actions */}
-            <footer className={styles.actions}>
-                {/* Buttons from ui reusable components */}
-                <button>Btn</button>
-                <button>Btn</button>
-            </footer>
-        </main>
+                <p className={styles.tagline}>Stories you make together</p>
+                {/* todo: change slogan */}
+            </div>
+        </div>
     )
 }
