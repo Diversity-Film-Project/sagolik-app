@@ -13,7 +13,7 @@ export function ThemeSelector() {
 
     return (
         <div className={styles.flexWrapper}>
-            <label>Story theme</label>
+            <h1>Story theme</h1>
             <div className={styles.wrapperContainer}>
                 <div className={styles.flexContainer}>
                     <IconCard
