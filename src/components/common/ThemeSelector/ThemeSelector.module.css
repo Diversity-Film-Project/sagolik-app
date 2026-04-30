@@ -1,0 +1,30 @@
+.flexWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.flexWrapper h1 {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-heading-h2);
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.wrapperContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.flexContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+}
