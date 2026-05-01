@@ -1,0 +1,23 @@
+.root {
+    width: 100%;
+    outline: none;
+
+    font-family: var(--font-primary);
+    border-radius: var(--border-radius);
+    color: var(--color-text-primary);
+    background-color: var(--color-input-background);
+}
+
+.primary {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-body-sm);
+    border: 1px solid var(--color-primary);
+}
+
+.secondary {
+    /* input for page 3*/
+    padding: var(--spacing-md);
+    font-size: var(--font-size-body-sm);
+    min-height: 80px;
+    border: none;
+}
