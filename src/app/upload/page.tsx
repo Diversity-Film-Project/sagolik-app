@@ -8,7 +8,6 @@ import { UploadPhotoCard } from '@/components/common/UploadPhotoCard/UploadPhoto
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
-import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
@@ -33,8 +32,6 @@ export default function UploadPhotoPage() {
 
             <Button label="Continue" onClick={handleContinue} />
             {error && <p className="error">{error}</p>}
-
-            <LoadingCard duration={3} />
         </PageLayout>
     )
 }
