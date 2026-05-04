@@ -6,12 +6,12 @@ const meta: Meta<typeof Input> = {
     component: Input,
 
     args: {
+        label: 'CHARACTER NAME',
         value: '',
         placeholder: 'Placeholder',
         onChange: () => {},
     },
 }
-// comment //
 
 export default meta
 
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Input>
 export const Primary: Story = {
     args: {
         value: '',
-        placeholder: 'Character name',
+        placeholder: 'Placeholder',
         variant: 'primary',
     },
 }

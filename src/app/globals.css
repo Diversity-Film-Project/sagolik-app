@@ -7,10 +7,12 @@
 /* change background for body  if needed */
 
 body {
-    background: linear-gradient(to bottom,
-            #ffe8d9 0px,
-            #fffbf7 90px,
-            #fffafa 100%);
+    background: linear-gradient(
+        to bottom,
+        #ffe8d9 0px,
+        #fffbf7 90px,
+        #fffafa 100%
+    );
     background-attachment: fixed;
     min-height: 100vh;
     font-family: var(--font-primary);
@@ -62,17 +64,23 @@ body {
     --color-card-background: #ffffff;
     --color-default-icon: #ffffff;
     --color-secondary-icon: #000000;
-    --color-loading-icon-background: #E5E1E1;
+    --color-loading-icon-background: #e5e1e1;
 
-    --color-primary-button-background: linear-gradient(92deg,
-            rgba(255, 103, 0, 0.75) 13.9%,
-            rgba(255, 48, 11, 0.75) 74.85%);
-    --color-progressBar-active: linear-gradient(271deg,
-            #ff6700 9.29%,
-            #ff300b 85.64%);
-    --color-icon-background: linear-gradient(158deg,
-            #ff300b -27.14%,
-            #ff6700 73.82%);
+    --color-primary-button-background: linear-gradient(
+        92deg,
+        rgba(255, 103, 0, 0.75) 13.9%,
+        rgba(255, 48, 11, 0.75) 74.85%
+    );
+    --color-progressBar-active: linear-gradient(
+        271deg,
+        #ff6700 9.29%,
+        #ff300b 85.64%
+    );
+    --color-icon-background: linear-gradient(
+        158deg,
+        #ff300b -27.14%,
+        #ff6700 73.82%
+    );
 
     /* border shadow */
     --var-button-box-shadow: 0 0 16px 0 rgba(150, 130, 177, 0.35);
@@ -109,10 +117,10 @@ body {
         #111010 100%);
   } */
 
-    :root {
-        /* temporary commented. Some users (Anna at least, haha) prefer dark mode for their devices -> app recognizes the theme and applies it - now it looks bad */
+    /* :root { */
+    /* temporary commented. Some users (Anna at least, haha) prefer dark mode for their devices -> app recognizes the theme and applies it - now it looks bad */
 
-        /* --color-text-primary: #ffffff;
+    /* --color-text-primary: #ffffff;
         --color-text-secondary: #c4c2c2;
         --color-text-body: #9e9b9b;
 
@@ -120,8 +128,8 @@ body {
         --color-card-background: #1e1e1e;
         --color-border: #ff8c42; */
 
-        /* --color-progressBar-notActive: #3a3a3a; */
+    /* --color-progressBar-notActive: #3a3a3a; */
 
-        /* --color-button-text-secondary: #ffffff; */
-    }
+    /* --color-button-text-secondary: #ffffff; */
+    /* }  */
 }
