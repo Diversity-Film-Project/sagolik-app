@@ -12,6 +12,7 @@ import { useStory } from '@/context/StoryContext'
 import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import { useState } from 'react'
+import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
@@ -42,6 +43,20 @@ export default function PreferencesPage() {
             <ThemeSelector />
 
             {/* Place for sidekick */}
+            <Dropdown
+                label="SIDEKICK"
+                options={[
+                    'No sidekick',
+                    'Person in photo',
+                    'Dragon',
+                    'Alien',
+                    'Robot',
+                    'Unicorn',
+                ]}
+                value={storyData.sidekick}
+                onChange={(value) => updateStoryData({ sidekick: value })}
+                variant="primary"
+            />
 
             <div className={styles.buttonWrapper}>
                 <Button label="Continue" onClick={handleContinue} />
