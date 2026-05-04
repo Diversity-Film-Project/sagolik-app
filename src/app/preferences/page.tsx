@@ -11,10 +11,21 @@ import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
+import { useState } from 'react'
+import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
     const router = useRouter()
+    const [error, setError] = useState<string | null>(null)
+    const handleContinue = () => {
+        if (!storyData.characterName) {
+            setError('Please enter a name to continue.')
+            return
+        }
+
+        router.push('/story')
+    }
 
     return (
         <PageLayout currentStep={2} href="/preferences">
@@ -32,15 +43,30 @@ export default function PreferencesPage() {
             <ThemeSelector />
 
             {/* Place for sidekick */}
+            <Dropdown
+                label="SIDEKICK"
+                options={[
+                    'No sidekick',
+                    'Person in photo',
+                    'Dragon',
+                    'Alien',
+                    'Robot',
+                    'Unicorn',
+                ]}
+                value={storyData.sidekick}
+                onChange={(value) => updateStoryData({ sidekick: value })}
+                variant="primary"
+            />
 
             <div className={styles.buttonWrapper}>
-                <Button label="Continue" />
-                {/* todo : add inclick actions/ inesert Ghazal's code */}
+                <Button label="Continue" onClick={handleContinue} />
+
                 <Button
                     label="Back"
                     variant="secondary"
                     onClick={() => router.back()}
                 />
+                {error && <p className="error">{error}</p>}
             </div>
         </PageLayout>
     )
