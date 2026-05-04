@@ -8,66 +8,73 @@ import { Castle } from '@/components/ui/Icon/Castle'
 import { Dino } from '@/components/ui/Icon/Dino'
 import { Starfall } from '@/components/ui/Icon/Starfall'
 
+// i moved iconcard info to this array. Its easier to add/remove themes
+
+const themes = [
+    {
+        name: 'Any Theme',
+        icon: <Questionmark />,
+        description: 'Let AI surprise you — a unique theme will be picked',
+    },
+    {
+        name: 'Space Quest',
+        icon: <Rocket />,
+        description:
+            'Blast off on an intergalactic adventure among stars and planets',
+    },
+    {
+        name: 'Ocean Deep',
+        icon: <Wave />,
+        description:
+            'Discover hidden worlds and friendly creatures beneath the waves',
+    },
+    {
+        name: 'Royal Castle',
+        icon: <Castle />,
+        description: 'Rule kingdoms, solve mysteries, and go on noble quests',
+    },
+    {
+        name: 'Dino World',
+        icon: <Dino />,
+        description:
+            'Journey back in time to when mighty dinosaurs roamed the Earth',
+    },
+    {
+        name: 'Fairy Tales',
+        icon: <Starfall />,
+        description:
+            'A magical world where wishes come true and anything is possible',
+    },
+]
+
 export function ThemeSelector() {
     const { storyData, updateStoryData } = useStory()
+    const selectedTheme = themes.find(
+        (theme) => theme.name === storyData.storyTheme,
+    )
 
     return (
         <div className={styles.flexWrapper}>
             <h2>Story theme</h2>
             <div className={styles.wrapperContainer}>
-                <div className={styles.flexContainer}>
+                {themes.map((theme) => (
                     <IconCard
-                        icon={<Questionmark />}
-                        label="Any Theme"
-                        isSelected={storyData.storyTheme === 'Any Theme'}
+                        key={theme.name}
+                        icon={theme.icon}
+                        label={theme.name}
+                        isSelected={storyData.storyTheme === theme.name}
                         onClick={() =>
-                            updateStoryData({ storyTheme: 'Any Theme' })
+                            updateStoryData({ storyTheme: theme.name })
                         }
                     />
-                    <IconCard
-                        icon={<Rocket />}
-                        label="Space Quest"
-                        isSelected={storyData.storyTheme === 'Space Quest'}
-                        onClick={() =>
-                            updateStoryData({ storyTheme: 'Space Quest' })
-                        }
-                    />
-                    <IconCard
-                        icon={<Wave />}
-                        label="Ocean Deep"
-                        isSelected={storyData.storyTheme === 'Ocean Deep'}
-                        onClick={() =>
-                            updateStoryData({ storyTheme: 'Ocean Deep' })
-                        }
-                    />
-                </div>
-                <div className={styles.flexContainer}>
-                    <IconCard
-                        icon={<Castle />}
-                        label="Royal Castle"
-                        isSelected={storyData.storyTheme === 'Royal Castle'}
-                        onClick={() =>
-                            updateStoryData({ storyTheme: 'Royal Castle' })
-                        }
-                    />
-                    <IconCard
-                        icon={<Dino />}
-                        label="Dino World"
-                        isSelected={storyData.storyTheme === 'Dino World'}
-                        onClick={() =>
-                            updateStoryData({ storyTheme: 'Dino World' })
-                        }
-                    />
-                    <IconCard
-                        icon={<Starfall />}
-                        label="Fairy Tales"
-                        isSelected={storyData.storyTheme === 'Fairy Tales'}
-                        onClick={() =>
-                            updateStoryData({ storyTheme: 'Fairy Tales' })
-                        }
-                    />
-                </div>
+                ))}
             </div>
+
+            {selectedTheme && (
+                <p className={styles.themeDescription}>
+                    {selectedTheme.description}
+                </p>
+            )}
         </div>
     )
 }

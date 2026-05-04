@@ -8,7 +8,7 @@ import { UploadPhotoCard } from '@/components/common/UploadPhotoCard/UploadPhoto
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
-// import { Accordion } from '@/components/ui/Accordion/Accordion'
+import styles from './page.module.css'
 
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
@@ -31,20 +31,10 @@ export default function UploadPhotoPage() {
             />
             <UploadPhotoCard />
 
-            <Button label="Continue" onClick={handleContinue} />
-            {error && <p className="error">{error}</p>}
-
-            {/* <Accordion
-                title="Why do we need a photo?"
-                content={
-                    <p>
-                        We use the photo to create a personalized story where
-                        your child is the hero. The photo helps us generate
-                        images that closely resemble your child, making the
-                        story more engaging and special for them.
-                    </p>
-                }
-            /> */}
+            <div className={styles.buttonWrapper}>
+                <Button label="Continue" onClick={handleContinue} />
+                {error && <p className="error">{error}</p>}
+            </div>
         </PageLayout>
     )
 }

@@ -7,11 +7,9 @@ interface PageTitleProps {
 
 export function PageTitle({ text, description }: PageTitleProps) {
     return (
-        <>
-            <div>
-                <h1 className={styles.title}>{text}</h1>
-                <p className={styles.description}>{description}</p>
-            </div>
-        </>
+        <div>
+            <h1 className={styles.title}>{text}</h1>
+            <p className={styles.description}>{description}</p>
+        </div>
     )
 }

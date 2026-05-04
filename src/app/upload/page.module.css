@@ -8,3 +8,9 @@
     max-width: 600px;
     margin: 0 auto;
 }
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
