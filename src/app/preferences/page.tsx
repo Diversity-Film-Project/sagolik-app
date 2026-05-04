@@ -18,6 +18,7 @@ export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
     const router = useRouter()
     const [error, setError] = useState<string | null>(null)
+
     const handleContinue = () => {
         if (!storyData.characterName) {
             setError('Please enter a name to continue.')
@@ -60,13 +61,15 @@ export default function PreferencesPage() {
 
             <div className={styles.buttonWrapper}>
                 <Button label="Continue" onClick={handleContinue} />
-
+                <div className={styles.errorWrapper}>
+                    {' '}
+                    {error && <p className="error">{error}</p>}
+                </div>
                 <Button
                     label="Back"
                     variant="secondary"
-                    onClick={() => router.back()}
+                    onClick={() => router.push('/upload')}
                 />
-                {error && <p className="error">{error}</p>}
             </div>
         </PageLayout>
     )

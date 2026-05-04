@@ -3,3 +3,14 @@
     flex-direction: column;
     width: 100%;
 }
+
+.errorWrapper {
+    min-height: 20px;
+    position: relative;
+}
+
+.errorWrapper p {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
