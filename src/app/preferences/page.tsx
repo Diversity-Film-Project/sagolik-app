@@ -6,8 +6,12 @@ import { ThemeSelector } from '@/components/common/ThemeSelector/ThemeSelector'
 // import {generatePrompt} from '@/services/lib/generatePrompt'
 // call this function on "Generate Prompt" (preferences page)
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
+import { Input } from '@/components/ui/Input/Input'
+import { useStory } from '@/context/StoryContext'
 
 export default function PreferencesPage() {
+    const { storyData, updateStoryData } = useStory()
+
     return (
         <PageLayout currentStep={2} href="/preferences">
             <PageTitle
@@ -15,6 +19,13 @@ export default function PreferencesPage() {
                 description="We'll use these to create a personalized story"
             />
             <ThemeSelector />
+            <Input
+                placeholder="Your Name"
+                value={storyData.characterName}
+                onChange={(e) =>
+                    updateStoryData({ characterName: e.target.value })
+                }
+            />
         </PageLayout>
     )
 }
