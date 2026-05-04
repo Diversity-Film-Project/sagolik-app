@@ -24,7 +24,7 @@ export function Accordion({ title, content }: AccordionProps) {
                     toggleAccordion()
                 }}
             >
-                {title}
+                <h2 className={styles.accordionTitle}>{title}</h2>
                 <ChevronDown
                     className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ''}`}
                 />

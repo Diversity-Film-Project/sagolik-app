@@ -23,6 +23,14 @@
     display: none;
 }
 
+.accordionTitle {
+    font-size: var(--font-size-body-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+}
+
 .accordionContent {
     display: grid;
     grid-template-rows: 0fr;
