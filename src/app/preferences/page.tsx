@@ -43,7 +43,6 @@ export default function PreferencesPage() {
             />
             <ThemeSelector />
 
-            {/* Place for sidekick */}
             <Dropdown
                 label="SIDEKICK"
                 options={[
