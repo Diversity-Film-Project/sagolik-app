@@ -10,6 +10,7 @@ interface TopSheetProps {
     onClose: () => void
 }
 
+//  todo: enchance styles for content
 const infoContent = [
     {
         title: 'About this app',
