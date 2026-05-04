@@ -6,15 +6,68 @@ import { ThemeSelector } from '@/components/common/ThemeSelector/ThemeSelector'
 // import {generatePrompt} from '@/services/lib/generatePrompt'
 // call this function on "Generate Prompt" (preferences page)
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
+import { Input } from '@/components/ui/Input/Input'
+import { Button } from '@/components/ui/Button/Button'
+import { useStory } from '@/context/StoryContext'
+import { useRouter } from 'next/navigation'
+import styles from './page.module.css'
+import { useState } from 'react'
+import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
 
 export default function PreferencesPage() {
+    const { storyData, updateStoryData } = useStory()
+    const router = useRouter()
+    const [error, setError] = useState<string | null>(null)
+    const handleContinue = () => {
+        if (!storyData.characterName) {
+            setError('Please enter a name to continue.')
+            return
+        }
+
+        router.push('/story')
+    }
+
     return (
         <PageLayout currentStep={2} href="/preferences">
             <PageTitle
                 text="Personalise the story"
                 description="We'll use these to create a personalized story"
             />
+            <Input
+                placeholder="Your Name"
+                value={storyData.characterName}
+                onChange={(e) =>
+                    updateStoryData({ characterName: e.target.value })
+                }
+            />
             <ThemeSelector />
+
+            {/* Place for sidekick */}
+            <Dropdown
+                label="SIDEKICK"
+                options={[
+                    'No sidekick',
+                    'Person in photo',
+                    'Dragon',
+                    'Alien',
+                    'Robot',
+                    'Unicorn',
+                ]}
+                value={storyData.sidekick}
+                onChange={(value) => updateStoryData({ sidekick: value })}
+                variant="primary"
+            />
+
+            <div className={styles.buttonWrapper}>
+                <Button label="Continue" onClick={handleContinue} />
+
+                <Button
+                    label="Back"
+                    variant="secondary"
+                    onClick={() => router.back()}
+                />
+                {error && <p className="error">{error}</p>}
+            </div>
         </PageLayout>
     )
 }
