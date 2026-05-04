@@ -21,3 +21,14 @@
     min-height: 80px;
     border: none;
 }
+
+.wrapper {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-secondary);
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-weight-medium);
+}
