@@ -8,8 +8,10 @@ interface PageTitleProps {
 export function PageTitle({ text, description }: PageTitleProps) {
     return (
         <>
-            <h1 className={styles.title}>{text}</h1>
-            <p className={styles.description}>{description}</p>
+            <div>
+                <h1 className={styles.title}>{text}</h1>
+                <p className={styles.description}>{description}</p>
+            </div>
         </>
     )
 }

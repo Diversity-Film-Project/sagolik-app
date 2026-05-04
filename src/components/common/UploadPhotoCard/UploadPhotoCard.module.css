@@ -10,8 +10,9 @@
     gap: var(--spacing-md);
     font-family: var(--font-primary);
     border: 1px dashed var(--color-border);
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    mardin-bottom: var(--spacing-md);
 }
 
 .iconWrapper {
@@ -75,7 +76,7 @@
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes fadeInOpacity {
@@ -100,7 +101,7 @@
     gap: var(--spacing-md);
     font-family: var(--font-primary);
     border: 1px dashed var(--color-border);
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
 
@@ -165,7 +166,7 @@
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes fadeInOpacity {
