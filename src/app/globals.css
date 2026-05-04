@@ -61,6 +61,8 @@ body {
     --color-input-background: #ffffff;
     --color-card-background: #ffffff;
     --color-default-icon: #ffffff;
+    --color-secondary-icon: #000000;
+    --color-loading-icon-background: #E5E1E1;
 
     --color-primary-button-background: linear-gradient(92deg,
             rgba(255, 103, 0, 0.75) 13.9%,
