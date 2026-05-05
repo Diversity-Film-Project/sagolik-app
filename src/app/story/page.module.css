@@ -1,1 +1,6 @@
 /* Step 3 — Script Preview - styles */
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

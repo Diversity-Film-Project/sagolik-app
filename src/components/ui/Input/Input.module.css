@@ -31,4 +31,5 @@
     flex-direction: column;
     letter-spacing: 0.5px;
     font-weight: var(--font-weight-medium);
+    width: 100%;
 }
