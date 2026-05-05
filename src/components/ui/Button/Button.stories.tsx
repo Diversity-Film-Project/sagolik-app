@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from './Button'
+import { RefreshCw } from 'lucide-react'
 import '@/app/globals.css'
 
 const meta: Meta<typeof Button> = {
@@ -36,5 +37,13 @@ export const PrimaryDisabled: Story = {
     args: {
         ...Primary.args,
         disabled: true,
+    },
+}
+
+export const WithIcon: Story = {
+    args: {
+        label: 'Regenerate',
+        variant: 'outlined',
+        icon: <RefreshCw size={16} />,
     },
 }

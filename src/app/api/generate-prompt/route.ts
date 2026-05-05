@@ -39,8 +39,14 @@ Write a short video prompt for Kling AI (1-2 sentences, plain text) for a 15-sec
 Include sounds or music that matches the scene atmosphere.
 Describe one single action happening in one specific location. Focus on what the camera sees: the hero doing something, the environment around them, and the camera angle. Realistic, cinematic style. No narration, no dialogue, no lighting details — just a concise visual scene description.`
 
-    const result = await model.generateContent(prompt)
-    const text = result.response.text()
-
-    return NextResponse.json({ prompt: text })
+    try {
+        const result = await model.generateContent(prompt)
+        const text = result.response.text()
+        return NextResponse.json({ prompt: text })
+    } catch {
+        return NextResponse.json(
+            { error: 'Failed to generate prompt. Please try again.' },
+            { status: 503 },
+        )
+    }
 }
