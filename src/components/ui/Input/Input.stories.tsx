@@ -6,7 +6,6 @@ const meta: Meta<typeof Input> = {
     component: Input,
 
     args: {
-        label: 'CHARACTER NAME',
         value: '',
         placeholder: 'Placeholder',
         onChange: () => {},
@@ -19,6 +18,7 @@ type Story = StoryObj<typeof Input>
 
 export const Primary: Story = {
     args: {
+        label: 'CHARACTER NAME',
         value: '',
         placeholder: 'Placeholder',
         variant: 'primary',
