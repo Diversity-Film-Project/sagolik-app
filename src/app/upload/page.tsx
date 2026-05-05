@@ -4,10 +4,11 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
-import { UploadPhotoCard } from '@/components/common/uploadPhotoCard/UploadPhotoCard'
+import { UploadPhotoCard } from '@/components/common/UploadPhotoCard/UploadPhotoCard'
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
+import styles from './page.module.css'
 
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
@@ -30,8 +31,10 @@ export default function UploadPhotoPage() {
             />
             <UploadPhotoCard />
 
-            <Button label="Continue" onClick={handleContinue} />
-            {error && <p className="error">{error}</p>}
+            <div className={styles.buttonWrapper}>
+                <Button label="Continue" onClick={handleContinue} />
+                {error && <p className="error">{error}</p>}
+            </div>
         </PageLayout>
     )
 }

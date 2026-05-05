@@ -14,5 +14,6 @@ export const generatePrompt = async (
         body: JSON.stringify({ characterName, storyTheme, sidekick }),
     })
     const data = await response.json()
+    if (!response.ok) throw new Error(data.error)
     return data.prompt
 }

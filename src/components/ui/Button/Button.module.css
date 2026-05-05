@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     border-radius: var(--border-radius);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-medium);
     font-size: var(--font-size-button);
 }
 
@@ -25,4 +25,10 @@
 .outlined {
     color: var(--color-text-secondary);
     border: 1px solid var(--color-secondary);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-md);
 }

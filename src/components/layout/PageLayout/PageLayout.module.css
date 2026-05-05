@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    padding: 0;
+    padding: 0 0 40px;
     margin: 0 auto;
     animation: pageEnter 1.9s ease;
     position: relative;
@@ -46,6 +46,7 @@
     align-items: flex-start;
     margin: 0 auto;
     padding: 0 20px;
+    gap: 20px;
 }
 
 .content {

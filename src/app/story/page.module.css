@@ -1,0 +1,52 @@
+/* Step 3 — Script Preview - styles */
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.editButtonWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    width: 100%;
+}
+
+.skeleton {
+    width: 100%;
+    min-height: 150px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-progressBar-notActive);
+    background-color: var(--color-input-background);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.skeletonText {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-body);
+}
+
+.skeletonLine {
+    height: 12px;
+    border-radius: var(--border-radius-full);
+    background: linear-gradient(90deg, #f0ece8 25%, #e8e0da 50%, #f0ece8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.skeletonLineShort {
+    width: 60%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
