@@ -25,7 +25,7 @@ export default function ResultPage() {
             <Button
                 variant="secondary"
                 label="Back"
-                onClick={() => router.push('/script')}
+                onClick={() => router.push('/story')}
             />
             {/* todo: change description when video duration is available */}
             {/* <PageTitle
