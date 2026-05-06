@@ -5,7 +5,13 @@ import { HarmCategory, HarmBlockThreshold } from '@google/generative-ai'
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 
 export async function POST(req: NextRequest) {
-    const { characterName, storyTheme, sidekick, videoStyle } = await req.json()
+    const {
+        characterName,
+        storyTheme,
+        sidekick,
+        videoStyle,
+        themeDescription,
+    } = await req.json()
 
     const model = genAI.getGenerativeModel({
         model: 'gemini-2.5-flash',
@@ -35,7 +41,7 @@ Write a structured 15-second video prompt for Kling AI with the following inputs
 - Hero name: ${characterName} (appearance comes from a reference photo — describe actions and emotions only, not appearance)
 - Story theme: ${storyTheme || 'any adventure theme'}
 - Sidekick: ${sidekick || 'none'}
-- Visual style: ${videoStyle || 'realistic cinematic'}
+- Visual style: ${videoStyle || 'realistic cinematic'}${themeDescription ? ` — ${themeDescription}` : ''}
 
 Fill in EXACTLY this 4-part structure. Each section must describe only what the camera sees — no narration, no dialogue. Be specific: location, what ${characterName} is doing, atmosphere, sound or music cues.
 
@@ -56,7 +62,7 @@ Fill in EXACTLY this 4-part structure. Each section must describe only what the 
 [The story settles into its ending. Describe the final image and atmosphere. Sound and music fade out gradually over these last seconds — ending should feel complete, not abrupt.]
 
 **Style:**
-${videoStyle || 'Realistic cinematic'}. Let the chosen theme and style define the visual language — do not apply a generic tone.
+${themeDescription || videoStyle || 'Realistic cinematic'}. Let the chosen theme and style define the visual language — do not apply a generic tone.
 
 **Important constraints:**
 - ${characterName} must appear in the first second and remain the visual focus throughout

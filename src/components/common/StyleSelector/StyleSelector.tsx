@@ -22,8 +22,8 @@ export function StyleSelector() {
     }
 
     useEffect(() => {
-        console.log(storyData.videoStyle)
-        console.log(storyData.storyTheme)
+        console.log(storyData.videoStyle) // eslint-disable-line no-console
+        console.log(storyData.storyTheme) // eslint-disable-line no-console
     }, [storyData])
 
     return (

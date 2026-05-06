@@ -6,6 +6,7 @@ export const generatePrompt = async (
     storyTheme: string,
     sidekick: string,
     videoStyle: string,
+    themeDescription: string,
 ) => {
     const response = await fetch('/api/generate-prompt', {
         method: 'POST',
@@ -17,6 +18,7 @@ export const generatePrompt = async (
             storyTheme,
             sidekick,
             videoStyle,
+            themeDescription,
         }),
     })
     const data = await response.json()

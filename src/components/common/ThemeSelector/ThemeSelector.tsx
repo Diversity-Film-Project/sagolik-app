@@ -2,11 +2,11 @@ import styles from './ThemeSelector.module.css'
 import { IconCard } from '../IconCard/IconCard'
 import { useStory } from '@/context/StoryContext'
 import { Questionmark } from '@/components/ui/Icon/Questionmark'
-import { Rocket } from '@/components/ui/Icon/Rocket'
-import { Wave } from '@/components/ui/Icon/Wave'
-import { Castle } from '@/components/ui/Icon/Castle'
-import { Dino } from '@/components/ui/Icon/Dino'
-import { Starfall } from '@/components/ui/Icon/Starfall'
+// import { Rocket } from '@/components/ui/Icon/Rocket'
+// import { Wave } from '@/components/ui/Icon/Wave'
+// import { Castle } from '@/components/ui/Icon/Castle'
+// import { Dino } from '@/components/ui/Icon/Dino'
+// import { Starfall } from '@/components/ui/Icon/Starfall'
 
 // i moved iconcard info to this array. Its easier to add/remove themes
 interface ThemeProp {
@@ -121,7 +121,10 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                         label={theme.name}
                         isSelected={storyData.storyTheme === theme.name}
                         onClick={() =>
-                            updateStoryData({ storyTheme: theme.name })
+                            updateStoryData({
+                                storyTheme: theme.name,
+                                themeDescription: theme.description,
+                            })
                         }
                     />
                 ))}
