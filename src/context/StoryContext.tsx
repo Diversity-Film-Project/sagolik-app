@@ -10,6 +10,7 @@ interface StoryData {
     generatedPrompt: string
     finalPrompt: string
     videoUrl: string
+    videoStyle: string
 }
 
 interface StoryContextType {
@@ -32,6 +33,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
         generatedPrompt: '',
         finalPrompt: '',
         videoUrl: '',
+        videoStyle: '',
     })
 
     const updateStoryData = (data: Partial<StoryData>) => {

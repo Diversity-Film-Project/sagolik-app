@@ -3,7 +3,7 @@ import styles from './Button.module.css'
 interface ButtonProps {
     label: string
     icon?: React.ReactNode
-    variant?: 'primary' | 'secondary' | 'outlined'
+    variant?: 'primary' | 'secondary' | 'outlined' | 'save' | 'regenerate'
     disabled?: boolean
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
