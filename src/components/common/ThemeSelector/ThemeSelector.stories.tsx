@@ -19,8 +19,14 @@ export default meta
 
 type Story = StoryObj<typeof ThemeSelector>
 
-export const Default: Story = {
+export const Animated: Story = {
     args: {
-        variant: 'default',
+        style: 'animated',
+    },
+}
+
+export const Realistic: Story = {
+    args: {
+        style: 'realistic',
     },
 }
