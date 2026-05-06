@@ -1,13 +1,30 @@
 .root {
     width: 100%;
+    /* height: 250px; */
+    height: 45vh;
     outline: none;
     resize: none;
+    overflow-y: auto;
     font-family: var(--font-primary);
     font-size: var(--font-size-body-sm);
     color: var(--color-text-primary);
     background-color: var(--color-input-background);
     border-radius: var(--border-radius);
-    border: 1px solid var(--color-progressBar-notActive);
+    border: 1px solid var(--color-border);
     padding: var(--spacing-md);
     line-height: 1.6;
+    transition:
+        border-color 0.3s,
+        background-color 0.3s;
+}
+
+.readOnly {
+    cursor: default;
+    border-color: var(--color-progressBar-notActive);
+}
+
+.editing {
+    border-color: #6aad8e;
+    outline: none;
+    background-color: #f0f8f4;
 }
