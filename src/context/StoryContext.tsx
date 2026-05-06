@@ -10,6 +10,7 @@ interface StoryData {
     generatedPrompt: string
     finalPrompt: string
     videoUrl: string
+    videoStyle: 'animated' | 'realistic' | ''
 }
 
 interface StoryContextType {
@@ -27,11 +28,12 @@ export function StoryProvider({ children }: StoryProviderProps) {
     const [storyData, setStoryData] = useState<StoryData>({
         photo: null,
         characterName: '',
-        storyTheme: 'Any Theme',
+        storyTheme: '',
         sidekick: '',
         generatedPrompt: '',
         finalPrompt: '',
         videoUrl: '',
+        videoStyle: '',
     })
 
     const updateStoryData = (data: Partial<StoryData>) => {

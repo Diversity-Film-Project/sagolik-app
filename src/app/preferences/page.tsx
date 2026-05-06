@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import { useState } from 'react'
 import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
+import { StyleSelector } from '@/components/common/StyleSelector/StyleSelector'
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
@@ -32,6 +33,7 @@ export default function PreferencesPage() {
                 text="Personalise the story"
                 description="We'll use these to create a personalized story"
             />
+            <StyleSelector />
             <Input
                 placeholder="Your Name"
                 value={storyData.characterName}
