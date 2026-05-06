@@ -4,7 +4,7 @@ interface TextareaProps {
     value: string
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
     placeholder?: string
-    rows?: number
+    readOnly?: boolean
     disabled?: boolean
 }
 
@@ -12,7 +12,7 @@ export function Textarea({
     value,
     onChange,
     placeholder,
-    rows = 6,
+    readOnly = false,
     disabled = false,
 }: TextareaProps) {
     return (
@@ -20,9 +20,9 @@ export function Textarea({
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            rows={rows}
+            readOnly={readOnly}
             disabled={disabled}
-            className={styles.root}
+            className={`${styles.root} ${readOnly ? styles.readOnly : styles.editing}`}
         />
     )
 }
