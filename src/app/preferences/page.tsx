@@ -2,7 +2,6 @@
 
 // Step 2 — Pick Preferences
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
-import { ThemeSelector } from '@/components/common/ThemeSelector/ThemeSelector'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
@@ -41,7 +40,6 @@ export default function PreferencesPage() {
                     updateStoryData({ characterName: e.target.value })
                 }
             />
-            <ThemeSelector />
 
             <Dropdown
                 label="SIDEKICK"
