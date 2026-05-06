@@ -20,6 +20,7 @@ interface StyleThemes {
     realistic: ThemeProp[]
 }
 
+//the descriptions are now the thing Mani sent to describe the vibes, but it is not used anywhere now other than UI
 const THEMES: StyleThemes = {
     realistic: [
         {
@@ -67,7 +68,7 @@ const THEMES: StyleThemes = {
                 'Soft hand-painted animation style, dreamy fantasy landscapes, lush green forests, floating spirits, warm sunlight through trees, magical countryside villages, emotional atmosphere, whimsical creatures, gentle wind, watercolor textures, expressive eyes, cinematic framing, cozy and magical feeling, peaceful adventure.',
         },
         {
-            name: 'Dragon Fantasy',
+            name: 'Dragon Adventure',
             icon: <Questionmark />,
             description:
                 'High-fidelity animation, painterly textures, golden hour lighting, soft bokeh, expressive characters, natural camera drifts, cozy atmosphere, uplifting emotional tone.',
