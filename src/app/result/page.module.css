@@ -1,1 +1,7 @@
 /* Step 4 — Video Result - styles */
+.video {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-progressBar-notActive);
+    max-height: 60vh;
+    width: 100%;
+}
