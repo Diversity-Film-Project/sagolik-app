@@ -10,24 +10,35 @@ import { ConfirmationCard } from '@/components/common/ConfirmationCard/Confirmat
 import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { generateVideo } from '@/services/lib/generateVideo'
+import styles from './page.module.css'
 
-// TODO: remove mock block below before production
+// ─── TEST / PRODUCTION toggle ─────────────────
+// Change only ONE line below:
+// 🧪 TEST (no API call):  const isMock = true
+// 🚀 PRODUCTION:          const isMock = false
 const MOCK_VIDEO_URL =
-    'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4' // TODO: remove
-const isMock = process.env.NEXT_PUBLIC_USE_MOCK_VIDEO === 'true' // TODO: remove
+    'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4'
+const isMock = false
+// ──────────────────────────────────────────────
 
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData } = useStory()
-    const [isLoading, setIsLoading] = useState(!storyData.videoUrl && !isMock) // TODO: change back to useState(!storyData.videoUrl)
+    const [isLoading, setIsLoading] = useState<boolean>(
+        !storyData.videoUrl && !isMock,
+    )
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
 
-    const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl // TODO: remove, use storyData.videoUrl directly
+    // 🧪 TEST MODE: returns mock URL
+    // 🚀 PRODUCTION MODE: replace with just `storyData.videoUrl`
+    const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
 
     useEffect(() => {
-        if (isMock) return // TODO: remove
+        // 🧪 TEST MODE: skip API call
+        if (isMock) return
 
+        // 🚀 PRODUCTION MODE
         if (hasFetched.current) return
         hasFetched.current = true
 
@@ -81,8 +92,7 @@ export default function ResultPage() {
                             storyData.storyTheme || 'Personalised story'
                         }
                     />
-                    <video src={videoUrl} controls width="100%" />
-                    {/* TODO: replace videoUrl with storyData.videoUrl */}
+                    <video src={videoUrl} controls className={styles.video} />
                 </>
             )}
             <Button
