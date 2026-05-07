@@ -1,4 +1,5 @@
 // function to call the API route that generates a video from an image and a prompt
+import { compressImage } from '@/lib/compressImage'
 
 export const generateVideo = async (
     photo: File,
@@ -8,8 +9,10 @@ export const generateVideo = async (
 ) => {
     const cleanPrompt = prompt.replace(/['']/g, "'").replace(/[""]/g, '"')
 
+    const compressed = await compressImage(photo)
+
     const formData = new FormData()
-    formData.append('image', photo)
+    formData.append('image', compressed)
     formData.append('prompt', cleanPrompt)
     formData.append('videoStyle', videoStyle)
     formData.append('themeDescription', themeDescription)
