@@ -18,8 +18,11 @@ export function IconCard({
             className={`${styles.cardContainer} ${styles[isSelected ? 'selected' : 'default']}`}
             onClick={onClick}
         >
-            {icon}
-            {label}
+            {' '}
+            <div className={styles.contentWrapper}>
+                {icon}
+                {label}
+            </div>
         </button>
     )
 }

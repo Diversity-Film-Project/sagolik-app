@@ -12,6 +12,15 @@
     cursor: pointer;
 }
 
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
 .selected {
     background-color: var(--color-primary);
     color: var(--color-button-text-primary);
