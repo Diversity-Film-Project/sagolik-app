@@ -10,6 +10,7 @@
     border-radius: var(--border-radius);
     color: var(--color-button-text-primary);
     font-weight: var(--font-weight-bold);
+    opacity: .40;
 }
 
 .animated {
@@ -24,23 +25,9 @@
     background-position: center;
 }
 
-.label {
-    z-index: 1;
-}
-
 .selected {
     box-shadow: inset 0 0 0 1px var(--color-primary);
-}
-
-.selected::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    box-shadow: inset 0 0 0 1px var(--color-primary);
-    background: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(255, 103, 0, 0.729) 100%);
-    z-index: 0;
+    opacity: 1;
 }
 
 .container>* {
