@@ -9,6 +9,7 @@ interface StoryData {
     sidekick: string
     generatedPrompt: string
     finalPrompt: string
+    promptParamsKey: string
     videoUrl: string
     videoStyle: 'animated' | 'realistic' | ''
     themeDescription: string
@@ -33,6 +34,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
         sidekick: '',
         generatedPrompt: '',
         finalPrompt: '',
+        promptParamsKey: '',
         videoUrl: '',
         videoStyle: '',
         themeDescription: '',

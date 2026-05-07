@@ -23,6 +23,16 @@ export default function PreferencesPage() {
             return
         }
 
+        const currentKey = `${storyData.characterName}|${storyData.storyTheme}|${storyData.sidekick}|${storyData.videoStyle}|${storyData.themeDescription}`
+        if (storyData.finalPrompt && storyData.promptParamsKey !== currentKey) {
+            updateStoryData({
+                finalPrompt: '',
+                generatedPrompt: '',
+                videoUrl: '',
+                promptParamsKey: '',
+            })
+        }
+
         router.push('/story')
     }
 

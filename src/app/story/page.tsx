@@ -16,6 +16,16 @@ import styles from './page.module.css'
 // Max characters for the user-visible script (styleNote + VIDEO_CONSTRAINTS take the remaining ~900 chars up to Kling's 2500 limit)
 const MAX_SCRIPT_LENGTH = 1600
 
+function buildParamsKey(data: {
+    characterName: string
+    storyTheme: string
+    sidekick: string
+    videoStyle: string
+    themeDescription: string
+}) {
+    return `${data.characterName}|${data.storyTheme}|${data.sidekick}|${data.videoStyle}|${data.themeDescription}`
+}
+
 export default function ScriptPage() {
     const router = useRouter()
     const { storyData, updateStoryData } = useStory()
@@ -42,6 +52,7 @@ export default function ScriptPage() {
                 updateStoryData({
                     generatedPrompt: result,
                     finalPrompt: result,
+                    promptParamsKey: buildParamsKey(storyData),
                 })
                 setIsLoading(false)
                 confetti({
@@ -85,6 +96,7 @@ export default function ScriptPage() {
                 updateStoryData({
                     generatedPrompt: result,
                     finalPrompt: result,
+                    promptParamsKey: buildParamsKey(storyData),
                 })
                 setIsLoading(false)
                 confetti({
