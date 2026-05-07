@@ -9,11 +9,12 @@ import { useStory } from '@/context/StoryContext'
 import { generatePrompt } from '@/services/lib/generatePrompt'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
 import { RefreshCw, Pencil, Check } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
+import confetti from 'canvas-confetti'
 import { VIDEO_CONSTRAINTS } from '@/lib/videoConstraints'
 import styles from './page.module.css'
 
-const MAX_PROMPT_LENGTH = 2500
+// Max characters for the user-visible script (styleNote + VIDEO_CONSTRAINTS take the remaining ~900 chars up to Kling's 2500 limit)
+const MAX_SCRIPT_LENGTH = 1600
 
 export default function ScriptPage() {
     const router = useRouter()
@@ -23,10 +24,8 @@ export default function ScriptPage() {
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
 
-    const styleNote = `\n\n**Visual style:** ${storyData.videoStyle || 'realistic cinematic'}${storyData.themeDescription ? ` — ${storyData.themeDescription}` : ''}`
-    const fullLength = (storyData.finalPrompt + styleNote + VIDEO_CONSTRAINTS)
-        .length
-    const isOverLimit = fullLength > MAX_PROMPT_LENGTH
+    const scriptLength = storyData.finalPrompt.length
+    const isOverLimit = scriptLength > MAX_SCRIPT_LENGTH
 
     const runGenerate = () => {
         setIsLoading(true)
@@ -45,6 +44,12 @@ export default function ScriptPage() {
                     finalPrompt: result,
                 })
                 setIsLoading(false)
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.3 },
+                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
+                })
                 // eslint-disable-next-line no-console
                 console.log(
                     '=== FULL PROMPT FOR KLING AI ===\n' +
@@ -82,6 +87,12 @@ export default function ScriptPage() {
                     finalPrompt: result,
                 })
                 setIsLoading(false)
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.3 },
+                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
+                })
                 // eslint-disable-next-line no-console
                 console.log(
                     '=== FULL PROMPT FOR KLING AI ===\n' +
@@ -95,13 +106,25 @@ export default function ScriptPage() {
             })
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const pageTitle = isLoading
+        ? 'Creating your story...'
+        : error
+          ? 'Could not generate story'
+          : 'Your scenario is ready!'
+
+    const description = isLoading
+        ? 'Gemini is working hard to create a magical story for you'
+        : error
+          ? 'Please try regenerating the story. If the problem persists, it may be due to high demand on the AI service — please try again later.'
+          : 'Feel free to edit the scenario before moving on to video generation'
+
     return (
         <PageLayout currentStep={3} href="/script">
             <PageTitle
-                text="Your scenario is ready"
-                description="Here's a preview of the story"
+                text={pageTitle}
+                description={description}
+                animated={isLoading}
             />
-            {error && <p className="error">{error}</p>}
             {isLoading ? (
                 <div className={styles.skeleton}>
                     <p className={styles.skeletonText}>
@@ -113,6 +136,21 @@ export default function ScriptPage() {
                         className={`${styles.skeletonLine} ${styles.skeletonLineShort}`}
                     />
                 </div>
+            ) : error ? (
+                <div className={styles.errorBlock}>
+                    <p className={styles.errorMessage}>{error}</p>
+                    <p className={styles.errorHint}>
+                        AI service is temporarily busy. Please try again in a
+                        moment.
+                    </p>
+                    <button
+                        className={styles.retryButton}
+                        onClick={runGenerate}
+                        title="Try again"
+                    >
+                        <RefreshCw size={25} />
+                    </button>
+                </div>
             ) : isEditing ? (
                 <Textarea
                     value={storyData.finalPrompt}
@@ -122,14 +160,14 @@ export default function ScriptPage() {
                 />
             ) : (
                 <div className={styles.markdownView}>
-                    <ReactMarkdown>{storyData.finalPrompt}</ReactMarkdown>
+                    {storyData.finalPrompt}
                 </div>
             )}
-            {!isLoading && (
+            {!isLoading && !error && storyData.finalPrompt && (
                 <p
                     className={`${styles.charCount} ${isOverLimit ? styles.charCountOver : ''}`}
                 >
-                    {fullLength} / {MAX_PROMPT_LENGTH} characters
+                    {scriptLength} / {MAX_SCRIPT_LENGTH} characters
                     {isOverLimit && ' — too long, please edit'}
                 </p>
             )}

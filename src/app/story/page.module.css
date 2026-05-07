@@ -55,6 +55,7 @@
     font-size: var(--font-size-body-sm);
     color: var(--color-text-primary);
     line-height: 1.6;
+    white-space: pre-wrap;
 }
 
 .markdownView strong {
@@ -68,6 +69,46 @@
 
 .markdownView p:last-child {
     margin-bottom: 0;
+}
+
+.errorBlock {
+    width: 100%;
+    min-height: 45vh;
+    border-radius: var(--border-radius);
+    border: 1px solid #e8b4b4;
+    background-color: #fdf4f4;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+}
+
+.retryButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #c0392b;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: opacity 0.2s ease;
+}
+
+.retryButton:hover {
+    opacity: 0.7;
+}
+
+.errorMessage {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: #c0392b;
+}
+
+.errorHint {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-body);
 }
 
 .charCount {
