@@ -70,6 +70,19 @@
     margin-bottom: 0;
 }
 
+.charCount {
+    width: 100%;
+    text-align: right;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-body);
+}
+
+.charCountOver {
+    color: #c0392b;
+    font-weight: var(--font-weight-bold);
+}
+
 @keyframes shimmer {
     0% {
         background-position: 200% 0;

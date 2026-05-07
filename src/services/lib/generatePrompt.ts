@@ -1,11 +1,11 @@
 // function to call the API route and get the generated prompt.
 
-// todo: call this function on "Generate Prompt" (preferences page) and "Regenerate" (script page)
 export const generatePrompt = async (
     characterName: string,
     storyTheme: string,
     sidekick: string,
     videoStyle: string,
+    themeDescription: string,
 ) => {
     const response = await fetch('/api/generate-prompt', {
         method: 'POST',
@@ -17,6 +17,7 @@ export const generatePrompt = async (
             storyTheme,
             sidekick,
             videoStyle,
+            themeDescription,
         }),
     })
     const data = await response.json()

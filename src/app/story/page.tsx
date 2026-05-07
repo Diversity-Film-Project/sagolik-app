@@ -13,6 +13,8 @@ import ReactMarkdown from 'react-markdown'
 import { VIDEO_CONSTRAINTS } from '@/lib/videoConstraints'
 import styles from './page.module.css'
 
+const MAX_PROMPT_LENGTH = 2500
+
 export default function ScriptPage() {
     const router = useRouter()
     const { storyData, updateStoryData } = useStory()
@@ -20,6 +22,11 @@ export default function ScriptPage() {
     const [isEditing, setIsEditing] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
+
+    const styleNote = `\n\n**Visual style:** ${storyData.videoStyle || 'realistic cinematic'}${storyData.themeDescription ? ` — ${storyData.themeDescription}` : ''}`
+    const fullLength = (storyData.finalPrompt + styleNote + VIDEO_CONSTRAINTS)
+        .length
+    const isOverLimit = fullLength > MAX_PROMPT_LENGTH
 
     const runGenerate = () => {
         setIsLoading(true)
@@ -30,6 +37,7 @@ export default function ScriptPage() {
             storyData.storyTheme,
             storyData.sidekick,
             storyData.videoStyle,
+            storyData.themeDescription,
         )
             .then((result) => {
                 updateStoryData({
@@ -66,6 +74,7 @@ export default function ScriptPage() {
             storyData.storyTheme,
             storyData.sidekick,
             storyData.videoStyle,
+            storyData.themeDescription,
         )
             .then((result) => {
                 updateStoryData({
@@ -115,6 +124,14 @@ export default function ScriptPage() {
                 <div className={styles.markdownView}>
                     <ReactMarkdown>{storyData.finalPrompt}</ReactMarkdown>
                 </div>
+            )}
+            {!isLoading && (
+                <p
+                    className={`${styles.charCount} ${isOverLimit ? styles.charCountOver : ''}`}
+                >
+                    {fullLength} / {MAX_PROMPT_LENGTH} characters
+                    {isOverLimit && ' — too long, please edit'}
+                </p>
             )}
             <div className={styles.editButtonWrapper}>
                 <Button
