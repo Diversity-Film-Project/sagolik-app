@@ -10,6 +10,7 @@ import { ConfirmationCard } from '@/components/common/ConfirmationCard/Confirmat
 import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { generateVideo } from '@/services/lib/generateVideo'
+import { Share2 } from 'lucide-react'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -33,6 +34,32 @@ export default function ResultPage() {
     // 🧪 TEST MODE: returns mock URL
     // 🚀 PRODUCTION MODE: replace with just `storyData.videoUrl`
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
+
+    const isSharingRef = useRef(false)
+
+    const handleShare = async () => {
+        if (isSharingRef.current) return
+        isSharingRef.current = true
+        try {
+            const shareData = {
+                title: `${storyData.characterName || 'A'}'s story`,
+                text:
+                    storyData.storyTheme ||
+                    'Check out this AI-generated story!',
+                url: videoUrl,
+            }
+            if (navigator.share && navigator.canShare(shareData)) {
+                await navigator.share(shareData)
+            } else {
+                await navigator.clipboard.writeText(videoUrl)
+            }
+        } catch (err) {
+            if (err instanceof Error && err.name === 'AbortError') return
+            throw err
+        } finally {
+            isSharingRef.current = false
+        }
+    }
 
     useEffect(() => {
         // 🧪 TEST MODE: skip API call
@@ -93,6 +120,12 @@ export default function ResultPage() {
                         }
                     />
                     <video src={videoUrl} controls className={styles.video} />
+                    <Button
+                        label="Share"
+                        variant="outlined"
+                        icon={<Share2 size={16} />}
+                        onClick={handleShare}
+                    />
                 </>
             )}
             <Button
