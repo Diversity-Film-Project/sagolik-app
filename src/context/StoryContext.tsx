@@ -34,7 +34,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
         generatedPrompt: '',
         finalPrompt: '',
         videoUrl: '',
-        videoStyle: '',
+        videoStyle: 'animated',
         themeDescription: '',
     })
 
