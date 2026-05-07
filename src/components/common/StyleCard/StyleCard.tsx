@@ -6,6 +6,11 @@ interface StyleCardProps {
     onClick?: () => void
 }
 
+// const styleClassProps: Record<string, string> = {
+//     animated: styles.animated,
+//     realistic: styles.realistic,
+// }
+
 export function StyleCard({
     style,
     isSelected = false,

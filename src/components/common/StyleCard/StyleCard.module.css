@@ -1,4 +1,12 @@
+.animated {
+    background-color: aqua;
+}
+
+.selected {
+    background-color: blue;
+}
+
 .container {
     padding: 20px;
-    border: 1px solid black;
+    background-color: red;
 }

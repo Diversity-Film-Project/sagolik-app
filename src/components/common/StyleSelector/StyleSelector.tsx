@@ -18,7 +18,11 @@ export function StyleSelector() {
     const { storyData, updateStoryData } = useStory()
 
     function handleStyleClick(id: 'animated' | 'realistic') {
-        updateStoryData({ videoStyle: id, storyTheme: '' })
+        updateStoryData({
+            videoStyle: id,
+            storyTheme: '',
+            themeDescription: '',
+        })
     }
 
     useEffect(() => {
