@@ -1,6 +1,9 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { NextRequest, NextResponse } from 'next/server'
 import { HarmCategory, HarmBlockThreshold } from '@google/generative-ai'
+// todo: add info about max prompt 2500, fix base prompt length
+// todo: handle errors properly and display to user (currently just console.log)
+// todo: solution for error 500/503 (Gemini overload) and 429 (too many requests)
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 

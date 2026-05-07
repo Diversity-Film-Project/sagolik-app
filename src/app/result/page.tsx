@@ -50,7 +50,7 @@ export default function ResultPage() {
             {isLoading ? (
                 <>
                     <ConfirmationCard />
-                    <LoadingCard duration={2} />
+                    <LoadingCard duration={5} />
                 </>
             ) : error ? (
                 <>

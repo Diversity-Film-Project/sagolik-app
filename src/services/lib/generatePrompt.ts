@@ -1,6 +1,5 @@
 // function to call the API route and get the generated prompt.
 
-// todo: call this function on "Generate Prompt" (preferences page) and "Regenerate" (script page)
 export const generatePrompt = async (
     characterName: string,
     storyTheme: string,
