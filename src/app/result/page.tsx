@@ -19,7 +19,7 @@ import styles from './page.module.css'
 // 🚀 PRODUCTION:          const isMock = false
 const MOCK_VIDEO_URL =
     'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4'
-const isMock = false
+const isMock = true
 // ──────────────────────────────────────────────
 
 export default function ResultPage() {
