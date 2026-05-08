@@ -24,7 +24,7 @@ const isMock = false
 
 export default function ResultPage() {
     const router = useRouter()
-    const { storyData, updateStoryData, hydrated } = useStory()
+    const { storyData, updateStoryData, resetStory, hydrated } = useStory()
     const [isLoading, setIsLoading] = useState<boolean>(!isMock)
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
@@ -85,6 +85,31 @@ export default function ResultPage() {
         }
     }, [isLoading])
 
+    const saveToHistory = (url: string) => {
+        try {
+            const stored = localStorage.getItem('sagolik_history')
+            const history: {
+                id: string
+                videoUrl: string
+                characterName: string
+                storyTheme: string
+                finalPrompt: string
+                createdAt: string
+            }[] = stored ? JSON.parse(stored) : []
+            history.unshift({
+                id: Date.now().toString(),
+                videoUrl: url,
+                characterName: storyData.characterName,
+                storyTheme: storyData.storyTheme,
+                finalPrompt: storyData.finalPrompt,
+                createdAt: new Date().toISOString(),
+            })
+            localStorage.setItem('sagolik_history', JSON.stringify(history))
+        } catch {
+            /* ignore */
+        }
+    }
+
     // Core generation logic — called both on initial load and on retry
     const runGeneration = async () => {
         // Already have a completed video (from this session or localStorage).
@@ -99,6 +124,7 @@ export default function ResultPage() {
         if (storyData.videoRequestId) {
             try {
                 const url = await pollVideoStatus(storyData.videoRequestId)
+                saveToHistory(url)
                 updateStoryData({ videoUrl: url, videoRequestId: '' })
                 setIsLoading(false)
             } catch (err: unknown) {
@@ -126,6 +152,7 @@ export default function ResultPage() {
             )
             updateStoryData({ videoRequestId: requestId })
             const url = await pollVideoStatus(requestId)
+            saveToHistory(url)
             updateStoryData({ videoUrl: url, videoRequestId: '' })
             setIsLoading(false)
         } catch (err: unknown) {
@@ -204,6 +231,14 @@ export default function ResultPage() {
                         variant="outlined"
                         icon={<Share2 size={16} />}
                         onClick={handleShare}
+                    />
+                    <Button
+                        label="Create new video"
+                        variant="secondary"
+                        onClick={() => {
+                            resetStory()
+                            router.push('/')
+                        }}
                     />
                 </>
             )}

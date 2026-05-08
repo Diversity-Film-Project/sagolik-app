@@ -19,6 +19,7 @@ interface StoryData {
 interface StoryContextType {
     storyData: StoryData
     updateStoryData: (data: Partial<StoryData>) => void
+    resetStory: () => void // to clear all data when user wants to create a new story
     hydrated: boolean
 }
 
@@ -94,8 +95,31 @@ export function StoryProvider({ children }: StoryProviderProps) {
         setStoryData((prev) => ({ ...prev, ...data }))
     }
 
+    const resetStory = () => {
+        try {
+            localStorage.removeItem(STORAGE_KEY)
+        } catch {
+            /* ignore */
+        }
+        setStoryData({
+            photo: null,
+            characterName: '',
+            storyTheme: '',
+            sidekick: '',
+            generatedPrompt: '',
+            finalPrompt: '',
+            promptParamsKey: '',
+            videoUrl: '',
+            videoStyle: '',
+            themeDescription: '',
+            videoRequestId: '',
+        })
+    }
+
     return (
-        <StoryContext.Provider value={{ storyData, updateStoryData, hydrated }}>
+        <StoryContext.Provider
+            value={{ storyData, updateStoryData, resetStory, hydrated }}
+        >
             {children}
         </StoryContext.Provider>
     )

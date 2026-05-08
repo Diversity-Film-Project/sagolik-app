@@ -1,7 +1,7 @@
 import styles from './PageLayout.module.css'
 import { useState } from 'react'
 import React from 'react'
-import { BadgeInfo } from 'lucide-react'
+import { BadgeInfo, HistoryIcon } from 'lucide-react'
 import Link from 'next/link'
 import { StepHeader } from '@/components/common/StepHeader/StepHeader'
 import { TopSheet } from '@/components/common/TopSheet/TopSheet'
@@ -37,9 +37,18 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
                     </div>
 
                     <div className={styles.stepsWrapper}>
-                        <span className={styles.stepCounter}>
-                            Step {currentStep} of 4
-                        </span>
+                        <div className={styles.stepCounterWrapper}>
+                            <span className={styles.stepCounter}>
+                                Step {currentStep} of 4
+                            </span>
+                            <Link
+                                href="/history"
+                                className={styles.historyButton}
+                            >
+                                History <HistoryIcon size={16} />
+                            </Link>
+                        </div>
+
                         <StepHeader currentStep={currentStep} />
                     </div>
                 </div>
