@@ -25,15 +25,17 @@ export default function UploadPhotoPage() {
 
     return (
         <PageLayout currentStep={1} href="/upload">
-            <PageTitle
-                text="Add your child's photo"
-                description="We'll place them as the hero of the story"
-            />
-            <UploadPhotoCard />
+            <div className={styles.margin}>
+                <PageTitle
+                    text="Add your child's photo"
+                    description="We'll place them as the hero of the story"
+                />
+                <UploadPhotoCard />
 
-            <div className={styles.buttonWrapper}>
-                <Button label="Continue" onClick={handleContinue} />
-                {error && <p className="error">{error}</p>}
+                <div className={styles.buttonWrapper}>
+                    <Button label="Continue" onClick={handleContinue} />
+                    {error && <p className="error">{error}</p>}
+                </div>
             </div>
         </PageLayout>
     )

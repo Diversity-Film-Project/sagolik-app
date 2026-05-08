@@ -3,11 +3,13 @@
         opacity: 0;
         /* transform: translateY(5px); */
     }
+
     to {
         opacity: 1;
         /* transform: translateY(0); */
     }
 }
+
 /* maybe delete this animation later - might be annoying for users */
 
 .page {
@@ -73,7 +75,7 @@
     align-items: flex-end;
     text-decoration: none;
     gap: 2px;
-    
+
 }
 
 .logo {
@@ -85,16 +87,14 @@
     margin: 0;
     padding: 0 2px 0 0;
 
-    font-family: var
+    font-family: var(--font-primary);
     font-weight: 600;
     letter-spacing: -1.5px;
     line-height: 1;
-    background: linear-gradient(
-        135deg,
-        oklch(92% 0.08 55) 0%,
-        oklch(88% 0.12 30) 40%,
-        oklch(88% 0.1 350) 100%
-    );
+    background: linear-gradient(135deg,
+            oklch(92% 0.08 55) 0%,
+            oklch(88% 0.12 30) 40%,
+            oklch(88% 0.1 350) 100%);
     background: linear-gradient(135deg, #ff7d00, #ff3023, #ff0084);
 
     -webkit-background-clip: text;
