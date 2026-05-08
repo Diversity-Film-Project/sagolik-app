@@ -95,7 +95,7 @@ Style: ${themeDescription || videoStyle || 'Realistic cinematic'}. Let the chose
 
 Output rules:
 - Plain text only — no asterisks, no markdown, no bold, no special symbols
-- Keep your response under 1900 characters (style notes and video constraints are added separately, total must not exceed 2500)
+- Keep your response under 1600 characters (style notes and video constraints are added separately, total must not exceed 2500)
 - Return ONLY the 4-part story script. No constraints list, no style notes, no meta-commentary.`
 
     try {
