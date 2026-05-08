@@ -15,8 +15,19 @@ export async function POST(request: Request) {
     const styleNote = `\n\nVisual style: ${videoStyle || 'realistic cinematic'}${themeDescription ? ` — ${themeDescription}` : ''}`
     const fullPrompt = `${prompt}${styleNote}${VIDEO_CONSTRAINTS}`
 
+    // eslint-disable-next-line no-console
+    console.log(
+        '[generate-video] image size:',
+        image.size,
+        'bytes | prompt length:',
+        fullPrompt.length,
+        'chars',
+    )
+
     try {
         const uploadedUrl = await fal.storage.upload(image)
+        // eslint-disable-next-line no-console
+        console.log('[generate-video] uploaded to fal:', uploadedUrl)
 
         const { request_id } = await fal.queue.submit(ENDPOINT, {
             input: {
@@ -26,6 +37,8 @@ export async function POST(request: Request) {
                 generate_audio: true,
             },
         })
+        // eslint-disable-next-line no-console
+        console.log('[generate-video] job submitted, requestId:', request_id)
 
         return Response.json({ requestId: request_id })
     } catch (err) {
@@ -49,6 +62,14 @@ export async function GET(request: Request) {
             requestId,
             logs: false,
         })
+
+        // eslint-disable-next-line no-console
+        console.log(
+            '[generate-video] poll status:',
+            status.status,
+            '| requestId:',
+            requestId,
+        )
 
         if (status.status === 'COMPLETED') {
             const result = await fal.queue.result(ENDPOINT, { requestId })
