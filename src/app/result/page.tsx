@@ -96,6 +96,7 @@ export default function ResultPage() {
                 finalPrompt: string
                 createdAt: string
             }[] = stored ? JSON.parse(stored) : []
+            if (history.some((e) => e.videoUrl === url)) return
             history.unshift({
                 id: Date.now().toString(),
                 videoUrl: url,
