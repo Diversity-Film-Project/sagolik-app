@@ -19,7 +19,7 @@ import styles from './page.module.css'
 // 🚀 PRODUCTION:          const isMock = false
 const MOCK_VIDEO_URL =
     'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4'
-const isMock = false
+const isMock = true
 // ──────────────────────────────────────────────
 
 export default function ResultPage() {
@@ -96,6 +96,7 @@ export default function ResultPage() {
                 finalPrompt: string
                 createdAt: string
             }[] = stored ? JSON.parse(stored) : []
+            if (history.some((e) => e.videoUrl === url)) return
             history.unshift({
                 id: Date.now().toString(),
                 videoUrl: url,

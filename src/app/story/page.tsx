@@ -131,7 +131,7 @@ export default function ScriptPage() {
           : 'Feel free to edit the scenario before moving on to video generation'
 
     return (
-        <PageLayout currentStep={3} href="/script">
+        <PageLayout currentStep={3} href="/story">
             <PageTitle
                 text={pageTitle}
                 description={description}
