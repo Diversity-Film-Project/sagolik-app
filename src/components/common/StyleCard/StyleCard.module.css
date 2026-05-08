@@ -10,7 +10,7 @@
     border-radius: var(--border-radius);
     color: var(--color-progressBar-notActive);
     font-weight: var(--font-weight-bold);
-    opacity: .65;
+    opacity: .5;
 }
 
 .animated {
@@ -28,7 +28,7 @@
 .selected {
     color: var(--color-button-text-primary);
     opacity: 1;
-    box-shadow: inset 0 0 0 1px var(--color-secondary-icon);
+    box-shadow: inset 0 0 0 2px var(--color-primary);
 }
 
 .container>* {
