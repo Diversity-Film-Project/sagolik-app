@@ -28,7 +28,7 @@ export function StyleCard({
         .join(' ')
     return (
         <div onClick={onClick} className={fullClass}>
-            <span className={styles.label}>{label}</span>
+            {label}
         </div>
     )
 }

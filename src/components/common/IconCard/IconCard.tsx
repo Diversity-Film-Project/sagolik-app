@@ -18,7 +18,6 @@ export function IconCard({
             className={`${styles.cardContainer} ${styles[isSelected ? 'selected' : 'default']}`}
             onClick={onClick}
         >
-            {' '}
             <div className={styles.contentWrapper}>
                 {icon}
                 {label}

@@ -20,7 +20,6 @@ interface StyleThemes {
     realistic: ThemeProp[]
 }
 
-//the descriptions are now the thing Mani sent to describe the vibes, but it is not used anywhere now other than UI
 const THEMES: StyleThemes = {
     realistic: [
         {
