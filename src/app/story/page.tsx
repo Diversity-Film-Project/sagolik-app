@@ -132,93 +132,95 @@ export default function ScriptPage() {
 
     return (
         <PageLayout currentStep={3} href="/script">
-            <PageTitle
-                text={pageTitle}
-                description={description}
-                animated={isLoading}
-            />
-            {isLoading ? (
-                <div className={styles.skeleton}>
-                    <p className={styles.skeletonText}>
-                        Gemini is creating your story right now...
-                    </p>
-                    <div className={styles.skeletonLine} />
-                    <div className={styles.skeletonLine} />
-                    <div
-                        className={`${styles.skeletonLine} ${styles.skeletonLineShort}`}
-                    />
-                </div>
-            ) : error ? (
-                <div className={styles.errorBlock}>
-                    <p className={styles.errorMessage}>{error}</p>
-                    <p className={styles.errorHint}>
-                        AI service is temporarily busy. Please try again in a
-                        moment.
-                    </p>
-                    <button
-                        className={styles.retryButton}
-                        onClick={runGenerate}
-                        title="Try again"
-                    >
-                        <RefreshCw size={25} />
-                    </button>
-                </div>
-            ) : isEditing ? (
-                <Textarea
-                    value={storyData.finalPrompt}
-                    onChange={(e) =>
-                        updateStoryData({ finalPrompt: e.target.value })
-                    }
+            <div className={styles.margin}>
+                <PageTitle
+                    text={pageTitle}
+                    description={description}
+                    animated={isLoading}
                 />
-            ) : (
-                <div className={styles.markdownView}>
-                    {storyData.finalPrompt}
-                </div>
-            )}
-            {!isLoading && !error && storyData.finalPrompt && (
-                <p
-                    className={`${styles.charCount} ${isOverLimit ? styles.charCountOver : ''}`}
-                >
-                    {scriptLength} / {MAX_SCRIPT_LENGTH} characters
-                    {isOverLimit && ' — too long, please edit'}
-                </p>
-            )}
-            <div className={styles.editButtonWrapper}>
-                <Button
-                    variant="regenerate"
-                    onClick={runGenerate}
-                    label="Regenerate"
-                    icon={<RefreshCw size={16} />}
-                />
-                {isEditing ? (
-                    <Button
-                        variant="save"
-                        onClick={() => setIsEditing(false)}
-                        label="Save"
-                        icon={<Check size={16} />}
+                {isLoading ? (
+                    <div className={styles.skeleton}>
+                        <p className={styles.skeletonText}>
+                            Gemini is creating your story right now...
+                        </p>
+                        <div className={styles.skeletonLine} />
+                        <div className={styles.skeletonLine} />
+                        <div
+                            className={`${styles.skeletonLine} ${styles.skeletonLineShort}`}
+                        />
+                    </div>
+                ) : error ? (
+                    <div className={styles.errorBlock}>
+                        <p className={styles.errorMessage}>{error}</p>
+                        <p className={styles.errorHint}>
+                            AI service is temporarily busy. Please try again in
+                            a moment.
+                        </p>
+                        <button
+                            className={styles.retryButton}
+                            onClick={runGenerate}
+                            title="Try again"
+                        >
+                            <RefreshCw size={25} />
+                        </button>
+                    </div>
+                ) : isEditing ? (
+                    <Textarea
+                        value={storyData.finalPrompt}
+                        onChange={(e) =>
+                            updateStoryData({ finalPrompt: e.target.value })
+                        }
                     />
                 ) : (
-                    <Button
-                        variant="outlined"
-                        onClick={() => setIsEditing(true)}
-                        label="Edit"
-                        icon={<Pencil size={16} />}
-                    />
+                    <div className={styles.markdownView}>
+                        {storyData.finalPrompt}
+                    </div>
                 )}
-            </div>
+                {!isLoading && !error && storyData.finalPrompt && (
+                    <p
+                        className={`${styles.charCount} ${isOverLimit ? styles.charCountOver : ''}`}
+                    >
+                        {scriptLength} / {MAX_SCRIPT_LENGTH} characters
+                        {isOverLimit && ' — too long, please edit'}
+                    </p>
+                )}
+                <div className={styles.editButtonWrapper}>
+                    <Button
+                        variant="regenerate"
+                        onClick={runGenerate}
+                        label="Regenerate"
+                        icon={<RefreshCw size={16} />}
+                    />
+                    {isEditing ? (
+                        <Button
+                            variant="save"
+                            onClick={() => setIsEditing(false)}
+                            label="Save"
+                            icon={<Check size={16} />}
+                        />
+                    ) : (
+                        <Button
+                            variant="outlined"
+                            onClick={() => setIsEditing(true)}
+                            label="Edit"
+                            icon={<Pencil size={16} />}
+                        />
+                    )}
+                </div>
 
-            <div className={styles.buttonWrapper}>
-                {/* continue temporary hardcoded */}
-                <Button
-                    label="Continue"
-                    onClick={() => router.push('/result')}
-                />
+                <div className={styles.buttonWrapper}>
+                    {/* continue temporary hardcoded */}
+                    <Button
+                        label="Continue"
+                        onClick={() => router.push('/result')}
+                    />
 
-                <Button
-                    label="Back"
-                    variant="secondary"
-                    onClick={() => router.push('/preferences')}
-                />
+                    <Button
+                        label="Back"
+                        variant="secondary"
+                        onClick={() => router.push('/preferences')}
+                    />
+                </div>
             </div>
         </PageLayout>
     )
