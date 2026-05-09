@@ -1,0 +1,37 @@
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-button);
+    border-radius: var(--border-radius);
+    color: var(--color-progressBar-notActive);
+    font-weight: var(--font-weight-bold);
+    opacity: .5;
+}
+
+.animated {
+    background-image: url('/images/animated-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.realistic {
+    background-image: url('/images/realistic-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.selected {
+    color: var(--color-button-text-primary);
+    opacity: 1;
+    box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+.container>* {
+    position: relative;
+    z-index: 1;
+}

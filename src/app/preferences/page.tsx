@@ -2,7 +2,6 @@
 
 // Step 2 — Pick Preferences
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
-import { ThemeSelector } from '@/components/common/ThemeSelector/ThemeSelector'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
@@ -11,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import { useState } from 'react'
 import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
+import { StyleSelector } from '@/components/common/StyleSelector/StyleSelector'
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
@@ -23,6 +23,16 @@ export default function PreferencesPage() {
             return
         }
 
+        const currentKey = `${storyData.characterName}|${storyData.storyTheme}|${storyData.sidekick}|${storyData.videoStyle}|${storyData.themeDescription}`
+        if (storyData.finalPrompt && storyData.promptParamsKey !== currentKey) {
+            updateStoryData({
+                finalPrompt: '',
+                generatedPrompt: '',
+                videoUrl: '',
+                promptParamsKey: '',
+            })
+        }
+
         router.push('/story')
     }
 
@@ -32,6 +42,7 @@ export default function PreferencesPage() {
                 text="Personalise the story"
                 description="We'll use these to create a personalized story"
             />
+            <StyleSelector />
             <Input
                 placeholder="Your Name"
                 value={storyData.characterName}
@@ -39,7 +50,6 @@ export default function PreferencesPage() {
                     updateStoryData({ characterName: e.target.value })
                 }
             />
-            <ThemeSelector />
 
             <Dropdown
                 label="SIDEKICK"
