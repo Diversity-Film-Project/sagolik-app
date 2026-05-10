@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
 import { UploadPhotoCard } from '@/components/common/UploadPhotoCard/UploadPhotoCard'
+import InfoCard from '@/components/common/InfoCard/InfoCard'
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
@@ -30,6 +31,10 @@ export default function UploadPhotoPage() {
                 description="We'll place them as the hero of the story"
             />
             <UploadPhotoCard />
+            <InfoCard
+                title="best results"
+                description="use a clear photo of your child, ideally a headshot with good lighting and a single child facing the camera"
+            />
 
             <div className={styles.buttonWrapper}>
                 <Button label="Continue" onClick={handleContinue} />

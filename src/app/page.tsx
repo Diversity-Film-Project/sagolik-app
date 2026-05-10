@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
 import { AutoRedirect } from '@/components/common/AutoRedirect/AutoRedirect'
 import styles from './page.module.css'
-import InfoCard from '@/components/InfoCard'
 
 export default function SplashPage() {
     return (
