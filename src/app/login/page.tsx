@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
 import { Button } from '@/components/ui/Button/Button'
+import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function LoginPage() {
@@ -52,6 +53,14 @@ export default function LoginPage() {
                 <div className={`${styles.blob} ${styles.blob4}`} />
             </div>
             <div className={styles.card}>
+                <div className={styles.logoWrap}>
+                    <Image
+                        src="/logo.svg"
+                        alt="Tales logo"
+                        width={108}
+                        height={108}
+                    />
+                </div>
                 <div className={styles.logoRow}>
                     <span className={styles.logo}>Tales</span>
                     <span className={styles.dot}></span>

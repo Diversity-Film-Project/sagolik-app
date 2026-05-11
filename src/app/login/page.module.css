@@ -94,6 +94,7 @@
 }
 
 .logoRow {
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -200,5 +201,38 @@
     }
     50% {
         transform: translate(16px, -16px);
+    }
+}
+
+.logoWrap {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+.logoWrap::after {
+    content: '';
+    position: absolute;
+    top: -80%;
+    width: 40%;
+    height: 240%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    animation: shimmer 3.5s ease-in-out 1.5s infinite;
+    transform: rotate(25deg);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-120%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(300%) rotate(25deg);
     }
 }
