@@ -4,7 +4,6 @@ import {
     HarmBlockThreshold,
 } from '@google/generative-ai'
 import { NextRequest, NextResponse } from 'next/server'
-// todo: add info about max prompt 2500, fix base prompt length
 // todo: handle errors properly and display to user (currently just console.log)
 // todo: solution for error 500/503 (Gemini overload) and 429 (too many requests) — partially done: fallback to gemini-1.5-flash
 
@@ -65,13 +64,18 @@ export async function POST(req: NextRequest) {
         sidekick,
         videoStyle,
         themeDescription,
+        customStory,
     } = await req.json()
+
+    const storyInput = customStory
+        ? `- Custom story idea: ${customStory}`
+        : `- Story theme: ${storyTheme || 'any adventure theme'}`
 
     const prompt = `You are a prompt writer for a children's AI video storytelling app. Content must be safe, gentle, and age-appropriate. Never generate violent, sexual, or threatening content.
 
 Write a structured 15-second video prompt for Kling AI with the following inputs:
 - Hero name: ${characterName} (appearance comes from a reference photo — describe actions and emotions only, not appearance)
-- Story theme: ${storyTheme || 'any adventure theme'}
+${storyInput}
 - Sidekick: ${sidekick || 'none'}
 - Visual style: ${videoStyle || 'realistic cinematic'}${themeDescription ? ` — ${themeDescription}` : ''}
 

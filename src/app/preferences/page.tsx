@@ -23,7 +23,7 @@ export default function PreferencesPage() {
             return
         }
 
-        const currentKey = `${storyData.characterName}|${storyData.storyTheme}|${storyData.sidekick}|${storyData.videoStyle}|${storyData.themeDescription}`
+        const currentKey = `${storyData.characterName}|${storyData.storyTheme}|${storyData.sidekick}|${storyData.videoStyle}|${storyData.themeDescription}|${storyData.customStory}`
         if (storyData.finalPrompt && storyData.promptParamsKey !== currentKey) {
             updateStoryData({
                 finalPrompt: '',
@@ -45,7 +45,7 @@ export default function PreferencesPage() {
                 />
                 <StyleSelector />
                 <Input
-                    placeholder="Your Name"
+                    placeholder="Character Name"
                     value={storyData.characterName}
                     onChange={(e) =>
                         updateStoryData({ characterName: e.target.value })

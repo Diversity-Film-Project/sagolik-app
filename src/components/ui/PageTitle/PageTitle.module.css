@@ -1,14 +1,21 @@
 .title {
     font-family: var(--font-primary);
-    font-size: var(--font-size-heading-h1);
+    font-size: 22px;
     color: var(--color-text-primary);
     font-weight: var(--font-weight-bold);
-    margin: 0 0 8px;
+    margin: 0 0 4px;
     padding: 0;
 }
 
 .titleAnimated {
-    background: linear-gradient(90deg, #FF6B00, #FF8C42, #FFB347, #FF8C42, #FF6B00);
+    background: linear-gradient(
+        90deg,
+        #ff6b00,
+        #ff8c42,
+        #ffb347,
+        #ff8c42,
+        #ff6b00
+    );
     background-size: 300% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -17,18 +24,20 @@
 }
 
 @keyframes gradientShift {
-    0% { background-position: 0% center; }
-    100% { background-position: 300% center; }
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 300% center;
+    }
 }
 
 .description {
     font-family: var(--font-primary);
-    font-size: var(--font-size-body-md);
+    font-size: var(--font-size-body-sm);
     color: var(--color-text-body);
     font-weight: var(--font-weight-light);
     letter-spacing: -0.23px;
-    font-family: Inter;
-    letter-spacing: -0.23px;
-    /* margin: 0 0 20px; */
     padding: 0;
+    margin: 0;
 }

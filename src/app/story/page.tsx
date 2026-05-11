@@ -22,8 +22,9 @@ function buildParamsKey(data: {
     sidekick: string
     videoStyle: string
     themeDescription: string
+    customStory: string
 }) {
-    return `${data.characterName}|${data.storyTheme}|${data.sidekick}|${data.videoStyle}|${data.themeDescription}`
+    return `${data.characterName}|${data.storyTheme}|${data.sidekick}|${data.videoStyle}|${data.themeDescription}|${data.customStory}`
 }
 
 export default function ScriptPage() {
@@ -47,6 +48,7 @@ export default function ScriptPage() {
             storyData.sidekick,
             storyData.videoStyle,
             storyData.themeDescription,
+            storyData.customStory,
         )
             .then((result) => {
                 updateStoryData({
@@ -91,6 +93,7 @@ export default function ScriptPage() {
             storyData.sidekick,
             storyData.videoStyle,
             storyData.themeDescription,
+            storyData.customStory,
         )
             .then((result) => {
                 updateStoryData({
