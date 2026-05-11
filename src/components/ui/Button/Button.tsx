@@ -3,6 +3,7 @@ import styles from './Button.module.css'
 interface ButtonProps {
     label: string
     icon?: React.ReactNode
+    iconPosition?: 'left' | 'right'
     variant?: 'primary' | 'secondary' | 'outlined' | 'save' | 'regenerate'
     disabled?: boolean
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -11,6 +12,7 @@ interface ButtonProps {
 export function Button({
     label,
     icon,
+    iconPosition = 'right',
     variant = 'primary',
     disabled = false,
     onClick,
@@ -21,8 +23,13 @@ export function Button({
             onClick={onClick}
             className={`${styles.root} ${styles[variant]}`}
         >
+            {icon && iconPosition === 'left' && (
+                <span className={styles.iconLeft}>{icon}</span>
+            )}
             {label}
-            {icon && <span className={styles.icon}>{icon}</span>}
+            {icon && iconPosition === 'right' && (
+                <span className={styles.iconRight}>{icon}</span>
+            )}
         </button>
     )
 }

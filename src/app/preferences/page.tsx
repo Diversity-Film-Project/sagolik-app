@@ -38,45 +38,47 @@ export default function PreferencesPage() {
 
     return (
         <PageLayout currentStep={2} href="/preferences">
-            <PageTitle
-                text="Personalise the story"
-                description="We'll use these to create a personalized story"
-            />
-            <StyleSelector />
-            <Input
-                placeholder="Your Name"
-                value={storyData.characterName}
-                onChange={(e) =>
-                    updateStoryData({ characterName: e.target.value })
-                }
-            />
-
-            <Dropdown
-                label="SIDEKICK"
-                options={[
-                    'No sidekick',
-                    'Person in photo',
-                    'Dragon',
-                    'Alien',
-                    'Robot',
-                    'Unicorn',
-                ]}
-                value={storyData.sidekick}
-                onChange={(value) => updateStoryData({ sidekick: value })}
-                variant="primary"
-            />
-
-            <div className={styles.buttonWrapper}>
-                <Button label="Continue" onClick={handleContinue} />
-                <div className={styles.errorWrapper}>
-                    {error && <p className="error">{error}</p>}
-                </div>
-                {/* todo - remove error msg if character name is provided */}
-                <Button
-                    label="Back"
-                    variant="secondary"
-                    onClick={() => router.push('/upload')}
+            <div className={styles.margin}>
+                <PageTitle
+                    text="Personalise the story"
+                    description="We'll use these to create a personalized story"
                 />
+                <StyleSelector />
+                <Input
+                    placeholder="Your Name"
+                    value={storyData.characterName}
+                    onChange={(e) =>
+                        updateStoryData({ characterName: e.target.value })
+                    }
+                />
+
+                <Dropdown
+                    label="SIDEKICK"
+                    options={[
+                        'No sidekick',
+                        'Person in photo',
+                        'Dragon',
+                        'Alien',
+                        'Robot',
+                        'Unicorn',
+                    ]}
+                    value={storyData.sidekick}
+                    onChange={(value) => updateStoryData({ sidekick: value })}
+                    variant="primary"
+                />
+
+                <div className={styles.buttonWrapper}>
+                    <Button label="Continue" onClick={handleContinue} />
+                    <div className={styles.errorWrapper}>
+                        {error && <p className="error">{error}</p>}
+                    </div>
+                    {/* todo - remove error msg if character name is provided */}
+                    <Button
+                        label="Back"
+                        variant="secondary"
+                        onClick={() => router.push('/upload')}
+                    />
+                </div>
             </div>
         </PageLayout>
     )
