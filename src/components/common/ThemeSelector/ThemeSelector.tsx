@@ -19,7 +19,8 @@ import { Wave } from '@/components/ui/Icon/Wave'
 import { Dino } from '@/components/ui/Icon/Dino'
 import { Magic } from '@/components/ui/Icon/Magic'
 import { Camp } from '@/components/ui/Icon/Camp'
-import { Pencil, X } from 'lucide-react'
+import { X } from 'lucide-react'
+import { Button } from '@/components/ui/Button/Button'
 
 const Emoji = ({ children }: { children: string }) => (
     <span className={styles.emoji}>{children}</span>
@@ -243,11 +244,11 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
     }
 
     const allCards: CardItem[] = [
+        { type: 'custom' },
         ...(THEMES[style]?.map((theme) => ({
             type: 'theme' as const,
             theme,
         })) ?? []),
-        { type: 'custom' },
     ]
     const slides = chunkArray(allCards, CARDS_PER_SLIDE)
 
@@ -267,7 +268,7 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                                 card.type === 'custom' ? (
                                     <IconCard
                                         key="custom"
-                                        icon={<Pencil size={28} />}
+                                        icon={<Emoji>✍️</Emoji>}
                                         label="Your Story"
                                         isSelected={isCustomSelected}
                                         onClick={handleOpenModal}
@@ -297,16 +298,17 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                 ))}
             </Swiper>
 
-            {selectedTheme && (
-                <p className={styles.themeDescription}>
-                    {selectedTheme.description}
+            <div className={styles.descriptionArea}>
+                <p
+                    className={`${styles.themeDescription} ${!selectedTheme && !isCustomSelected ? styles.themeDescriptionPlaceholder : ''}`}
+                >
+                    {selectedTheme
+                        ? selectedTheme.description
+                        : isCustomSelected
+                          ? storyData.customStory
+                          : 'Select a story world to see its description'}
                 </p>
-            )}
-            {isCustomSelected && !selectedTheme && (
-                <p className={styles.themeDescription}>
-                    {storyData.customStory}
-                </p>
-            )}
+            </div>
 
             {isModalOpen && (
                 <div className={styles.backdrop} onClick={handleClose} />
@@ -332,12 +334,7 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
                 />
-                <button
-                    className={styles.bottomSheetSaveBtn}
-                    onClick={handleSave}
-                >
-                    Save
-                </button>
+                <Button label="Save" variant="save" onClick={handleSave} />
             </div>
         </div>
     )

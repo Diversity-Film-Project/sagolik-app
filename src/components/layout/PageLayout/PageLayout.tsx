@@ -45,7 +45,7 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
                                 href="/history"
                                 className={styles.historyButton}
                             >
-                                History <HistoryIcon size={16} />
+                                History <HistoryIcon size={14} />
                             </Link>
                         </div>
 

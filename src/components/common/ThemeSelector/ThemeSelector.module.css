@@ -35,18 +35,30 @@
     line-height: 1;
 }
 
+.descriptionArea {
+    min-height: 60px;
+    display: flex;
+    align-items: flex-start;
+}
+
 .themeDescription {
+    margin: 0;
     font-family: var(--font-primary);
     font-size: var(--font-size-body-sm);
     color: var(--color-text-body);
     animation: errorAppear 0.3s ease both;
 }
 
+.themeDescriptionPlaceholder {
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
 /* Bottom sheet modal for custom story */
 .backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 99;
 }
 
@@ -57,7 +69,8 @@
     right: 0;
     max-width: 800px;
     margin: 0 auto;
-    background: var(--color-background);
+    /* background: var(--color-background); */
+    background: #fff;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     padding: var(--spacing-md);
     z-index: 100;
