@@ -6,6 +6,7 @@ interface ButtonProps {
     iconPosition?: 'left' | 'right'
     variant?: 'primary' | 'secondary' | 'outlined' | 'save' | 'regenerate'
     disabled?: boolean
+    loading?: boolean
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -15,13 +16,14 @@ export function Button({
     iconPosition = 'right',
     variant = 'primary',
     disabled = false,
+    loading = false,
     onClick,
 }: ButtonProps) {
     return (
         <button
-            disabled={disabled}
+            disabled={disabled || loading}
             onClick={onClick}
-            className={`${styles.root} ${styles[variant]}`}
+            className={`${styles.root} ${styles[variant]}${loading ? ` ${styles.loading}` : ''}`}
         >
             {icon && iconPosition === 'left' && (
                 <span className={styles.iconLeft}>{icon}</span>

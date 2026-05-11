@@ -2,7 +2,6 @@ import { useState } from 'react'
 import styles from './UploadPhotoCard.module.css'
 import { Image as ImageIcon, LoaderCircle, Check } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
-import Image from 'next/image'
 
 type CardState = 'default' | 'loading' | 'selected'
 
@@ -77,16 +76,23 @@ export function UploadPhotoCard({
                     </>
                 )}
             </div>
-            {storyData.photo && (
-                <div className={styles.previewWrapper}>
-                    <Image
+            <div className={styles.previewWrapper}>
+                {storyData.photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element -- blob URL, Next Image can't optimize local object URLs
+                    <img
                         src={URL.createObjectURL(storyData.photo)}
                         alt="uploaded photo"
-                        fill
                         className={styles.previewImage}
                     />
-                </div>
-            )}
+                ) : (
+                    <div className={styles.previewPlaceholder}>
+                        <ImageIcon
+                            size={26}
+                            className={styles.previewPlaceholderIcon}
+                        />
+                    </div>
+                )}
+            </div>
         </>
     )
 }
