@@ -10,6 +10,7 @@ import { ConfirmationCard } from '@/components/common/ConfirmationCard/Confirmat
 import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { submitVideoJob, pollVideoStatus } from '@/services/lib/generateVideo'
+import { shareVideo } from '@/lib/shareVideo'
 import { Share2 } from 'lucide-react'
 import styles from './page.module.css'
 
@@ -19,7 +20,7 @@ import styles from './page.module.css'
 // 🚀 PRODUCTION:          const isMock = false
 const MOCK_VIDEO_URL =
     'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4'
-const isMock = true
+const isMock = false
 // ──────────────────────────────────────────────
 
 export default function ResultPage() {
@@ -179,21 +180,11 @@ export default function ResultPage() {
         if (isSharingRef.current) return
         isSharingRef.current = true
         try {
-            const shareData = {
-                title: `${storyData.characterName || 'A'}'s story`,
-                text:
-                    storyData.storyTheme ||
-                    'Check out this AI-generated story!',
-                url: videoUrl,
-            }
-            if (navigator.share && navigator.canShare(shareData)) {
-                await navigator.share(shareData)
-            } else {
-                await navigator.clipboard.writeText(videoUrl)
-            }
-        } catch (err) {
-            if (err instanceof Error && err.name === 'AbortError') return
-            throw err
+            await shareVideo(
+                `${storyData.characterName || 'A'}'s story`,
+                storyData.storyTheme || 'Check out this AI-generated story!',
+                videoUrl,
+            )
         } finally {
             isSharingRef.current = false
         }
