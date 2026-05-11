@@ -7,6 +7,7 @@ interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'outlined' | 'save' | 'regenerate'
     disabled?: boolean
     loading?: boolean
+    type?: 'button' | 'submit' | 'reset'
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -17,10 +18,12 @@ export function Button({
     variant = 'primary',
     disabled = false,
     loading = false,
+    type = 'button',
     onClick,
 }: ButtonProps) {
     return (
         <button
+            type={type}
             disabled={disabled || loading}
             onClick={onClick}
             className={`${styles.root} ${styles[variant]}${loading ? ` ${styles.loading}` : ''}`}
