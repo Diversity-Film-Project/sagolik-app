@@ -1,8 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStory } from '@/context/StoryContext'
+import { shareVideo } from '@/lib/shareVideo'
+import { Button } from '@/components/ui/Button/Button'
+import { ArrowLeft, Share2, Download } from 'lucide-react'
 import styles from './page.module.css'
 
 // todo - redisign this page
@@ -20,6 +23,8 @@ export default function HistoryPage() {
     const router = useRouter()
     const { resetStory } = useStory()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
+    const [downloadingId, setDownloadingId] = useState<string | null>(null)
+    const sharingRef = useRef<string | null>(null)
 
     useEffect(() => {
         const load = async () => {
@@ -39,16 +44,62 @@ export default function HistoryPage() {
         router.push('/upload')
     }
 
+    const handleShare = async (entry: HistoryEntry) => {
+        if (sharingRef.current) return
+        sharingRef.current = entry.id
+        try {
+            await shareVideo(
+                `${entry.characterName || 'A'}'s story`,
+                entry.storyTheme || 'Check out this AI-generated story!',
+                entry.videoUrl,
+            )
+        } finally {
+            sharingRef.current = null
+        }
+    }
+
+    const handleDownload = async (entry: HistoryEntry) => {
+        if (downloadingId) return
+        setDownloadingId(entry.id)
+        try {
+            const res = await fetch(entry.videoUrl)
+            const blob = await res.blob()
+            const objectUrl = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = objectUrl
+            a.download = `${entry.characterName || 'tales'}-story.mp4`
+            a.click()
+            URL.revokeObjectURL(objectUrl)
+        } catch {
+            // CORS blocked — open in new tab so user can save manually
+            window.open(entry.videoUrl, '_blank')
+        } finally {
+            setDownloadingId(null)
+        }
+    }
+
     return (
         <div className={styles.page}>
             <header className={styles.header}>
-                <span className={styles.logo}>Tales</span>
-                <button className={styles.newButton} onClick={handleNewVideo}>
-                    + New video
-                </button>
+                <div className={styles.logoContainer}>
+                    <span className={styles.logo}>Tales</span>
+                    <span className={styles.dot}></span>
+                </div>
+                <Button
+                    label="+ New video"
+                    variant="outlined"
+                    onClick={handleNewVideo}
+                ></Button>
             </header>
 
             <main className={styles.content}>
+                <Button
+                    label="Back"
+                    variant="outlined"
+                    onClick={() => router.back()}
+                    icon={<ArrowLeft size={20} />}
+                    iconPosition="left"
+                ></Button>
                 <h1 className={styles.title}>History</h1>
 
                 {/* todo - replace div with proper component */}
@@ -90,6 +141,25 @@ export default function HistoryPage() {
                                     controls
                                     className={styles.video}
                                 />
+                                <div className={styles.cardActions}>
+                                    <Button
+                                        label="Share"
+                                        variant="outlined"
+                                        icon={<Share2 size={16} />}
+                                        onClick={() => handleShare(entry)}
+                                    />
+                                    <Button
+                                        label={
+                                            downloadingId === entry.id
+                                                ? 'Downloading…'
+                                                : 'Download'
+                                        }
+                                        variant="outlined"
+                                        icon={<Download size={16} />}
+                                        disabled={!!downloadingId}
+                                        onClick={() => handleDownload(entry)}
+                                    />
+                                </div>
                                 {entry.finalPrompt && (
                                     <details className={styles.promptDetails}>
                                         <summary

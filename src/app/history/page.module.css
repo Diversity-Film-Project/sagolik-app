@@ -18,14 +18,50 @@
     backdrop-filter: blur(15px);
 }
 
+.header button {
+    max-width: 130px;
+    color: var(--color-primary);
+    padding: 6px 16px;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    text-decoration: none;
+    gap: 2px;
+}
+
 .logo {
     font-size: 28px;
     font-weight: 600;
-    letter-spacing: -1px;
+    margin: 0;
+    padding: 0 2px 0 0;
+
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    background: linear-gradient(
+        135deg,
+        oklch(92% 0.08 55) 0%,
+        oklch(88% 0.12 30) 40%,
+        oklch(88% 0.1 350) 100%
+    );
     background: linear-gradient(135deg, #ff7d00, #ff3023, #ff0084);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, oklch(72% 0.2 55), oklch(65% 0.22 30));
+    box-shadow: 0 2px 8px oklch(72% 0.2 55 / 0.5);
 }
 
 .newButton {
@@ -48,6 +84,11 @@
     flex-direction: column;
     gap: 24px;
     padding-top: 16px;
+}
+
+.content button {
+    max-width: 130px;
+    padding: 6px 16px;
 }
 
 .title {
@@ -124,9 +165,16 @@
 }
 
 .video {
-    width: 100%;
+    max-height: 200px;
+    width: auto;
     border-radius: 12px;
     background: #000;
+}
+
+.cardActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
 }
 
 .promptDetails {

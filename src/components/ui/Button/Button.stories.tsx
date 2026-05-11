@@ -40,11 +40,21 @@ export const PrimaryDisabled: Story = {
     },
 }
 
-export const WithIcon: Story = {
+export const WithIconRight: Story = {
     args: {
         label: 'Regenerate',
         variant: 'outlined',
         icon: <RefreshCw size={16} />,
+        iconPosition: 'right',
+    },
+}
+
+export const WithIconLeft: Story = {
+    args: {
+        label: 'Back',
+        variant: 'secondary',
+        icon: <RefreshCw size={16} />,
+        iconPosition: 'left',
     },
 }
 
@@ -53,5 +63,6 @@ export const Save: Story = {
         label: 'Save',
         variant: 'save',
         icon: <Check size={16} />,
+        iconPosition: 'right',
     },
 }
