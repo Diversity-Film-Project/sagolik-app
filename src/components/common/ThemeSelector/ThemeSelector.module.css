@@ -15,18 +15,24 @@
     text-transform: uppercase;
 }
 
-.wrapperContainer {
+.swiper {
+    width: 100%;
+    padding-bottom: 28px !important;
+    --swiper-pagination-color: var(--color-primary);
+    --swiper-pagination-bullet-inactive-color: var(--color-border);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
+.slideGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: var(--spacing-sm);
 }
 
-.flexContainer {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: row;
-    gap: var(--spacing-sm);
+.emoji {
+    font-size: 28px;
+    line-height: 1;
 }
 
 .themeDescription {
@@ -34,4 +40,92 @@
     font-size: var(--font-size-body-sm);
     color: var(--color-text-body);
     animation: errorAppear 0.3s ease both;
+}
+
+/* Bottom sheet modal for custom story */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99;
+}
+
+.bottomSheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--color-background);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    padding: var(--spacing-md);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+}
+
+.bottomSheetOpen {
+    transform: translateY(0);
+}
+
+.bottomSheetHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottomSheetTitle {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bottomSheetCloseBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.bottomSheetTextarea {
+    width: 100%;
+    height: 160px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-primary);
+    background-color: var(--color-input-background);
+    border: 1px solid #6aad8e;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    resize: none;
+    outline: none;
+    line-height: 1.6;
+}
+
+.bottomSheetSaveBtn {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-button-text-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.bottomSheetSaveBtn:hover {
+    opacity: 0.9;
 }

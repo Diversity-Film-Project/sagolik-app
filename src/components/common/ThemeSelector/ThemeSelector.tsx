@@ -1,3 +1,10 @@
+'use client'
+
+import { useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
 import styles from './ThemeSelector.module.css'
 import { IconCard } from '../IconCard/IconCard'
 import { useStory } from '@/context/StoryContext'
@@ -12,8 +19,12 @@ import { Wave } from '@/components/ui/Icon/Wave'
 import { Dino } from '@/components/ui/Icon/Dino'
 import { Magic } from '@/components/ui/Icon/Magic'
 import { Camp } from '@/components/ui/Icon/Camp'
+import { Pencil, X } from 'lucide-react'
 
-// i moved iconcard info to this array. Its easier to add/remove themes
+const Emoji = ({ children }: { children: string }) => (
+    <span className={styles.emoji}>{children}</span>
+)
+
 interface ThemeProp {
     name: string
     icon: React.ReactElement
@@ -63,6 +74,36 @@ const THEMES: StyleThemes = {
             description:
                 'Realistic superhero world, cinematic cityscapes, dramatic action sequences, emotional character moments, realistic powers and effects, dynamic handheld camera movement, photorealistic environments, grounded superhero atmosphere, large-scale cinematic action.',
         },
+        {
+            name: 'Wild West Heroes',
+            icon: <Emoji>🤠</Emoji>,
+            description:
+                'Cinematic American frontier, sweeping golden desert landscapes, dusty western towns, dramatic sunset skies, brave child heroes on horseback, authentic western costumes and props, wide-angle landscape cinematography, adventurous cowboy atmosphere, epic frontier adventure.',
+        },
+        {
+            name: 'Jungle Rescue Team',
+            icon: <Emoji>🌿</Emoji>,
+            description:
+                'Photorealistic tropical rainforest, dense jungle canopy with dramatic natural light shafts, exotic wildlife, child heroes on an urgent rescue mission, realistic jungle environments, exciting action sequences, warm humid atmosphere, emotional nature-adventure story.',
+        },
+        {
+            name: 'Animal Safari Adventure',
+            icon: <Emoji>🐾</Emoji>,
+            description:
+                'Cinematic African savanna, majestic animals in their natural habitat, golden hour wide-angle landscapes, thrilling wildlife encounters, photorealistic environments, emotional nature-documentary feel, child explorer on a life-changing journey through the wild.',
+        },
+        {
+            name: 'Underwater Kingdom',
+            icon: <Emoji>🌊</Emoji>,
+            description:
+                'Photorealistic deep ocean world, stunning coral reef environments, majestic sea creatures, dramatic underwater light shafts, crystal-clear blue water, realistic currents, exciting marine discovery, cinematic underwater cinematography, sense of awe and wonder.',
+        },
+        {
+            name: 'Fairy Tale Castle',
+            icon: <Emoji>👑</Emoji>,
+            description:
+                'Cinematic live-action fairy tale, grand medieval castle with towering spires, practical magical effects, lush enchanted forest kingdoms, detailed period costumes, golden magical lighting, epic quest adventure, emotional storytelling, immersive storybook world brought to life.',
+        },
     ],
     animated: [
         {
@@ -101,7 +142,71 @@ const THEMES: StyleThemes = {
             description:
                 'Massive animated superhero city, glowing stylized skyscrapers, flying child heroes, colorful energy powers, expressive animated characters, dramatic illustrated clouds, epic battles, emotional heroic atmosphere, vibrant comic-inspired animation style.',
         },
+        {
+            name: 'Magic Forest Friends',
+            icon: <Emoji>🧚</Emoji>,
+            description:
+                'Enchanted animated forest with glowing mushrooms and talking woodland creatures, soft dappled light through magical canopy, hand-painted watercolor textures, warm earthy tones, wonder-filled atmosphere, friendship-centered adventure, gentle magical energy throughout.',
+        },
+        {
+            name: 'Tiny Monster Party',
+            icon: <Emoji>🎉</Emoji>,
+            description:
+                'Colorful animated world of friendly tiny monsters, oversized whimsical candy landscapes, playful chaos and silly creatures, bright neon colors, comic-style expressive faces, energetic party chaos, laugh-out-loud animated humor, joyful celebration adventure.',
+        },
+        {
+            name: 'Dino World Explorers',
+            icon: <Emoji>🦕</Emoji>,
+            description:
+                'Bright animated prehistoric world, friendly cartoon dinosaurs with huge personalities, lush tropical jungles, giant colorful flowers, playful baby dinos, warm sunny atmosphere, discovery and wonder at every turn, joyful family adventure.',
+        },
+        {
+            name: 'Space Rangers Adventure',
+            icon: <Emoji>🛸</Emoji>,
+            description:
+                'Colorful animated space opera, friendly alien planets with quirky inhabitants, small rocket ships and cute robot companions, bright neon nebulae, zero-gravity adventures, playful spacesuits, energetic heroic atmosphere, comic-style sci-fi world.',
+        },
+        {
+            name: 'Pirate Treasure Quest',
+            icon: <Emoji>🏴‍☠️</Emoji>,
+            description:
+                'Swashbuckling animated pirate world, cartoon ships on sparkling seas, treasure maps with X marks the spot, friendly parrots and sea creatures, tropical island adventures, bold colors and expressive characters, fun action-packed discovery, joyful pirate crew atmosphere.',
+        },
+        {
+            name: 'Underwater Kingdom',
+            icon: <Emoji>🐠</Emoji>,
+            description:
+                'Vibrant animated underwater world, colorful coral reefs and friendly sea creatures, shimmering light dancing through ocean water, fluid dreamy animation, playful dolphins and fish, bright aqua and gold color palette, magical ocean kingdom adventure.',
+        },
+        {
+            name: 'Fairy Tale Castle',
+            icon: <Emoji>👸</Emoji>,
+            description:
+                'Classic fairy tale animation style, grand magical castle with glowing towers, enchanted ballrooms, friendly knights and baby dragons, sparkling spell effects, warm golden light, storybook illustration aesthetic, princess and hero adventure.',
+        },
+        {
+            name: 'Animal Safari Adventure',
+            icon: <Emoji>🦁</Emoji>,
+            description:
+                'Vibrant animated African savanna, colorful talking animals with big expressive eyes, sunny golden landscapes, acacia trees and wide open skies, playful lion cubs and towering giraffes, warm earthy tones, friendship-driven exploration adventure.',
+        },
+        {
+            name: 'Wild West Heroes',
+            icon: <Emoji>🌵</Emoji>,
+            description:
+                'Animated American frontier, cartoon desert landscapes with rolling tumbleweeds, quirky western town characters, brave child cowboys and cowgirls, expressive animal companions, warm sunset colors, lighthearted frontier humor and heroism.',
+        },
     ],
+}
+
+const CARDS_PER_SLIDE = 6
+
+type CardItem = { type: 'theme'; theme: ThemeProp } | { type: 'custom' }
+
+function chunkArray<T>(arr: T[], size: number): T[][] {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+        arr.slice(i * size, i * size + size),
+    )
 }
 
 interface ThemeSelectorProps {
@@ -110,35 +215,130 @@ interface ThemeSelectorProps {
 
 export function ThemeSelector({ style }: ThemeSelectorProps) {
     const { storyData, updateStoryData } = useStory()
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [draft, setDraft] = useState('')
+
     const selectedTheme = THEMES[style]?.find(
         (theme) => theme.name === storyData.storyTheme,
     )
+    const isCustomSelected = Boolean(storyData.customStory)
+
+    const handleOpenModal = () => {
+        setDraft(storyData.customStory || '')
+        setIsModalOpen(true)
+    }
+
+    const handleSave = () => {
+        const trimmed = draft.trim()
+        updateStoryData({
+            customStory: trimmed,
+            storyTheme: trimmed ? '' : storyData.storyTheme,
+            themeDescription: trimmed ? '' : storyData.themeDescription,
+        })
+        setIsModalOpen(false)
+    }
+
+    const handleClose = () => {
+        setIsModalOpen(false)
+    }
+
+    const allCards: CardItem[] = [
+        ...(THEMES[style]?.map((theme) => ({
+            type: 'theme' as const,
+            theme,
+        })) ?? []),
+        { type: 'custom' },
+    ]
+    const slides = chunkArray(allCards, CARDS_PER_SLIDE)
 
     return (
         <div className={styles.flexWrapper}>
             <h2>Story Worlds</h2>
-            <div className={styles.wrapperContainer}>
-                {THEMES[style]?.map((theme) => (
-                    <IconCard
-                        key={theme.name}
-                        icon={theme.icon}
-                        label={theme.name}
-                        isSelected={storyData.storyTheme === theme.name}
-                        onClick={() =>
-                            updateStoryData({
-                                storyTheme: theme.name,
-                                themeDescription: theme.description,
-                            })
-                        }
-                    />
+
+            <Swiper
+                modules={[Pagination]}
+                pagination={{ clickable: true }}
+                className={styles.swiper}
+            >
+                {slides.map((chunk, slideIndex) => (
+                    <SwiperSlide key={slideIndex}>
+                        <div className={styles.slideGrid}>
+                            {chunk.map((card) =>
+                                card.type === 'custom' ? (
+                                    <IconCard
+                                        key="custom"
+                                        icon={<Pencil size={28} />}
+                                        label="Your Story"
+                                        isSelected={isCustomSelected}
+                                        onClick={handleOpenModal}
+                                    />
+                                ) : (
+                                    <IconCard
+                                        key={card.theme.name}
+                                        icon={card.theme.icon}
+                                        label={card.theme.name}
+                                        isSelected={
+                                            storyData.storyTheme ===
+                                            card.theme.name
+                                        }
+                                        onClick={() =>
+                                            updateStoryData({
+                                                storyTheme: card.theme.name,
+                                                themeDescription:
+                                                    card.theme.description,
+                                                customStory: '',
+                                            })
+                                        }
+                                    />
+                                ),
+                            )}
+                        </div>
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
 
             {selectedTheme && (
                 <p className={styles.themeDescription}>
                     {selectedTheme.description}
                 </p>
             )}
+            {isCustomSelected && !selectedTheme && (
+                <p className={styles.themeDescription}>
+                    {storyData.customStory}
+                </p>
+            )}
+
+            {isModalOpen && (
+                <div className={styles.backdrop} onClick={handleClose} />
+            )}
+            <div
+                className={`${styles.bottomSheet} ${isModalOpen ? styles.bottomSheetOpen : ''}`}
+            >
+                <div className={styles.bottomSheetHeader}>
+                    <span className={styles.bottomSheetTitle}>
+                        Describe your story idea
+                    </span>
+                    <button
+                        className={styles.bottomSheetCloseBtn}
+                        onClick={handleClose}
+                        title="Close"
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
+                <textarea
+                    className={styles.bottomSheetTextarea}
+                    placeholder="E.g. A brave girl discovers a hidden door in the forest that leads to a world where animals can talk..."
+                    value={draft}
+                    onChange={(e) => setDraft(e.target.value)}
+                />
+                <button
+                    className={styles.bottomSheetSaveBtn}
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
+            </div>
         </div>
     )
 }

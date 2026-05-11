@@ -14,6 +14,7 @@ interface StoryData {
     videoStyle: 'animated' | 'realistic' | ''
     themeDescription: string
     videoRequestId: string // for tracking video generation status. If user closed the page and comes back, we can check if there's an ongoing job and resume polling.
+    customStory: string
 }
 
 interface StoryContextType {
@@ -49,6 +50,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
         videoStyle: 'animated',
         themeDescription: '',
         videoRequestId: '',
+        customStory: '',
     })
 
     // If user closed the page and comes back, we can restore persisted fields from localStorage on mount (client-side only)
@@ -113,6 +115,7 @@ export function StoryProvider({ children }: StoryProviderProps) {
             videoStyle: '',
             themeDescription: '',
             videoRequestId: '',
+            customStory: '',
         })
     }
 
