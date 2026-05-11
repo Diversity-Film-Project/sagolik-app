@@ -170,31 +170,6 @@
     margin: 0;
 }
 
-.button {
-    width: 100%;
-    padding: 14px;
-    font-size: var(--font-size-button);
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-medium);
-    color: #ffffff;
-    /* solid gradient — the global variable uses rgba(0.75) which looks muddy on dark bg */
-    background: linear-gradient(92deg, #ff6700 13.9%, #ff300b 74.85%);
-    box-shadow: 0 0 20px 0 rgba(255, 103, 0, 0.35);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.button:hover {
-    opacity: 0.88;
-}
-
-.button:disabled {
-    opacity: 0.35;
-    cursor: default;
-}
-
 @keyframes floatA {
     0%,
     100% {
