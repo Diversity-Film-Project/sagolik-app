@@ -217,7 +217,12 @@ export default function ResultPage() {
                             storyData.storyTheme || 'Personalised story'
                         }
                     />
-                    <video src={videoUrl} controls className={styles.video} />
+                    <video
+                        src={videoUrl}
+                        controls
+                        playsInline
+                        className={styles.video}
+                    />
                     <Button
                         label="Share"
                         variant="outlined"

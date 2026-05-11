@@ -61,6 +61,15 @@ export default function HistoryPage() {
     const handleDownload = async (entry: HistoryEntry) => {
         if (downloadingId) return
         setDownloadingId(entry.id)
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+        if (isIOS) {
+            // iOS blocks programmatic downloads — open video so user can save manually
+            window.open(entry.videoUrl, '_blank')
+            setDownloadingId(null)
+            return
+        }
+
         try {
             const res = await fetch(entry.videoUrl)
             const blob = await res.blob()
@@ -118,8 +127,12 @@ export default function HistoryPage() {
                             <li key={entry.id} className={styles.card}>
                                 <div className={styles.cardMeta}>
                                     <span className={styles.cardName}>
-                                        {entry.characterName ||
-                                            'Unnamed character'}
+                                        {entry.characterName || 'Unnamed'}
+                                        <span className={styles.cardSeparator}>
+                                            {' '}
+                                            |{' '}
+                                        </span>
+                                        {entry.storyTheme || 'Custom story'}
                                     </span>
                                     <span className={styles.cardDate}>
                                         {new Date(
@@ -131,14 +144,10 @@ export default function HistoryPage() {
                                         })}
                                     </span>
                                 </div>
-                                {entry.storyTheme && (
-                                    <p className={styles.cardTheme}>
-                                        {entry.storyTheme}
-                                    </p>
-                                )}
                                 <video
                                     src={entry.videoUrl}
                                     controls
+                                    playsInline
                                     className={styles.video}
                                 />
                                 <div className={styles.cardActions}>
@@ -149,13 +158,10 @@ export default function HistoryPage() {
                                         onClick={() => handleShare(entry)}
                                     />
                                     <Button
-                                        label={
-                                            downloadingId === entry.id
-                                                ? 'Downloading…'
-                                                : 'Download'
-                                        }
+                                        label="Download"
                                         variant="outlined"
                                         icon={<Download size={16} />}
+                                        loading={downloadingId === entry.id}
                                         disabled={!!downloadingId}
                                         onClick={() => handleDownload(entry)}
                                     />
@@ -165,7 +171,7 @@ export default function HistoryPage() {
                                         <summary
                                             className={styles.promptSummary}
                                         >
-                                            Story script
+                                            Scenario
                                         </summary>
                                         <p className={styles.promptText}>
                                             {entry.finalPrompt}
