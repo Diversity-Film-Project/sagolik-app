@@ -80,10 +80,46 @@ li:last-child .listItemWrapper {
     letter-spacing: -0.15px;
 }
 
+.generatingText {
+    font-size: var(--font-size-body-md);
+    font-weight: var(--font-weight-medium);
+    line-height: 21px;
+    letter-spacing: -0.15px;
+    background: linear-gradient(90deg, #ff6700 20%, #ffd199 50%, #ff6700 80%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
 .lowerText {
     color: var(--color-text-body);
     font-size: var(--font-size-caption-md);
     font-weight: var(--font-weight-light);
-    font-style: normal;
     line-height: 18px;
+}
+
+.tipText {
+    composes: lowerText;
+    animation: tipEnter 0.4s ease forwards;
+}
+
+.tipHidden {
+    animation: tipExit 0.35s ease forwards;
+}
+
+@keyframes tipEnter {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tipExit {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(10px); }
 }

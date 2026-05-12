@@ -52,6 +52,8 @@ export default function LoginPage() {
                         alt="Tales logo"
                         width={108}
                         height={108}
+                        loading="eager"
+                        priority
                     />
                 </div>
                 <div className={styles.logoRow}>

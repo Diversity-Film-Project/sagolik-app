@@ -13,6 +13,6 @@ type Story = StoryObj<typeof LoadingCard>
 
 export const Default: Story = {
     args: {
-        duration: 2,
+        duration: 5,
     },
 }
