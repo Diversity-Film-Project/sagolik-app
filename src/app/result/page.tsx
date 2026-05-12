@@ -196,7 +196,7 @@ export default function ResultPage() {
     }
 
     return (
-        <PageLayout currentStep={4} href="/result">
+        <PageLayout currentStep={4}>
             {isLoading ? (
                 <>
                     <ConfirmationCard />
