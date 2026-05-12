@@ -8,8 +8,6 @@ import { Button } from '@/components/ui/Button/Button'
 import { ArrowLeft, Download } from 'lucide-react'
 import styles from './page.module.css'
 
-// todo - redisign this page
-
 type HistoryEntry = {
     id: string
     videoUrl: string

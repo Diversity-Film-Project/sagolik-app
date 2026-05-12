@@ -9,24 +9,14 @@ import { useStory } from '@/context/StoryContext'
 import { generatePrompt } from '@/services/generatePrompt'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
 import { RefreshCw, Pencil, Check } from 'lucide-react'
-import confetti from 'canvas-confetti'
+import { fireConfetti } from '@/lib/fireConfetti'
+import { buildParamsKey } from '@/lib/buildParamsKey'
 import { VIDEO_CONSTRAINTS } from '@/lib/videoConstraints'
 import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
 import styles from './page.module.css'
 
 // Max characters for the user-visible script (styleNote + VIDEO_CONSTRAINTS take the remaining ~900 chars up to Kling's 2500 limit)
 const MAX_SCRIPT_LENGTH = 1600
-
-function buildParamsKey(data: {
-    characterName: string
-    storyTheme: string
-    sidekick: string
-    videoStyle: string
-    themeDescription: string
-    customStory: string
-}) {
-    return `${data.characterName}|${data.storyTheme}|${data.sidekick}|${data.videoStyle}|${data.themeDescription}|${data.customStory}`
-}
 
 export default function ScriptPage() {
     const router = useRouter()
@@ -59,12 +49,7 @@ export default function ScriptPage() {
                     promptParamsKey: buildParamsKey(storyData),
                 })
                 setIsLoading(false)
-                confetti({
-                    particleCount: 80,
-                    spread: 60,
-                    origin: { y: 0.3 },
-                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
-                })
+                fireConfetti()
                 // eslint-disable-next-line no-console
                 console.log(
                     '=== FULL PROMPT FOR KLING AI ===\n' +
@@ -104,12 +89,7 @@ export default function ScriptPage() {
                     promptParamsKey: buildParamsKey(storyData),
                 })
                 setIsLoading(false)
-                confetti({
-                    particleCount: 80,
-                    spread: 60,
-                    origin: { y: 0.3 },
-                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
-                })
+                fireConfetti()
                 // eslint-disable-next-line no-console
                 console.log(
                     '=== FULL PROMPT FOR KLING AI ===\n' +

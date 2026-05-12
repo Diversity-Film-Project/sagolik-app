@@ -13,7 +13,7 @@ import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
 import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
 import { downloadVideo } from '@/lib/downloadVideo'
 import { Download } from 'lucide-react'
-import confetti from 'canvas-confetti'
+import { fireConfetti } from '@/lib/fireConfetti'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -135,12 +135,7 @@ export default function ResultPage() {
                 saveToHistory(url)
                 updateStoryData({ videoUrl: url, videoRequestId: '' })
                 setIsLoading(false)
-                confetti({
-                    particleCount: 80,
-                    spread: 60,
-                    origin: { y: 0.3 },
-                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
-                })
+                fireConfetti()
             } catch (err: unknown) {
                 setError(
                     err instanceof Error
@@ -169,12 +164,7 @@ export default function ResultPage() {
             saveToHistory(url)
             updateStoryData({ videoUrl: url, videoRequestId: '' })
             setIsLoading(false)
-            confetti({
-                particleCount: 80,
-                spread: 60,
-                origin: { y: 0.3 },
-                colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
-            })
+            fireConfetti()
         } catch (err: unknown) {
             setError(
                 err instanceof Error ? err.message : 'Video generation failed.',
