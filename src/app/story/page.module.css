@@ -140,3 +140,28 @@
     width: 100%;
     gap: 20px;
 }
+
+.modalText {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.modalLabel {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 4px 0 0;
+}
+
+.modalList {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    color: var(--color-text-body);
+    line-height: 1.7;
+    margin: 0;
+    padding-left: 20px;
+}

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { PageTitle } from './PageTitle'
 
 const meta: Meta<typeof PageTitle> = {
-    title: 'UI/PageTitle',
+    title: 'components/PageTitle',
     component: PageTitle,
 }
 

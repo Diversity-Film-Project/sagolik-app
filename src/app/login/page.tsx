@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
+import { StarBackground } from '@/components/common/StarBackground/StarBackground'
 import { Button } from '@/components/ui/Button/Button'
+import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function LoginPage() {
@@ -43,15 +44,16 @@ export default function LoginPage() {
     return (
         <div className={styles.page}>
             {/* Background */}
-            <div className={styles.bg} />
-            <StarCanvas />
-            <div className={styles.blobs}>
-                <div className={`${styles.blob} ${styles.blob1}`} />
-                <div className={`${styles.blob} ${styles.blob2}`} />
-                <div className={`${styles.blob} ${styles.blob3}`} />
-                <div className={`${styles.blob} ${styles.blob4}`} />
-            </div>
+            <StarBackground />
             <div className={styles.card}>
+                <div className={styles.logoWrap}>
+                    <Image
+                        src="/logo.svg"
+                        alt="Tales logo"
+                        width={108}
+                        height={108}
+                    />
+                </div>
                 <div className={styles.logoRow}>
                     <span className={styles.logo}>Tales</span>
                     <span className={styles.dot}></span>

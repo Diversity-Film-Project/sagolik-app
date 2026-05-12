@@ -10,78 +10,6 @@
     background: #0f0a1a;
 }
 
-.bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-        radial-gradient(
-            ellipse 80% 60% at 20% 10%,
-            oklch(32% 0.16 30 / 0.75) 0%,
-            transparent 55%
-        ),
-        radial-gradient(
-            ellipse 65% 50% at 82% 80%,
-            oklch(30% 0.18 350 / 0.65) 0%,
-            transparent 52%
-        ),
-        radial-gradient(
-            ellipse 50% 40% at 55% 50%,
-            oklch(22% 0.1 55 / 0.4) 0%,
-            transparent 60%
-        ),
-        #0f0a1a;
-}
-
-.blobs {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-}
-
-.blob1 {
-    width: 500px;
-    height: 500px;
-    background: oklch(72% 0.2 55 / 0.14);
-    top: -120px;
-    left: -100px;
-    animation: floatA 18s ease-in-out infinite;
-}
-
-.blob2 {
-    width: 420px;
-    height: 420px;
-    background: oklch(65% 0.22 350 / 0.12);
-    bottom: -80px;
-    right: -80px;
-    animation: floatB 22s ease-in-out infinite;
-}
-
-.blob3 {
-    width: 280px;
-    height: 280px;
-    background: oklch(78% 0.16 50 / 0.1);
-    top: 40%;
-    left: 10%;
-    animation: floatC 26s ease-in-out infinite;
-}
-
-.blob4 {
-    width: 220px;
-    height: 220px;
-    background: oklch(68% 0.2 15 / 0.1);
-    top: 15%;
-    right: 12%;
-    animation: floatA 20s ease-in-out 2s infinite;
-}
 
 .card {
     position: relative;
@@ -94,6 +22,7 @@
 }
 
 .logoRow {
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -170,35 +99,36 @@
     margin: 0;
 }
 
-@keyframes floatA {
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-    33% {
-        transform: translate(22px, 18px);
-    }
-    66% {
-        transform: translate(-12px, 28px);
-    }
+
+.logoWrap {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 30px;
+    margin: 0 auto;
 }
 
-@keyframes floatB {
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(-20px, -22px);
-    }
+.logoWrap::after {
+    content: '';
+    position: absolute;
+    top: -80%;
+    width: 40%;
+    height: 240%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    animation: shimmer 3.5s ease-in-out 1.5s infinite;
+    transform: rotate(25deg);
 }
 
-@keyframes floatC {
-    0%,
-    100% {
-        transform: translate(0, 0);
+@keyframes shimmer {
+    0% {
+        transform: translateX(-120%) rotate(25deg);
     }
-    50% {
-        transform: translate(16px, -16px);
+    100% {
+        transform: translateX(300%) rotate(25deg);
     }
 }
