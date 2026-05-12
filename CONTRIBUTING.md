@@ -11,7 +11,7 @@ Use `@/` aliases when importing across different parts of the project. Use `./` 
 ```ts
 // Cross-folder imports — always use @/ alias
 import { Button } from '@/components/ui/Button/Button'
-import { useStory } from '@/hooks/useStory'
+import { useStory } from '@/context/StoryContext'
 import type { Story } from '@/types/story'
 
 // Same-folder imports — use relative ./
@@ -58,8 +58,6 @@ export function Button({ label }: ButtonProps) {
 
 Global CSS variables (design tokens) go in `src/app/globals.css`.
 
-Material UI components can be used directly. To override MUI styles, use CSS Modules with the `sx` prop or MUI `theme` — not inline styles.
-
 ---
 
 ## TypeScript
@@ -97,7 +95,7 @@ Story file lives next to the component:
 src/components/Button/
 ├── Button.tsx
 ├── Button.module.css
-└── Button.stories.ts
+└── Button.stories.tsx
 ```
 
 Minimum: one `Default` story. Add more stories for meaningful variants (disabled, loading, error states).
@@ -113,7 +111,7 @@ All external API calls go in `src/services/`. Never call APIs directly from comp
 export async function generateScript(prompt: string): Promise<string> { ... }
 ```
 
-Use Next.js API Routes (`src/app/api/`) as a proxy for third-party APIs (Claude, ElevenLabs, Kling) — never expose API keys to the client.
+Use Next.js API Routes (`src/app/api/`) as a proxy for third-party APIs (Gemini, fal.ai/Kling) — never expose API keys to the client.
 
 ---
 
