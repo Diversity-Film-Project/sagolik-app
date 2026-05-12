@@ -185,6 +185,13 @@ export default function ResultPage() {
     const handleDownload = async () => {
         if (downloading) return
         setDownloading(true)
+
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            window.open(videoUrl, '_blank')
+            setDownloading(false)
+            return
+        }
+
         try {
             await downloadVideo(
                 videoUrl,
