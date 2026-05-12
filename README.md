@@ -67,33 +67,44 @@ Open [http://localhost:6006](http://localhost:6006)
 
 ```
 src/
-├── app/                        # Next.js App Router — pages only, no business
+├── app/                        # Next.js App Router — pages and API routes
 │   ├── layout.tsx              # Root layout (fonts, global providers)
 │   ├── globals.css             # Global styles and CSS variables
-│   ├── page.tsx                # Step 1 — Upload Photo
+│   ├── page.tsx                # Splash screen (auto-redirects to /upload)
+│   ├── login/
+│   │   └── page.tsx            # Demo password gate
+│   ├── upload/
+│   │   └── page.tsx            # Step 1 — Upload Photo
 │   ├── preferences/
 │   │   └── page.tsx            # Step 2 — Pick Preferences
-│   ├── script/
+│   ├── story/
 │   │   └── page.tsx            # Step 3 — Script Preview
-│   └── result/
-│       └── page.tsx            # Step 4 — Video Result
+│   ├── result/
+│   │   └── page.tsx            # Step 4 — Video Result
+│   ├── history/
+│   │   └── page.tsx            # Generated videos history
+│   └── api/
+│       ├── auth/route.ts       # Demo login endpoint
+│       ├── generate-prompt/    # Gemini prompt generation
+│       └── generate-video/     # fal.ai / Kling video generation
 │
 ├── components/
-│   ├── ui/                     # reusable components (Button,Input)
-│   │   ├── Button/
-│   │   │   ├── Button.tsx
-│   │   │   ├── Button.module.css
-│   │   │   └── Button.stories.ts
-│   │   ├── Input/...
-│   ├── common/                 # project-specific composed components
-│   │   ├── StepsHeader/
-│   │   ├── PhotoUploader/
-│   └── layout/                 # Layout wrappers and templates
-│       ├── StepLayout/
+│   ├── ui/                     # Reusable primitives (Button, Input, Textarea…)
+│   ├── common/                 # App-specific composed components (ThemeSelector, LoadingCard…)
+│   └── layout/                 # Layout wrappers (PageLayout)
 │
+├── context/                    # React context (StoryContext — global story state)
 ├── hooks/                      # Custom React hooks
-├── services/                   # API calls (Gemini, fal.ai/Kling)
-└── types/                      # Shared TypeScript interfaces and types
+├── lib/                        # Pure utilities and shared constants
+│   ├── buildParamsKey.ts       # Builds cache key from story params
+│   ├── compressImage.ts        # Client-side image compression
+│   ├── downloadVideo.ts        # Video download with iOS fallback
+│   ├── fireConfetti.ts         # Confetti animation helper
+│   ├── themes.tsx              # THEMES data and ThemeProp types
+│   └── videoConstraints.ts     # Kling AI prompt constraints
+├── services/                   # API call wrappers (generatePrompt, generateVideo)
+├── types/                      # Shared TypeScript interfaces and types
+└── proxy.ts                    # Next.js Proxy (auth guard for all routes)
 ```
 
 ---
