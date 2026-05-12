@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useStory } from '@/context/StoryContext'
 import { shareVideo } from '@/lib/shareVideo'
 import { Button } from '@/components/ui/Button/Button'
-import { ArrowLeft, Share2, Download } from 'lucide-react'
+import { ArrowLeft, Share2 } from 'lucide-react'
+import { DownloadButton } from '@/components/ui/download/DownloadButton'
 import styles from './page.module.css'
 
 // todo - redisign this page
@@ -23,7 +24,7 @@ export default function HistoryPage() {
     const router = useRouter()
     const { resetStory } = useStory()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
-    const [downloadingId, setDownloadingId] = useState<string | null>(null)
+    // const [downloadingId, setDownloadingId] = useState<string | null>(null)
     const sharingRef = useRef<string | null>(null)
 
     useEffect(() => {
@@ -58,34 +59,34 @@ export default function HistoryPage() {
         }
     }
 
-    const handleDownload = async (entry: HistoryEntry) => {
-        if (downloadingId) return
-        setDownloadingId(entry.id)
+    // const handleDownload = async (entry: HistoryEntry) => {
+    //     if (downloadingId) return
+    //     setDownloadingId(entry.id)
 
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-        if (isIOS) {
-            // iOS blocks programmatic downloads — open video so user can save manually
-            window.open(entry.videoUrl, '_blank')
-            setDownloadingId(null)
-            return
-        }
+    //     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    //     if (isIOS) {
+    //         // iOS blocks programmatic downloads — open video so user can save manually
+    //         window.open(entry.videoUrl, '_blank')
+    //         setDownloadingId(null)
+    //         return
+    //     }
 
-        try {
-            const res = await fetch(entry.videoUrl)
-            const blob = await res.blob()
-            const objectUrl = URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.href = objectUrl
-            a.download = `${entry.characterName || 'tales'}-story.mp4`
-            a.click()
-            URL.revokeObjectURL(objectUrl)
-        } catch {
-            // CORS blocked — open in new tab so user can save manually
-            window.open(entry.videoUrl, '_blank')
-        } finally {
-            setDownloadingId(null)
-        }
-    }
+    //     try {
+    //         const res = await fetch(entry.videoUrl)
+    //         const blob = await res.blob()
+    //         const objectUrl = URL.createObjectURL(blob)
+    //         const a = document.createElement('a')
+    //         a.href = objectUrl
+    //         a.download = `${entry.characterName || 'tales'}-story.mp4`
+    //         a.click()
+    //         URL.revokeObjectURL(objectUrl)
+    //     } catch {
+    //         // CORS blocked — open in new tab so user can save manually
+    //         window.open(entry.videoUrl, '_blank')
+    //     } finally {
+    //         setDownloadingId(null)
+    //     }
+    // }
 
     return (
         <div className={styles.page}>
@@ -157,13 +158,17 @@ export default function HistoryPage() {
                                         icon={<Share2 size={16} />}
                                         onClick={() => handleShare(entry)}
                                     />
-                                    <Button
+                                    {/* <Button
                                         label="Download"
                                         variant="outlined"
                                         icon={<Download size={16} />}
                                         loading={downloadingId === entry.id}
                                         disabled={!!downloadingId}
                                         onClick={() => handleDownload(entry)}
+                                    /> */}
+                                    <DownloadButton
+                                        videoUrl={entry.videoUrl}
+                                        fileName={`${entry.characterName || 'tales'}-story`}
                                     />
                                 </div>
                                 {entry.finalPrompt && (
