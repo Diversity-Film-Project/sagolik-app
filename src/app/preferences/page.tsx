@@ -15,11 +15,15 @@ import { StyleSelector } from '@/components/common/StyleSelector/StyleSelector'
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
     const router = useRouter()
-    const [error, setError] = useState<string | null>(null)
+    const [attempted, setAttempted] = useState(false)
+    const error =
+        attempted && !storyData.characterName
+            ? 'Please enter a name to continue.'
+            : null
 
     const handleContinue = () => {
         if (!storyData.characterName) {
-            setError('Please enter a name to continue.')
+            setAttempted(true)
             return
         }
 
@@ -72,7 +76,6 @@ export default function PreferencesPage() {
                     <div className={styles.errorWrapper}>
                         {error && <p className="error">{error}</p>}
                     </div>
-                    {/* todo - remove error msg if character name is provided */}
                     <Button
                         label="Back"
                         variant="secondary"

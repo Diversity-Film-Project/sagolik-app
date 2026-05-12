@@ -10,16 +10,56 @@ interface TopSheetProps {
     onClose: () => void
 }
 
-//  todo: enchance styles for content
 const infoContent = [
     {
         title: 'About this app',
         content: (
             <>
                 <p>
-                    Built by a Hyper Island Frontend Team for Diversity Film AB.
+                    Built by a Hyper Island Frontend Team for{' '}
+                    <strong>Diversity Film AB</strong>.
                 </p>
-                <p>TODO: add team member links</p>
+                <div className={styles.teamList}>
+                    <a
+                        href="https://www.linkedin.com/in/anna-baidikova/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${styles.teamLink} ${styles.c1}`}
+                    >
+                        Anna Baidikova
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/julia-bohlin-5aaa94212/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${styles.teamLink} ${styles.c2}`}
+                    >
+                        Julia Bohlin
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/simman-o-b5250524a/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${styles.teamLink} ${styles.c3}`}
+                    >
+                        Simman Omar
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/ghazal-ajdar-55695a2a4/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${styles.teamLink} ${styles.c4}`}
+                    >
+                        Ghazal Ajdar
+                    </a>
+                    <a
+                        href="mailto:roujeh.aljunidi@hyperisland.se"
+                        className={`${styles.teamLink} ${styles.c5}`}
+                    >
+                        Roujeh Aljunidi
+                    </a>
+                </div>
             </>
         ),
     },
@@ -27,41 +67,39 @@ const infoContent = [
         title: 'AI-Powered',
         content: (
             <>
-                <p>
-                    This app uses artificial intelligence to create your story
-                    experience:
-                </p>
+                <p>This app uses AI to generate personalised story videos:</p>
                 <ul className={styles.list}>
                     <li>
-                        <strong>Google Gemini</strong> — generates the story
-                        script based on your preferences
+                        <strong>
+                            <a
+                                href="https://ai.google.dev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.link}
+                            >
+                                Google Gemini
+                            </a>
+                        </strong>{' '}
+                        — writes the story script
                     </li>
                     <li>
-                        <strong>Kling 3.0 Pro via fal.ai</strong> — generates a
-                        15-second video based on your photo and story prompt
+                        <strong>
+                            <a
+                                href="https://fal.ai"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.link}
+                            >
+                                Kling 3.0 Pro via fal.ai
+                            </a>
+                        </strong>{' '}
+                        — generates the video from your photo
                     </li>
                 </ul>
                 <p>
-                    By using this app, you acknowledge and accept the terms and
-                    policies of{' '}
-                    <a
-                        href="https://ai.google.dev/gemini-api/terms"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.link}
-                    >
-                        Google Gemini
-                    </a>{' '}
-                    and{' '}
-                    <a
-                        href="https://fal.ai/policies/terms"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.link}
-                    >
-                        fal.ai
-                    </a>
-                    .
+                    Use of this app is subject to the terms and policies of the
+                    respective AI providers. As a demo product, legal terms are
+                    subject to review and may be updated before public release.
                 </p>
             </>
         ),
@@ -71,21 +109,26 @@ const infoContent = [
         content: (
             <>
                 <p>
-                    This app acts as a proxy between you and the AI services
-                    above. We do not store any of your data:
+                    This app is a proxy between you and third-party AI services.
+                    We do not operate any servers or databases.
                 </p>
                 <ul className={styles.list}>
                     <li>
-                        Your photo is sent directly to the AI for video
-                        generation and is deleted when your session ends
+                        Your photo and story are sent to AI providers for
+                        processing — we do not store them ourselves
                     </li>
                     <li>
-                        No personal data, photos, or videos are stored on our
-                        servers
+                        Your video history is stored only in your browser&apos;s
+                        local storage — it stays on this device and is not
+                        accessible to us or anyone else
                     </li>
                     <li>
-                        Generated videos are available for you to download or
-                        share — after that, they are gone
+                        History is not synced across devices — it exists only on
+                        the device where it was created
+                    </li>
+                    <li>
+                        Clearing your browser data will permanently delete your
+                        history — save videos to your device to keep them
                     </li>
                 </ul>
             </>
@@ -94,12 +137,19 @@ const infoContent = [
     {
         title: 'Demo Version',
         content: (
-            <p>
-                This is a demo version of the product, built for presentation
-                purposes. Each video generation has a real cost, so the number
-                of requests is currently limited due to project funding. Thank
-                you for your understanding.
-            </p>
+            <>
+                <p>
+                    This is a demo version of the product, built for
+                    presentation purposes. Each video generation has a real
+                    cost, so the number of requests is currently limited due to
+                    project funding.
+                </p>
+                <p>
+                    Results may not always be perfect — AI video generation is
+                    still evolving and outputs can vary. Thank you for your
+                    understanding.
+                </p>
+            </>
         ),
     },
 ]
@@ -125,6 +175,7 @@ export function TopSheet({ isOpen, onClose }: TopSheetProps) {
                 onTouchEnd={handleTouchEnd}
             >
                 <div className={styles.header}>
+                    <span className={styles.headerTitle}>App Info</span>
                     <button className={styles.closeButton} onClick={onClose}>
                         <X size={20} />
                     </button>
