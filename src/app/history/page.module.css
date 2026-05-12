@@ -173,9 +173,15 @@
     background: #000;
 }
 
+.hint {
+    font-size: var(--font-size-caption-md);
+    color: var(--color-text-body);
+    line-height: 1.5;
+}
+
 .cardActions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
     max-width: 400px;
 }

@@ -10,8 +10,7 @@ import { ConfirmationCard } from '@/components/common/ConfirmationCard/Confirmat
 import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
-import { shareVideo } from '@/lib/shareVideo'
-import { Share2 } from 'lucide-react'
+import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -26,10 +25,11 @@ const isMock = true
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData, resetStory, hydrated } = useStory()
-    // const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
-    const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
+    const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
+    // const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
 
     const [error, setError] = useState<string | null>(null)
+    const [showNewVideoConfirm, setShowNewVideoConfirm] = useState(false)
     const hasFetched = useRef(false)
 
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
@@ -176,22 +176,6 @@ export default function ResultPage() {
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    const isSharingRef = useRef(false)
-
-    const handleShare = async () => {
-        if (isSharingRef.current) return
-        isSharingRef.current = true
-        try {
-            await shareVideo(
-                `${storyData.characterName || 'A'}'s story`,
-                storyData.storyTheme || 'Check out this AI-generated story!',
-                videoUrl,
-            )
-        } finally {
-            isSharingRef.current = false
-        }
-    }
-
     return (
         <PageLayout currentStep={4} href="/result">
             {isLoading ? (
@@ -225,21 +209,36 @@ export default function ResultPage() {
                         playsInline
                         className={styles.video}
                     />
-                    <Button
-                        label="Share"
-                        variant="outlined"
-                        icon={<Share2 size={16} />}
-                        onClick={handleShare}
-                    />
+                    <p className={styles.hint}>
+                        Download the video to your device and share it with
+                        anyone
+                    </p>
+                    {/* place for download button */}
                     <Button
                         label="Create new video"
-                        variant="secondary"
-                        onClick={() => {
-                            resetStory()
-                            router.push('/')
-                        }}
+                        variant="primary"
+                        onClick={() => setShowNewVideoConfirm(true)}
                     />
                 </>
+            )}
+
+            {showNewVideoConfirm && (
+                <ConfirmModal
+                    title="Create a new video?"
+                    confirmLabel="Yes, start over"
+                    cancelLabel="Stay here"
+                    onConfirm={() => {
+                        resetStory()
+                        router.push('/upload')
+                    }}
+                    onCancel={() => setShowNewVideoConfirm(false)}
+                >
+                    <p>
+                        Your generated video will remain available in History on
+                        this device until you clear your browser storage.
+                    </p>
+                    <p>We recommend downloading it before leaving.</p>
+                </ConfirmModal>
             )}
         </PageLayout>
     )
