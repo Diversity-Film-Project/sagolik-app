@@ -13,6 +13,7 @@ import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
 import { shareVideo } from '@/lib/shareVideo'
 import { Share2 } from 'lucide-react'
 import styles from './page.module.css'
+import { DownloadButton } from '@/components/ui/download/DownloadButton'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
 // Change only ONE line below:
@@ -230,6 +231,10 @@ export default function ResultPage() {
                         variant="outlined"
                         icon={<Share2 size={16} />}
                         onClick={handleShare}
+                    />
+                    <DownloadButton
+                        videoUrl={videoUrl}
+                        fileName={`${storyData.characterName || 'story'}-video`}
                     />
                     <Button
                         label="Create new video"
