@@ -14,11 +14,13 @@ import styles from './page.module.css'
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
     const router = useRouter()
-    const [error, setError] = useState('')
+    const [attempted, setAttempted] = useState(false)
+    const error =
+        attempted && !storyData.photo ? 'Please upload a photo to continue' : ''
 
     const handleContinue = () => {
         if (!storyData.photo) {
-            setError('Please upload a photo to continue')
+            setAttempted(true)
             return
         }
         router.push('/preferences')

@@ -1,7 +1,6 @@
 .sheet {
     position: fixed;
     top: 0;
-    /* left: 0; */
     width: 100%;
     max-width: 800px;
 
@@ -17,8 +16,6 @@
 .open {
     transform: translateY(0);
     margin: 0 auto;
-    /* left: 50%;
-    transform: translate(-50%, 0); */
 }
 
 .backdrop {
@@ -30,10 +27,16 @@
 
 .header {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: var(--spacing-sm);
+    justify-content: space-between;
+    align-items: center;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto var(--spacing-sm);
+}
+
+.headerTitle {
+    font-size: var(--font-size-body-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
 }
 
 .closeButton {
@@ -62,6 +65,49 @@
 .link {
     color: var(--color-primary);
     text-decoration: underline;
+}
+
+.teamList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--spacing-xs);
+    gap: var(--spacing-sm);
+}
+
+.teamLink {
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.teamLink:hover {
+    opacity: 0.75;
+}
+
+.c1 {
+    color: #ff6700;
+    border: 1px solid #ff6700;
+}
+.c2 {
+    color: #e05a8a;
+    border: 1px solid #e05a8a;
+}
+.c3 {
+    color: #2a9d8f;
+    border: 1px solid #2a9d8f;
+}
+.c4 {
+    color: #7c5cbf;
+    border: 1px solid #7c5cbf;
+}
+.c5 {
+    color: #3d7cc9;
+    border: 1px solid #3d7cc9;
 }
 
 .dragHandle {

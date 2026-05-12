@@ -26,8 +26,8 @@ const isMock = true
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData, resetStory, hydrated } = useStory()
-    const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
-    // const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
+    // const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
+    const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
 
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
