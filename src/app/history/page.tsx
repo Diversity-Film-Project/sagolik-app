@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStory } from '@/context/StoryContext'
-import { shareVideo } from '@/lib/shareVideo'
 import { downloadVideo } from '@/lib/downloadVideo'
 import { Button } from '@/components/ui/Button/Button'
-import { ArrowLeft, Share2, Download } from 'lucide-react'
+import { ArrowLeft, Download } from 'lucide-react'
 import styles from './page.module.css'
 
 // todo - redisign this page
@@ -25,7 +24,6 @@ export default function HistoryPage() {
     const { resetStory } = useStory()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
     const [downloadingId, setDownloadingId] = useState<string | null>(null)
-    const sharingRef = useRef<string | null>(null)
 
     useEffect(() => {
         const load = async () => {
@@ -43,20 +41,6 @@ export default function HistoryPage() {
     const handleNewVideo = () => {
         resetStory()
         router.push('/upload')
-    }
-
-    const handleShare = async (entry: HistoryEntry) => {
-        if (sharingRef.current) return
-        sharingRef.current = entry.id
-        try {
-            await shareVideo(
-                `${entry.characterName || 'A'}'s story`,
-                entry.storyTheme || 'Check out this AI-generated story!',
-                entry.videoUrl,
-            )
-        } finally {
-            sharingRef.current = null
-        }
     }
 
     const handleDownload = async (entry: HistoryEntry) => {
@@ -140,12 +124,6 @@ export default function HistoryPage() {
                                     it with anyone.
                                 </p>
                                 <div className={styles.cardActions}>
-                                    <Button
-                                        label="Share"
-                                        variant="outlined"
-                                        icon={<Share2 size={16} />}
-                                        onClick={() => handleShare(entry)}
-                                    />
                                     <Button
                                         label="Download"
                                         variant="outlined"

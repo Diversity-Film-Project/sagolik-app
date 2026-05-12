@@ -11,9 +11,9 @@ import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
 import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
-import { shareVideo } from '@/lib/shareVideo'
 import { downloadVideo } from '@/lib/downloadVideo'
-import { Share2, Download } from 'lucide-react'
+import { Download } from 'lucide-react'
+import confetti from 'canvas-confetti'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -35,7 +35,6 @@ export default function ResultPage() {
     const [showNewVideoConfirm, setShowNewVideoConfirm] = useState(false)
     const [downloading, setDownloading] = useState(false)
     const hasFetched = useRef(false)
-    const isSharingRef = useRef(false)
 
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
 
@@ -136,6 +135,12 @@ export default function ResultPage() {
                 saveToHistory(url)
                 updateStoryData({ videoUrl: url, videoRequestId: '' })
                 setIsLoading(false)
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.3 },
+                    colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
+                })
             } catch (err: unknown) {
                 setError(
                     err instanceof Error
@@ -164,6 +169,12 @@ export default function ResultPage() {
             saveToHistory(url)
             updateStoryData({ videoUrl: url, videoRequestId: '' })
             setIsLoading(false)
+            confetti({
+                particleCount: 80,
+                spread: 60,
+                origin: { y: 0.3 },
+                colors: ['#FF6B00', '#FF8C42', '#FFB347', '#FFD700'],
+            })
         } catch (err: unknown) {
             setError(
                 err instanceof Error ? err.message : 'Video generation failed.',
@@ -180,20 +191,6 @@ export default function ResultPage() {
 
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
-
-    const handleShare = async () => {
-        if (isSharingRef.current) return
-        isSharingRef.current = true
-        try {
-            await shareVideo(
-                `${storyData.characterName || 'A'}'s story`,
-                storyData.storyTheme || 'Check out this AI-generated story!',
-                videoUrl,
-            )
-        } finally {
-            isSharingRef.current = false
-        }
-    }
 
     const handleDownload = async () => {
         if (downloading) return
@@ -230,7 +227,7 @@ export default function ResultPage() {
             ) : (
                 <>
                     <PageTitle
-                        text={`${storyData.characterName || 'Your'}'s story is ready`}
+                        text={`${storyData.characterName || 'Your'}'s story is ready 🎉`}
                         description={
                             storyData.storyTheme || 'Personalised story'
                         }
@@ -245,12 +242,6 @@ export default function ResultPage() {
                         Download the video to your device and share it with
                         anyone
                     </p>
-                    <Button
-                        label="Share"
-                        variant="outlined"
-                        icon={<Share2 size={16} />}
-                        onClick={handleShare}
-                    />
                     <Button
                         label="Download"
                         variant="outlined"
