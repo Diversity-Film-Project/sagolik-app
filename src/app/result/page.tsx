@@ -11,6 +11,9 @@ import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
 import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
+import { shareVideo } from '@/lib/shareVideo'
+import { downloadVideo } from '@/lib/downloadVideo'
+import { Share2, Download } from 'lucide-react'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -30,7 +33,9 @@ export default function ResultPage() {
 
     const [error, setError] = useState<string | null>(null)
     const [showNewVideoConfirm, setShowNewVideoConfirm] = useState(false)
+    const [downloading, setDownloading] = useState(false)
     const hasFetched = useRef(false)
+    const isSharingRef = useRef(false)
 
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
 
@@ -176,6 +181,33 @@ export default function ResultPage() {
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const handleShare = async () => {
+        if (isSharingRef.current) return
+        isSharingRef.current = true
+        try {
+            await shareVideo(
+                `${storyData.characterName || 'A'}'s story`,
+                storyData.storyTheme || 'Check out this AI-generated story!',
+                videoUrl,
+            )
+        } finally {
+            isSharingRef.current = false
+        }
+    }
+
+    const handleDownload = async () => {
+        if (downloading) return
+        setDownloading(true)
+        try {
+            await downloadVideo(
+                videoUrl,
+                `${storyData.characterName || 'story'}-video`,
+            )
+        } finally {
+            setDownloading(false)
+        }
+    }
+
     return (
         <PageLayout currentStep={4} href="/result">
             {isLoading ? (
@@ -213,7 +245,20 @@ export default function ResultPage() {
                         Download the video to your device and share it with
                         anyone
                     </p>
-                    {/* place for download button */}
+                    <Button
+                        label="Share"
+                        variant="outlined"
+                        icon={<Share2 size={16} />}
+                        onClick={handleShare}
+                    />
+                    <Button
+                        label="Download"
+                        variant="outlined"
+                        icon={<Download size={16} />}
+                        loading={downloading}
+                        disabled={downloading}
+                        onClick={handleDownload}
+                    />
                     <Button
                         label="Create new video"
                         variant="primary"

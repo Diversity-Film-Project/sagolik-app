@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStory } from '@/context/StoryContext'
+import { shareVideo } from '@/lib/shareVideo'
+import { downloadVideo } from '@/lib/downloadVideo'
 import { Button } from '@/components/ui/Button/Button'
-import { ArrowLeft, Download } from 'lucide-react'
+import { ArrowLeft, Share2, Download } from 'lucide-react'
 import styles from './page.module.css'
 
 // todo - redisign this page
@@ -23,6 +25,7 @@ export default function HistoryPage() {
     const { resetStory } = useStory()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
     const [downloadingId, setDownloadingId] = useState<string | null>(null)
+    const sharingRef = useRef<string | null>(null)
 
     useEffect(() => {
         const load = async () => {
@@ -42,30 +45,28 @@ export default function HistoryPage() {
         router.push('/upload')
     }
 
+    const handleShare = async (entry: HistoryEntry) => {
+        if (sharingRef.current) return
+        sharingRef.current = entry.id
+        try {
+            await shareVideo(
+                `${entry.characterName || 'A'}'s story`,
+                entry.storyTheme || 'Check out this AI-generated story!',
+                entry.videoUrl,
+            )
+        } finally {
+            sharingRef.current = null
+        }
+    }
+
     const handleDownload = async (entry: HistoryEntry) => {
         if (downloadingId) return
         setDownloadingId(entry.id)
-
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-        if (isIOS) {
-            // iOS blocks programmatic downloads — open video so user can save manually
-            window.open(entry.videoUrl, '_blank')
-            setDownloadingId(null)
-            return
-        }
-
         try {
-            const res = await fetch(entry.videoUrl)
-            const blob = await res.blob()
-            const objectUrl = URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.href = objectUrl
-            a.download = `${entry.characterName || 'tales'}-story.mp4`
-            a.click()
-            URL.revokeObjectURL(objectUrl)
-        } catch {
-            // CORS blocked — open in new tab so user can save manually
-            window.open(entry.videoUrl, '_blank')
+            await downloadVideo(
+                entry.videoUrl,
+                `${entry.characterName || 'tales'}-story`,
+            )
         } finally {
             setDownloadingId(null)
         }
@@ -139,6 +140,12 @@ export default function HistoryPage() {
                                     it with anyone.
                                 </p>
                                 <div className={styles.cardActions}>
+                                    <Button
+                                        label="Share"
+                                        variant="outlined"
+                                        icon={<Share2 size={16} />}
+                                        onClick={() => handleShare(entry)}
+                                    />
                                     <Button
                                         label="Download"
                                         variant="outlined"
