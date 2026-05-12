@@ -19,6 +19,8 @@ export default function SplashPage() {
                         alt="Tales logo"
                         width={108}
                         height={108}
+                        loading="eager"
+                        priority
                     />
                 </div>
 

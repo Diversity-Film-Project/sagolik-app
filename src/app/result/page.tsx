@@ -16,8 +16,8 @@ import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
 // Change only ONE line below:
-// 🧪 TEST (no API call):  const isMock = true
-// 🚀 PRODUCTION:          const isMock = false
+// TEST (no API call):  const isMock = true
+// PRODUCTION:          const isMock = false
 const MOCK_VIDEO_URL =
     'https://v3b.fal.media/files/b/0a991ab9/W6-K7MPjvpUyp2V2Kp6P3_output.mp4'
 const isMock = true
@@ -26,7 +26,9 @@ const isMock = true
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData, resetStory, hydrated } = useStory()
-    const [isLoading, setIsLoading] = useState<boolean>(!isMock)
+    const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
+    // const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
+
     const [error, setError] = useState<string | null>(null)
     const hasFetched = useRef(false)
 

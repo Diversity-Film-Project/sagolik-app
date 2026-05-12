@@ -22,6 +22,25 @@
     background: var(--color-icon-background);
     color: var(--color-default-icon);
     border-radius: var(--border-radius-full);
+    box-shadow:
+        0 0 0 0 rgba(255, 103, 0, 0.4),
+        0 4px 24px rgba(255, 48, 11, 0.35);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 0 rgba(255, 103, 0, 0.4),
+            0 4px 24px rgba(255, 48, 11, 0.35);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 0 10px rgba(255, 103, 0, 0),
+            0 4px 32px rgba(255, 48, 11, 0.6);
+    }
 }
 
 .textWrapper {
