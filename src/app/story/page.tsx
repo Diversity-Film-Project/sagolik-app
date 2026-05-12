@@ -6,11 +6,12 @@ import { Button } from '@/components/ui/Button/Button'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 import { useRouter } from 'next/navigation'
 import { useStory } from '@/context/StoryContext'
-import { generatePrompt } from '@/services/lib/generatePrompt'
+import { generatePrompt } from '@/services/generatePrompt'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
 import { RefreshCw, Pencil, Check } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { VIDEO_CONSTRAINTS } from '@/lib/videoConstraints'
+import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
 import styles from './page.module.css'
 
 // Max characters for the user-visible script (styleNote + VIDEO_CONSTRAINTS take the remaining ~900 chars up to Kling's 2500 limit)
@@ -33,6 +34,7 @@ export default function ScriptPage() {
     const [isLoading, setIsLoading] = useState(!storyData.finalPrompt)
     const [isEditing, setIsEditing] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const [showConfirm, setShowConfirm] = useState(false)
     const hasFetched = useRef(false)
 
     const scriptLength = storyData.finalPrompt.length
@@ -212,12 +214,11 @@ export default function ScriptPage() {
                 </div>
 
                 <div className={styles.buttonWrapper}>
-                    {/* continue temporary hardcoded */}
                     <Button
                         label="Continue"
-                        onClick={() => router.push('/result')}
+                        disabled={isLoading || !!error || isOverLimit}
+                        onClick={() => setShowConfirm(true)}
                     />
-
                     <Button
                         label="Back"
                         variant="secondary"
@@ -225,6 +226,38 @@ export default function ScriptPage() {
                     />
                 </div>
             </div>
+
+            {showConfirm && (
+                <ConfirmModal
+                    title="Ready to generate your video?"
+                    confirmLabel="Generate video"
+                    cancelLabel="Back to edit"
+                    onConfirm={() => router.push('/result')}
+                    onCancel={() => setShowConfirm(false)}
+                >
+                    <p className={styles.modalText}>
+                        Once you continue, the video generation will start —
+                        this usually takes around <strong>5 minutes</strong> and
+                        uses API credits.
+                    </p>
+                    <p className={styles.modalLabel}>
+                        Before you proceed, make sure:
+                    </p>
+                    <ul className={styles.modalList}>
+                        <li>
+                            Your <strong>scenario</strong> looks good (you can
+                            still edit it)
+                        </li>
+                        <li>
+                            Your <strong>photo</strong> is the one you want to
+                            use
+                        </li>
+                    </ul>
+                    <p className={styles.modalText}>
+                        If anything needs changing, go back and fix it first.
+                    </p>
+                </ConfirmModal>
+            )}
         </PageLayout>
     )
 }

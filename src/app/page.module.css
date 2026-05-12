@@ -7,78 +7,6 @@
     background: #0f0a1a;
 }
 
-.bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-        radial-gradient(
-            ellipse 80% 60% at 20% 10%,
-            oklch(32% 0.16 30 / 0.75) 0%,
-            transparent 55%
-        ),
-        radial-gradient(
-            ellipse 65% 50% at 82% 80%,
-            oklch(30% 0.18 350 / 0.65) 0%,
-            transparent 52%
-        ),
-        radial-gradient(
-            ellipse 50% 40% at 55% 50%,
-            oklch(22% 0.1 55 / 0.4) 0%,
-            transparent 60%
-        ),
-        #0f0a1a;
-}
-
-.blobs {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-}
-
-.blob1 {
-    width: 500px;
-    height: 500px;
-    background: oklch(72% 0.2 55 / 0.14);
-    top: -120px;
-    left: -100px;
-    animation: floatA 18s ease-in-out infinite;
-}
-
-.blob2 {
-    width: 420px;
-    height: 420px;
-    background: oklch(65% 0.22 350 / 0.12);
-    bottom: -80px;
-    right: -80px;
-    animation: floatB 22s ease-in-out infinite;
-}
-
-.blob3 {
-    width: 280px;
-    height: 280px;
-    background: oklch(78% 0.16 50 / 0.1);
-    top: 40%;
-    left: 10%;
-    animation: floatC 26s ease-in-out infinite;
-}
-
-.blob4 {
-    width: 220px;
-    height: 220px;
-    background: oklch(68% 0.2 15 / 0.1);
-    top: 15%;
-    right: 12%;
-    animation: floatA 20s ease-in-out 2s infinite;
-}
 
 .stage {
     position: relative;
@@ -169,38 +97,6 @@
     }
 }
 
-@keyframes floatA {
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-    33% {
-        transform: translate(22px, 18px);
-    }
-    66% {
-        transform: translate(-12px, 28px);
-    }
-}
-
-@keyframes floatB {
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(-20px, -22px);
-    }
-}
-
-@keyframes floatC {
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(16px, -16px);
-    }
-}
 
 @keyframes shimmer {
     0% {

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { StarCanvas } from '@/components/common/StarCanvas/StarCanvas'
+import { StarBackground } from '@/components/common/StarBackground/StarBackground'
 import { AutoRedirect } from '@/components/common/AutoRedirect/AutoRedirect'
 import styles from './page.module.css'
 
@@ -9,14 +9,7 @@ export default function SplashPage() {
             <AutoRedirect to="/upload" delay={3000} />
 
             {/* Background */}
-            <div className={styles.bg} />
-            <StarCanvas />
-            <div className={styles.blobs}>
-                <div className={`${styles.blob} ${styles.blob1}`} />
-                <div className={`${styles.blob} ${styles.blob2}`} />
-                <div className={`${styles.blob} ${styles.blob3}`} />
-                <div className={`${styles.blob} ${styles.blob4}`} />
-            </div>
+            <StarBackground />
 
             {/* Content */}
             <div className={styles.stage}>

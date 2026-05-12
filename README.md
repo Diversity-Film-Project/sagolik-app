@@ -54,12 +54,12 @@ Open [http://localhost:6006](http://localhost:6006)
 
 ## Available Scripts
 
-| Command             | Description                |
-| ------------------- | -------------------------- |
-| `npm run dev`       | Start development server   |
-| `npm run storybook` | Start Storybook dev server |
-| `npm run lint`      |                            |
-| `npm run build`     |                            |
+| Command             | Description                    |
+| ------------------- | ------------------------------ |
+| `npm run dev`       | Start development server       |
+| `npm run storybook` | Start Storybook dev server     |
+| `npm run lint`      | Run ESLint across the codebase |
+| `npm run build`     | Build the app for production   |
 
 ---
 
@@ -90,12 +90,10 @@ src/
 │   │   ├── PhotoUploader/
 │   └── layout/                 # Layout wrappers and templates
 │       ├── StepLayout/
-
 │
 ├── hooks/                      # Custom React hooks
-├── services/                   # API calls (Claude, Kling/Runway, ElevenLabs)
-├── types/                      # Shared TypeScript interfaces and types
-└── styles/                     # Global shared CSS Modules
+├── services/                   # API calls (Gemini, fal.ai/Kling)
+└── types/                      # Shared TypeScript interfaces and types
 ```
 
 ---
@@ -110,7 +108,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for imports, naming, component structure,
 
 This is the standard workflow our team follows. Please use these rules to avoid merge conflicts and keep the repository clean.
 
-- Main branch is protected — no direct pushes
+- Main branch is protected — no direct pushes (available only in public repos on GitHub Free)
 - All changes go through a Pull Request
 - PR requires 1 approval + CI checks passing (ESLint + Next.js build)
 
@@ -165,7 +163,3 @@ git push
 **5. Create a Pull Request in VS Code or GitHub**
 
 ---
-
-## GDPR
-
-No user data is stored server-side. Photos and generated videos are never saved. Consent screen is shown before any data is processed.
