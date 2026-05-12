@@ -1,4 +1,11 @@
 /* Step 4 — Video Result - styles */
+.hint {
+    font-size: var(--font-size-caption-md);
+    color: var(--color-text-body);
+    text-align: center;
+    line-height: 1.5;
+}
+
 .video {
     border-radius: var(--border-radius);
     border: 1px solid var(--color-progressBar-notActive);

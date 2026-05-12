@@ -10,10 +10,11 @@ import { ConfirmationCard } from '@/components/common/ConfirmationCard/Confirmat
 import { LoadingCard } from '@/components/common/LoadingCard/LoadingCard'
 import { Button } from '@/components/ui/Button/Button'
 import { submitVideoJob, pollVideoStatus } from '@/services/generateVideo'
-import { shareVideo } from '@/lib/shareVideo'
-import { Share2 } from 'lucide-react'
+import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
+import { downloadVideo } from '@/lib/downloadVideo'
+import { Download } from 'lucide-react'
+import { fireConfetti } from '@/lib/fireConfetti'
 import styles from './page.module.css'
-import { DownloadButton } from '@/components/ui/download/DownloadButton'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
 // Change only ONE line below:
@@ -27,10 +28,12 @@ const isMock = true
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData, resetStory, hydrated } = useStory()
-    // const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
-    const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
+    const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
+    // const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
 
     const [error, setError] = useState<string | null>(null)
+    const [showNewVideoConfirm, setShowNewVideoConfirm] = useState(false)
+    const [downloading, setDownloading] = useState(false)
     const hasFetched = useRef(false)
 
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
@@ -132,6 +135,7 @@ export default function ResultPage() {
                 saveToHistory(url)
                 updateStoryData({ videoUrl: url, videoRequestId: '' })
                 setIsLoading(false)
+                fireConfetti()
             } catch (err: unknown) {
                 setError(
                     err instanceof Error
@@ -160,6 +164,7 @@ export default function ResultPage() {
             saveToHistory(url)
             updateStoryData({ videoUrl: url, videoRequestId: '' })
             setIsLoading(false)
+            fireConfetti()
         } catch (err: unknown) {
             setError(
                 err instanceof Error ? err.message : 'Video generation failed.',
@@ -177,19 +182,16 @@ export default function ResultPage() {
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    const isSharingRef = useRef(false)
-
-    const handleShare = async () => {
-        if (isSharingRef.current) return
-        isSharingRef.current = true
+    const handleDownload = async () => {
+        if (downloading) return
+        setDownloading(true)
         try {
-            await shareVideo(
-                `${storyData.characterName || 'A'}'s story`,
-                storyData.storyTheme || 'Check out this AI-generated story!',
+            await downloadVideo(
                 videoUrl,
+                `${storyData.characterName || 'story'}-video`,
             )
         } finally {
-            isSharingRef.current = false
+            setDownloading(false)
         }
     }
 
@@ -215,7 +217,7 @@ export default function ResultPage() {
             ) : (
                 <>
                     <PageTitle
-                        text={`${storyData.characterName || 'Your'}'s story is ready`}
+                        text={`${storyData.characterName || 'Your'}'s story is ready 🎉`}
                         description={
                             storyData.storyTheme || 'Personalised story'
                         }
@@ -226,25 +228,43 @@ export default function ResultPage() {
                         playsInline
                         className={styles.video}
                     />
+                    <p className={styles.hint}>
+                        Download the video to your device and share it with
+                        anyone
+                    </p>
                     <Button
-                        label="Share"
+                        label="Download"
                         variant="outlined"
-                        icon={<Share2 size={16} />}
-                        onClick={handleShare}
-                    />
-                    <DownloadButton
-                        videoUrl={videoUrl}
-                        fileName={`${storyData.characterName || 'story'}-video`}
+                        icon={<Download size={16} />}
+                        loading={downloading}
+                        disabled={downloading}
+                        onClick={handleDownload}
                     />
                     <Button
                         label="Create new video"
-                        variant="secondary"
-                        onClick={() => {
-                            resetStory()
-                            router.push('/')
-                        }}
+                        variant="primary"
+                        onClick={() => setShowNewVideoConfirm(true)}
                     />
                 </>
+            )}
+
+            {showNewVideoConfirm && (
+                <ConfirmModal
+                    title="Create a new video?"
+                    confirmLabel="Yes, start over"
+                    cancelLabel="Stay here"
+                    onConfirm={() => {
+                        resetStory()
+                        router.push('/upload')
+                    }}
+                    onCancel={() => setShowNewVideoConfirm(false)}
+                >
+                    <p>
+                        Your generated video will remain available in History on
+                        this device until you clear your browser storage.
+                    </p>
+                    <p>We recommend downloading it before leaving.</p>
+                </ConfirmModal>
             )}
         </PageLayout>
     )

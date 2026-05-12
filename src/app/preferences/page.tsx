@@ -11,6 +11,16 @@ import styles from './page.module.css'
 import { useState } from 'react'
 import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
 import { StyleSelector } from '@/components/common/StyleSelector/StyleSelector'
+import { buildParamsKey } from '@/lib/buildParamsKey'
+
+const SIDEKICK_OPTIONS = [
+    'No sidekick',
+    'Person in photo',
+    'Dragon',
+    'Alien',
+    'Robot',
+    'Unicorn',
+]
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
@@ -27,7 +37,7 @@ export default function PreferencesPage() {
             return
         }
 
-        const currentKey = `${storyData.characterName}|${storyData.storyTheme}|${storyData.sidekick}|${storyData.videoStyle}|${storyData.themeDescription}|${storyData.customStory}`
+        const currentKey = buildParamsKey(storyData)
         if (storyData.finalPrompt && storyData.promptParamsKey !== currentKey) {
             updateStoryData({
                 finalPrompt: '',
@@ -58,14 +68,7 @@ export default function PreferencesPage() {
 
                 <Dropdown
                     label="SIDEKICK"
-                    options={[
-                        'No sidekick',
-                        'Person in photo',
-                        'Dragon',
-                        'Alien',
-                        'Robot',
-                        'Unicorn',
-                    ]}
+                    options={SIDEKICK_OPTIONS}
                     value={storyData.sidekick}
                     onChange={(value) => updateStoryData({ sidekick: value })}
                     variant="primary"
