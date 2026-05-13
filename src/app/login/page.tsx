@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation'
 import { StarBackground } from '@/components/common/StarBackground/StarBackground'
 import { Button } from '@/components/ui/Button/Button'
 import Image from 'next/image'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './page.module.css'
 
 export default function LoginPage() {
     const router = useRouter()
+    const { lang, setLang, t } = useLanguage()
     const [password, setPassword] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
@@ -31,11 +33,11 @@ export default function LoginPage() {
                 router.push('/')
                 router.refresh()
             } else {
-                setError('Incorrect password. Try again.')
+                setError(t('login.wrongPassword'))
                 setPassword('')
             }
         } catch {
-            setError('Something went wrong. Try again.')
+            setError(t('login.error'))
         } finally {
             setLoading(false)
         }
@@ -60,12 +62,12 @@ export default function LoginPage() {
                     <span className={styles.logo}>Tales</span>
                     <span className={styles.dot}></span>
                 </div>
-                <p className={styles.subtitle}>Demo access</p>
+                <p className={styles.subtitle}>{t('login.subtitle')}</p>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <input
                         className={styles.input}
                         type="password"
-                        placeholder="Enter access code"
+                        placeholder={t('login.placeholder')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         autoComplete="current-password"
@@ -73,12 +75,21 @@ export default function LoginPage() {
                     />
                     {error && <p className={styles.error}>{error}</p>}
                     <Button
-                        label={loading ? 'Checking…' : 'Continue'}
+                        label={
+                            loading ? t('login.checking') : t('common.continue')
+                        }
                         type="submit"
                         variant="primary"
                         disabled={!password || loading}
                     />
                 </form>
+                <button
+                    className={styles.langToggle}
+                    onClick={() => setLang(lang === 'en' ? 'sv' : 'en')}
+                    aria-label="Switch language"
+                >
+                    {lang === 'en' ? 'SV' : 'EN'}
+                </button>
             </div>
         </div>
     )

@@ -2,21 +2,17 @@ import { useStory } from '@/context/StoryContext'
 import { StyleCard } from '../StyleCard/StyleCard'
 import { ThemeSelector } from '../ThemeSelector/ThemeSelector'
 import { useEffect } from 'react'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './StyleSelector.module.css'
-
-const STYLES = [
-    {
-        id: 'animated' as const,
-        label: 'Animated',
-    },
-    {
-        id: 'realistic' as const,
-        label: 'Realistic',
-    },
-]
 
 export function StyleSelector() {
     const { storyData, updateStoryData } = useStory()
+    const { t } = useLanguage()
+
+    const STYLES = [
+        { id: 'animated' as const, label: t('preferences.animated') },
+        { id: 'realistic' as const, label: t('preferences.realistic') },
+    ]
 
     function handleStyleClick(id: 'animated' | 'realistic') {
         updateStoryData({
@@ -34,7 +30,7 @@ export function StyleSelector() {
     return (
         <>
             <div className={styles.flexWrapper}>
-                <h2>Pick your style</h2>
+                <h2>{t('preferences.styleTitle')}</h2>
                 <div className={styles.cardContainer}>
                     {STYLES.map((style) => (
                         <StyleCard

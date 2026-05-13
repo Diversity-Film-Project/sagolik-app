@@ -13,6 +13,7 @@ import { fireConfetti } from '@/lib/fireConfetti'
 import { buildParamsKey } from '@/lib/buildParamsKey'
 import { VIDEO_CONSTRAINTS } from '@/lib/videoConstraints'
 import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './page.module.css'
 
 // Max characters for the user-visible script (styleNote + VIDEO_CONSTRAINTS take the remaining ~900 chars up to Kling's 2500 limit)
@@ -21,6 +22,7 @@ const MAX_SCRIPT_LENGTH = 1600
 export default function ScriptPage() {
     const router = useRouter()
     const { storyData, updateStoryData } = useStory()
+    const { lang, t } = useLanguage()
     const [isLoading, setIsLoading] = useState(!storyData.finalPrompt)
     const [isEditing, setIsEditing] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -41,6 +43,7 @@ export default function ScriptPage() {
             storyData.videoStyle,
             storyData.themeDescription,
             storyData.customStory,
+            lang,
         )
             .then((result) => {
                 updateStoryData({
@@ -81,6 +84,7 @@ export default function ScriptPage() {
             storyData.videoStyle,
             storyData.themeDescription,
             storyData.customStory,
+            lang,
         )
             .then((result) => {
                 updateStoryData({
@@ -104,19 +108,23 @@ export default function ScriptPage() {
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const pageTitle = isLoading
-        ? 'Creating your story...'
+        ? t('story.loadingTitle')
         : error
-          ? 'Could not generate story'
-          : 'Your scenario is ready!'
+          ? t('story.errorTitle')
+          : t('story.readyTitle')
 
     const description = isLoading
-        ? 'Gemini is working hard to create a magical story for you'
+        ? t('story.loadingDesc')
         : error
-          ? 'Please try regenerating the story. If the problem persists, it may be due to high demand on the AI service — please try again later.'
-          : 'Feel free to edit the scenario before moving on to video generation'
+          ? t('story.errorDesc')
+          : t('story.readyDesc')
+
+    const charCountText = t('story.charCount')
+        .replace('{n}', String(scriptLength))
+        .replace('{max}', String(MAX_SCRIPT_LENGTH))
 
     return (
-        <PageLayout currentStep={3} href="/story">
+        <PageLayout currentStep={3}>
             <div className={styles.margin}>
                 <PageTitle
                     text={pageTitle}
@@ -126,7 +134,7 @@ export default function ScriptPage() {
                 {isLoading ? (
                     <div className={styles.skeleton}>
                         <p className={styles.skeletonText}>
-                            Gemini is creating your story right now...
+                            {t('story.skeletonText')}
                         </p>
                         <div className={styles.skeletonLine} />
                         <div className={styles.skeletonLine} />
@@ -138,13 +146,12 @@ export default function ScriptPage() {
                     <div className={styles.errorBlock}>
                         <p className={styles.errorMessage}>{error}</p>
                         <p className={styles.errorHint}>
-                            AI service is temporarily busy. Please try again in
-                            a moment.
+                            {t('story.errorHint')}
                         </p>
                         <button
                             className={styles.retryButton}
                             onClick={runGenerate}
-                            title="Try again"
+                            title={t('common.tryAgain')}
                         >
                             <RefreshCw size={25} />
                         </button>
@@ -165,29 +172,29 @@ export default function ScriptPage() {
                     <p
                         className={`${styles.charCount} ${isOverLimit ? styles.charCountOver : ''}`}
                     >
-                        {scriptLength} / {MAX_SCRIPT_LENGTH} characters
-                        {isOverLimit && ' — too long, please edit'}
+                        {charCountText}
+                        {isOverLimit && t('story.charCountOver')}
                     </p>
                 )}
                 <div className={styles.editButtonWrapper}>
                     <Button
                         variant="regenerate"
                         onClick={runGenerate}
-                        label="Regenerate"
+                        label={t('story.regenerate')}
                         icon={<RefreshCw size={16} />}
                     />
                     {isEditing ? (
                         <Button
                             variant="save"
                             onClick={() => setIsEditing(false)}
-                            label="Save"
+                            label={t('common.save')}
                             icon={<Check size={16} />}
                         />
                     ) : (
                         <Button
                             variant="outlined"
                             onClick={() => setIsEditing(true)}
-                            label="Edit"
+                            label={t('common.edit')}
                             icon={<Pencil size={16} />}
                         />
                     )}
@@ -195,12 +202,12 @@ export default function ScriptPage() {
 
                 <div className={styles.buttonWrapper}>
                     <Button
-                        label="Continue"
+                        label={t('common.continue')}
                         disabled={isLoading || !!error || isOverLimit}
                         onClick={() => setShowConfirm(true)}
                     />
                     <Button
-                        label="Back"
+                        label={t('common.back')}
                         variant="secondary"
                         onClick={() => router.push('/preferences')}
                     />
@@ -209,32 +216,34 @@ export default function ScriptPage() {
 
             {showConfirm && (
                 <ConfirmModal
-                    title="Ready to generate your video?"
-                    confirmLabel="Generate video"
-                    cancelLabel="Back to edit"
+                    title={t('story.confirmTitle')}
+                    confirmLabel={t('story.confirmButton')}
+                    cancelLabel={t('story.confirmCancel')}
                     onConfirm={() => router.push('/result')}
                     onCancel={() => setShowConfirm(false)}
                 >
                     <p className={styles.modalText}>
-                        Once you continue, the video generation will start —
-                        this usually takes around <strong>5 minutes</strong> and
-                        uses API credits.
+                        {t('story.confirmBody')}{' '}
+                        <strong>{t('story.confirmBodyBold')}</strong>{' '}
+                        {t('story.confirmBodyEnd')}
                     </p>
                     <p className={styles.modalLabel}>
-                        Before you proceed, make sure:
+                        {t('story.confirmLabel')}
                     </p>
                     <ul className={styles.modalList}>
                         <li>
-                            Your <strong>scenario</strong> looks good (you can
-                            still edit it)
+                            {t('story.confirmCheck1')}{' '}
+                            <strong>{t('story.confirmCheck1Bold')}</strong>{' '}
+                            {t('story.confirmCheck1End')}
                         </li>
                         <li>
-                            Your <strong>photo</strong> is the one you want to
-                            use
+                            {t('story.confirmCheck2')}{' '}
+                            <strong>{t('story.confirmCheck2Bold')}</strong>{' '}
+                            {t('story.confirmCheck2End')}
                         </li>
                     </ul>
                     <p className={styles.modalText}>
-                        If anything needs changing, go back and fix it first.
+                        {t('story.confirmFooter')}
                     </p>
                 </ConfirmModal>
             )}

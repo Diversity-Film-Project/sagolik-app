@@ -5,15 +5,22 @@ import { BadgeInfo, HistoryIcon } from 'lucide-react'
 import Link from 'next/link'
 import { StepHeader } from '@/components/common/StepHeader/StepHeader'
 import { TopSheet } from '@/components/common/TopSheet/TopSheet'
+import { useLanguage } from '@/context/LanguageContext'
+import { translations } from '@/lib/translations'
 
 interface PageLayoutProps {
     children: React.ReactNode
     currentStep: 1 | 2 | 3 | 4
-    href: string
 }
 
-export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
+export function PageLayout({ children, currentStep }: PageLayoutProps) {
     const [isInfoOpen, setIsInfoOpen] = useState(false)
+    const { lang, setLang, t } = useLanguage()
+
+    const counter = translations[lang].steps.counter.replace(
+        '{n}',
+        String(currentStep),
+    )
 
     return (
         <div className={styles.page}>
@@ -24,28 +31,40 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
             <header className={styles.header}>
                 <div className={styles.container}>
                     <div className={styles.logoSection}>
-                        <Link className={styles.logoContainer} href={href}>
+                        <div className={styles.logoContainer}>
                             <span className={styles.logo}>Tales</span>
                             <span className={styles.dot}></span>
-                        </Link>
-                        <button
-                            className={styles.infoButton}
-                            onClick={() => setIsInfoOpen(!isInfoOpen)}
-                        >
-                            <BadgeInfo />
-                        </button>
+                        </div>
+                        <div className={styles.headerActions}>
+                            <button
+                                className={styles.langToggle}
+                                onClick={() =>
+                                    setLang(lang === 'en' ? 'sv' : 'en')
+                                }
+                                aria-label="Switch language"
+                            >
+                                {lang === 'en' ? 'SV' : 'EN'}
+                            </button>
+                            <button
+                                className={styles.infoButton}
+                                onClick={() => setIsInfoOpen(!isInfoOpen)}
+                            >
+                                <BadgeInfo />
+                            </button>
+                        </div>
                     </div>
 
                     <div className={styles.stepsWrapper}>
                         <div className={styles.stepCounterWrapper}>
                             <span className={styles.stepCounter}>
-                                Step {currentStep} of 4
+                                {counter}
                             </span>
                             <Link
                                 href="/history"
                                 className={styles.historyButton}
                             >
-                                History <HistoryIcon size={14} />
+                                {t('history.historyLink')}{' '}
+                                <HistoryIcon size={14} />
                             </Link>
                         </div>
 

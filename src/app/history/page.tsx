@@ -6,6 +6,7 @@ import { useStory } from '@/context/StoryContext'
 import { downloadVideo } from '@/lib/downloadVideo'
 import { Button } from '@/components/ui/Button/Button'
 import { ArrowLeft, Download } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './page.module.css'
 
 type HistoryEntry = {
@@ -20,6 +21,7 @@ type HistoryEntry = {
 export default function HistoryPage() {
     const router = useRouter()
     const { resetStory } = useStory()
+    const { lang, setLang, t } = useLanguage()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
     const [downloadingId, setDownloadingId] = useState<string | null>(null)
 
@@ -54,6 +56,8 @@ export default function HistoryPage() {
         }
     }
 
+    const dateLocale = lang === 'sv' ? 'sv-SE' : 'en-GB'
+
     return (
         <div className={styles.page}>
             <header className={styles.header}>
@@ -61,50 +65,59 @@ export default function HistoryPage() {
                     <span className={styles.logo}>Tales</span>
                     <span className={styles.dot}></span>
                 </div>
-                <Button
-                    label="+ New video"
-                    variant="outlined"
-                    onClick={handleNewVideo}
-                ></Button>
+                <div className={styles.headerActions}>
+                    <button
+                        className={styles.langToggle}
+                        onClick={() => setLang(lang === 'en' ? 'sv' : 'en')}
+                        aria-label="Switch language"
+                    >
+                        {lang === 'en' ? 'SV' : 'EN'}
+                    </button>
+                    <Button
+                        label={t('history.newVideo')}
+                        variant="outlined"
+                        onClick={handleNewVideo}
+                    />
+                </div>
             </header>
 
             <main className={styles.content}>
                 <Button
-                    label="Back"
+                    label={t('common.back')}
                     variant="outlined"
                     onClick={() => router.back()}
                     icon={<ArrowLeft size={20} />}
                     iconPosition="left"
-                ></Button>
-                <h1 className={styles.title}>History</h1>
+                />
+                <h1 className={styles.title}>{t('history.title')}</h1>
 
                 {/* todo - replace div with proper component */}
                 <div className={styles.disclaimer}>
-                    <strong>Demo version.</strong> Your history is stored only
-                    on this device. Clearing browser storage or opening the app
-                    on another device will erase it. We recommend saving videos
-                    to your phone library.
+                    <strong>{t('history.disclaimerBold')}</strong>{' '}
+                    {t('history.disclaimer')}
                 </div>
 
                 {entries.length === 0 ? (
-                    <p className={styles.empty}>No videos generated yet.</p>
+                    <p className={styles.empty}>{t('history.empty')}</p>
                 ) : (
                     <ul className={styles.list}>
                         {entries.map((entry) => (
                             <li key={entry.id} className={styles.card}>
                                 <div className={styles.cardMeta}>
                                     <span className={styles.cardName}>
-                                        {entry.characterName || 'Unnamed'}
+                                        {entry.characterName ||
+                                            t('history.unnamed')}
                                         <span className={styles.cardSeparator}>
                                             {' '}
                                             |{' '}
                                         </span>
-                                        {entry.storyTheme || 'Custom story'}
+                                        {entry.storyTheme ||
+                                            t('history.customStory')}
                                     </span>
                                     <span className={styles.cardDate}>
                                         {new Date(
                                             entry.createdAt,
-                                        ).toLocaleDateString('en-GB', {
+                                        ).toLocaleDateString(dateLocale, {
                                             day: 'numeric',
                                             month: 'short',
                                             year: 'numeric',
@@ -118,12 +131,11 @@ export default function HistoryPage() {
                                     className={styles.video}
                                 />
                                 <p className={styles.hint}>
-                                    Download the video to your device and share
-                                    it with anyone.
+                                    {t('history.hint')}
                                 </p>
                                 <div className={styles.cardActions}>
                                     <Button
-                                        label="Download"
+                                        label={t('common.download')}
                                         variant="outlined"
                                         icon={<Download size={16} />}
                                         loading={downloadingId === entry.id}
@@ -136,7 +148,7 @@ export default function HistoryPage() {
                                         <summary
                                             className={styles.promptSummary}
                                         >
-                                            Scenario
+                                            {t('history.scenario')}
                                         </summary>
                                         <p className={styles.promptText}>
                                             {entry.finalPrompt}

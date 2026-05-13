@@ -14,6 +14,7 @@ import { ConfirmModal } from '@/components/common/ConfirmModal/ConfirmModal'
 import { downloadVideo } from '@/lib/downloadVideo'
 import { Download } from 'lucide-react'
 import { fireConfetti } from '@/lib/fireConfetti'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './page.module.css'
 
 // ─── TEST / PRODUCTION toggle ─────────────────
@@ -28,6 +29,7 @@ const isMock = true
 export default function ResultPage() {
     const router = useRouter()
     const { storyData, updateStoryData, resetStory, hydrated } = useStory()
+    const { t } = useLanguage()
     const [isLoading, setIsLoading] = useState<boolean>(!isMock) // comment this line for testing loading state (to see 'All set' screen)
     // const [isLoading, setIsLoading] = useState<boolean>(true) //  uncomment this line for testing loading state (to see 'All set' screen)
 
@@ -137,11 +139,7 @@ export default function ResultPage() {
                 setIsLoading(false)
                 fireConfetti()
             } catch (err: unknown) {
-                setError(
-                    err instanceof Error
-                        ? err.message
-                        : 'Video generation failed.',
-                )
+                setError(err instanceof Error ? err.message : t('result.error'))
                 setIsLoading(false)
             }
             return
@@ -166,9 +164,7 @@ export default function ResultPage() {
             setIsLoading(false)
             fireConfetti()
         } catch (err: unknown) {
-            setError(
-                err instanceof Error ? err.message : 'Video generation failed.',
-            )
+            setError(err instanceof Error ? err.message : t('result.error'))
             setIsLoading(false)
         }
     }
@@ -195,8 +191,10 @@ export default function ResultPage() {
         }
     }
 
+    const titleName = storyData.characterName || t('result.titleFallback')
+
     return (
-        <PageLayout currentStep={4} href="/result">
+        <PageLayout currentStep={4}>
             {isLoading ? (
                 <>
                     <ConfirmationCard />
@@ -206,7 +204,7 @@ export default function ResultPage() {
                 <>
                     <p className="error">{error}</p>
                     <Button
-                        label="Try again"
+                        label={t('common.tryAgain')}
                         onClick={() => {
                             setError(null)
                             setIsLoading(true)
@@ -217,9 +215,9 @@ export default function ResultPage() {
             ) : (
                 <>
                     <PageTitle
-                        text={`${storyData.characterName || 'Your'}'s story is ready 🎉`}
+                        text={`${titleName}${t('result.titleSuffix')}`}
                         description={
-                            storyData.storyTheme || 'Personalised story'
+                            storyData.storyTheme || t('result.descFallback')
                         }
                     />
                     <video
@@ -228,12 +226,9 @@ export default function ResultPage() {
                         playsInline
                         className={styles.video}
                     />
-                    <p className={styles.hint}>
-                        Download the video to your device and share it with
-                        anyone
-                    </p>
+                    <p className={styles.hint}>{t('result.hint')}</p>
                     <Button
-                        label="Download"
+                        label={t('common.download')}
                         variant="outlined"
                         icon={<Download size={16} />}
                         loading={downloading}
@@ -241,7 +236,7 @@ export default function ResultPage() {
                         onClick={handleDownload}
                     />
                     <Button
-                        label="Create new video"
+                        label={t('result.createNew')}
                         variant="primary"
                         onClick={() => setShowNewVideoConfirm(true)}
                     />
@@ -250,20 +245,17 @@ export default function ResultPage() {
 
             {showNewVideoConfirm && (
                 <ConfirmModal
-                    title="Create a new video?"
-                    confirmLabel="Yes, start over"
-                    cancelLabel="Stay here"
+                    title={t('result.confirmTitle')}
+                    confirmLabel={t('result.confirmButton')}
+                    cancelLabel={t('result.confirmCancel')}
                     onConfirm={() => {
                         resetStory()
                         router.push('/upload')
                     }}
                     onCancel={() => setShowNewVideoConfirm(false)}
                 >
-                    <p>
-                        Your generated video will remain available in History on
-                        this device until you clear your browser storage.
-                    </p>
-                    <p>We recommend downloading it before leaving.</p>
+                    <p>{t('result.confirmBody1')}</p>
+                    <p>{t('result.confirmBody2')}</p>
                 </ConfirmModal>
             )}
         </PageLayout>

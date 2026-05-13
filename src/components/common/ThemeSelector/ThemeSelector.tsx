@@ -11,6 +11,7 @@ import { useStory } from '@/context/StoryContext'
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/Button/Button'
 import { THEMES, Emoji, type ThemeProp } from '@/lib/themes'
+import { useLanguage } from '@/context/LanguageContext'
 
 const CARDS_PER_SLIDE = 6
 
@@ -28,6 +29,7 @@ interface ThemeSelectorProps {
 
 export function ThemeSelector({ style }: ThemeSelectorProps) {
     const { storyData, updateStoryData } = useStory()
+    const { lang, t } = useLanguage()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [draft, setDraft] = useState('')
 
@@ -66,7 +68,7 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
 
     return (
         <div className={styles.flexWrapper}>
-            <h2>Story Worlds</h2>
+            <h2>{t('preferences.storyWorlds')}</h2>
 
             <Swiper
                 modules={[Pagination]}
@@ -81,7 +83,7 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                                     <IconCard
                                         key="custom"
                                         icon={<Emoji>✍️</Emoji>}
-                                        label="Your Story"
+                                        label={t('preferences.yourStory')}
                                         isSelected={isCustomSelected}
                                         onClick={handleOpenModal}
                                     />
@@ -115,10 +117,11 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                     className={`${styles.themeDescription} ${!selectedTheme && !isCustomSelected ? styles.themeDescriptionPlaceholder : ''}`}
                 >
                     {selectedTheme
-                        ? selectedTheme.description
+                        ? (lang === 'sv' && selectedTheme.descriptionSv) ||
+                          selectedTheme.description
                         : isCustomSelected
                           ? storyData.customStory
-                          : 'Select a story world to see its description'}
+                          : t('preferences.themeSelectHint')}
                 </p>
             </div>
 
@@ -130,7 +133,7 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
             >
                 <div className={styles.bottomSheetHeader}>
                     <span className={styles.bottomSheetTitle}>
-                        Describe your story idea
+                        {t('preferences.customSheetTitle')}
                     </span>
                     <button
                         className={styles.bottomSheetCloseBtn}
@@ -142,11 +145,15 @@ export function ThemeSelector({ style }: ThemeSelectorProps) {
                 </div>
                 <textarea
                     className={styles.bottomSheetTextarea}
-                    placeholder="E.g. A brave girl discovers a hidden door in the forest that leads to a world where animals can talk..."
+                    placeholder={t('preferences.customPlaceholder')}
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
                 />
-                <Button label="Save" variant="save" onClick={handleSave} />
+                <Button
+                    label={t('common.save')}
+                    variant="save"
+                    onClick={handleSave}
+                />
             </div>
         </div>
     )

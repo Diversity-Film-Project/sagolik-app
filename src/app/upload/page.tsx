@@ -9,14 +9,15 @@ import { InfoCard } from '@/components/common/InfoCard/InfoCard'
 import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
+import { useLanguage } from '@/context/LanguageContext'
 import styles from './page.module.css'
 
 export default function UploadPhotoPage() {
     const { storyData } = useStory()
+    const { t } = useLanguage()
     const router = useRouter()
     const [attempted, setAttempted] = useState(false)
-    const error =
-        attempted && !storyData.photo ? 'Please upload a photo to continue' : ''
+    const error = attempted && !storyData.photo ? t('upload.error') : ''
 
     const handleContinue = () => {
         if (!storyData.photo) {
@@ -27,20 +28,23 @@ export default function UploadPhotoPage() {
     }
 
     return (
-        <PageLayout currentStep={1} href="/upload">
+        <PageLayout currentStep={1}>
             <div className={styles.margin}>
                 <PageTitle
-                    text="Add your child's photo"
-                    description="We'll place them as the hero of the story"
+                    text={t('upload.title')}
+                    description={t('upload.description')}
                 />
                 <UploadPhotoCard />
                 <InfoCard
-                    title="Best results"
-                    description="Facing the camera, good lighting. A portrait or headshot works best."
+                    title={t('upload.infoTitle')}
+                    description={t('upload.infoDescription')}
                 />
 
                 <div className={styles.buttonWrapper}>
-                    <Button label="Continue" onClick={handleContinue} />
+                    <Button
+                        label={t('common.continue')}
+                        onClick={handleContinue}
+                    />
                     {error && <p className="error">{error}</p>}
                 </div>
             </div>

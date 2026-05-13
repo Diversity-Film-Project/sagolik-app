@@ -12,24 +12,20 @@ import { useState } from 'react'
 import { Dropdown } from '@/components/ui/Dropdown/Dropdown'
 import { StyleSelector } from '@/components/common/StyleSelector/StyleSelector'
 import { buildParamsKey } from '@/lib/buildParamsKey'
-
-const SIDEKICK_OPTIONS = [
-    'No sidekick',
-    'Person in photo',
-    'Dragon',
-    'Alien',
-    'Robot',
-    'Unicorn',
-]
+import { useLanguage } from '@/context/LanguageContext'
+import { translations } from '@/lib/translations'
 
 export default function PreferencesPage() {
     const { storyData, updateStoryData } = useStory()
+    const { lang, t } = useLanguage()
     const router = useRouter()
     const [attempted, setAttempted] = useState(false)
     const error =
         attempted && !storyData.characterName
-            ? 'Please enter a name to continue.'
+            ? t('preferences.nameError')
             : null
+
+    const sidekickOptions = [...translations[lang].preferences.sidekickOptions]
 
     const handleContinue = () => {
         if (!storyData.characterName) {
@@ -51,15 +47,15 @@ export default function PreferencesPage() {
     }
 
     return (
-        <PageLayout currentStep={2} href="/preferences">
+        <PageLayout currentStep={2}>
             <div className={styles.margin}>
                 <PageTitle
-                    text="Personalise the story"
-                    description="We'll use these to create a personalized story"
+                    text={t('preferences.title')}
+                    description={t('preferences.description')}
                 />
                 <StyleSelector />
                 <Input
-                    placeholder="Character Name"
+                    placeholder={t('preferences.namePlaceholder')}
                     value={storyData.characterName}
                     onChange={(e) =>
                         updateStoryData({ characterName: e.target.value })
@@ -67,20 +63,23 @@ export default function PreferencesPage() {
                 />
 
                 <Dropdown
-                    label="SIDEKICK"
-                    options={SIDEKICK_OPTIONS}
+                    label={t('preferences.sidekickLabel')}
+                    options={sidekickOptions}
                     value={storyData.sidekick}
                     onChange={(value) => updateStoryData({ sidekick: value })}
                     variant="primary"
                 />
 
                 <div className={styles.buttonWrapper}>
-                    <Button label="Continue" onClick={handleContinue} />
+                    <Button
+                        label={t('common.continue')}
+                        onClick={handleContinue}
+                    />
                     <div className={styles.errorWrapper}>
                         {error && <p className="error">{error}</p>}
                     </div>
                     <Button
-                        label="Back"
+                        label={t('common.back')}
                         variant="secondary"
                         onClick={() => router.push('/upload')}
                     />

@@ -57,6 +57,11 @@ async function generateWithFallback(prompt: string): Promise<string> {
     throw new Error('All models unavailable')
 }
 
+const LANG_NAMES: Record<string, string> = {
+    sv: 'Swedish',
+    en: 'English',
+}
+
 export async function POST(req: NextRequest) {
     const {
         characterName,
@@ -65,13 +70,20 @@ export async function POST(req: NextRequest) {
         videoStyle,
         themeDescription,
         customStory,
+        lang = 'en',
     } = await req.json()
 
     const storyInput = customStory
         ? `- Custom story idea: ${customStory}`
         : `- Story theme: ${storyTheme || 'any adventure theme'}`
 
-    const prompt = `You are a prompt writer for a children's AI video storytelling app. Content must be safe, gentle, and age-appropriate. Never generate violent, sexual, or threatening content.
+    const langName = LANG_NAMES[lang] ?? 'English'
+    const langInstruction =
+        lang !== 'en'
+            ? `\nIMPORTANT: Write the entire story script in ${langName}. All narration, descriptions, and text must be in ${langName}.`
+            : ''
+
+    const prompt = `You are a prompt writer for a children's AI video storytelling app. Content must be safe, gentle, and age-appropriate. Never generate violent, sexual, or threatening content.${langInstruction}
 
 Write a structured 15-second video prompt for Kling AI with the following inputs:
 - Hero name: ${characterName} (appearance comes from a reference photo — describe actions and emotions only, not appearance)
