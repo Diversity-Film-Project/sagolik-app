@@ -10,10 +10,9 @@ import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 import styles from './page.module.css'
-import { Trash } from 'lucide-react'
 
 export default function UploadPhotoPage() {
-    const { storyData, updateStoryData } = useStory()
+    const { storyData } = useStory()
     const router = useRouter()
     const [attempted, setAttempted] = useState(false)
     const error =
@@ -27,11 +26,6 @@ export default function UploadPhotoPage() {
         router.push('/preferences')
     }
 
-    //delete function
-    const handleDeletePhoto = () => {
-        updateStoryData({ photo: null })
-    }
-
     return (
         <PageLayout currentStep={1}>
             <div className={styles.margin}>
@@ -41,14 +35,6 @@ export default function UploadPhotoPage() {
                 />
 
                 <UploadPhotoCard />
-                {storyData.photo && (
-                    <button
-                        onClick={handleDeletePhoto}
-                        className={styles.deleteIconButton}
-                    >
-                        <Trash size={18} />
-                    </button>
-                )}
 
                 <InfoCard
                     title="Best results"

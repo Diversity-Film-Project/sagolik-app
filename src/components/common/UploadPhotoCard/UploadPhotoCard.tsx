@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from './UploadPhotoCard.module.css'
-import { Image as ImageIcon, LoaderCircle, Check } from 'lucide-react'
+import { Image as ImageIcon, LoaderCircle, Check, Trash } from 'lucide-react'
 import { useStory } from '@/context/StoryContext'
 
 type CardState = 'default' | 'loading' | 'selected'
@@ -31,6 +31,12 @@ export function UploadPhotoCard({
                 setCardState('selected')
             }, 1000)
         }
+    }
+
+    const handleDeletePhoto = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        updateStoryData({ photo: null })
+        setCardState('default')
     }
 
     return (
@@ -77,20 +83,32 @@ export function UploadPhotoCard({
                 )}
             </div>
             <div className={styles.previewWrapper}>
-                {storyData.photo ? (
-                    // eslint-disable-next-line @next/next/no-img-element -- blob URL, Next Image can't optimize local object URLs
-                    <img
-                        src={URL.createObjectURL(storyData.photo)}
-                        alt="uploaded photo"
-                        className={styles.previewImage}
-                    />
-                ) : (
-                    <div className={styles.previewPlaceholder}>
-                        <ImageIcon
-                            size={26}
-                            className={styles.previewPlaceholderIcon}
+                <div className={styles.previewClip}>
+                    {storyData.photo ? (
+                        // eslint-disable-next-line @next/next/no-img-element -- blob URL, Next Image can't optimize local object URLs
+                        <img
+                            src={URL.createObjectURL(storyData.photo)}
+                            alt="uploaded photo"
+                            className={styles.previewImage}
                         />
-                    </div>
+                    ) : (
+                        <div className={styles.previewPlaceholder}>
+                            <ImageIcon
+                                size={26}
+                                className={styles.previewPlaceholderIcon}
+                            />
+                        </div>
+                    )}
+                </div>
+                {storyData.photo && (
+                    <button
+                        type="button"
+                        onClick={handleDeletePhoto}
+                        className={styles.deleteIconButton}
+                        aria-label="Delete photo"
+                    >
+                        <Trash size={18} />
+                    </button>
                 )}
             </div>
         </>

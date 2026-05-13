@@ -65,13 +65,32 @@
 }
 
 .previewWrapper {
-    height: 70px;
+    position: relative;
     width: fit-content;
+    display: flex;
+}
+
+.previewClip {
+    height: 70px;
     border-radius: var(--border-radius);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.deleteIconButton {
+    position: absolute;
+    bottom: -10px;
+    right: -11px;
+    background: var(--color-card-background);
+    color: var(--color-primary);
+    border: solid 2px var(--color-primary);
+    border-radius: var(--border-radius-full);
+    padding: var(--spacing-xs);
+    cursor: pointer;
+    display: flex;
+    box-shadow: var(--var-button-box-shadow);
 }
 
 .previewPlaceholder {
