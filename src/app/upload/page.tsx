@@ -10,9 +10,10 @@ import { Button } from '@/components/ui/Button/Button'
 import { useStory } from '@/context/StoryContext'
 import { PageTitle } from '@/components/ui/PageTitle/PageTitle'
 import styles from './page.module.css'
+import { Trash } from 'lucide-react'
 
 export default function UploadPhotoPage() {
-    const { storyData } = useStory()
+    const { storyData, updateStoryData } = useStory()
     const router = useRouter()
     const [attempted, setAttempted] = useState(false)
     const error =
@@ -26,6 +27,11 @@ export default function UploadPhotoPage() {
         router.push('/preferences')
     }
 
+    //delete function
+    const handleDeletePhoto = () => {
+        updateStoryData({ photo: null })
+    }
+
     return (
         <PageLayout currentStep={1} href="/upload">
             <div className={styles.margin}>
@@ -33,7 +39,17 @@ export default function UploadPhotoPage() {
                     text="Add your child's photo"
                     description="We'll place them as the hero of the story"
                 />
+
                 <UploadPhotoCard />
+                {storyData.photo && (
+                    <button
+                        onClick={handleDeletePhoto}
+                        className={styles.deleteIconButton}
+                    >
+                        <Trash size={18} />
+                    </button>
+                )}
+
                 <InfoCard
                     title="Best results"
                     description="Facing the camera, good lighting. A portrait or headshot works best."
