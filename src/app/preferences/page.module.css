@@ -21,3 +21,13 @@
     width: 100%;
     gap: 20px;
 }
+
+.inputRow {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.ageInput {
+    width: 250px;
+}

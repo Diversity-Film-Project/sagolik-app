@@ -58,13 +58,26 @@ export default function PreferencesPage() {
                     description="We'll use these to create a personalized story"
                 />
                 <StyleSelector />
-                <Input
-                    placeholder="Character Name"
-                    value={storyData.characterName}
-                    onChange={(e) =>
-                        updateStoryData({ characterName: e.target.value })
-                    }
-                />
+
+                <div className={styles.inputRow}>
+                    <Input
+                        placeholder="Character Name"
+                        value={storyData.characterName}
+                        onChange={(e) =>
+                            updateStoryData({ characterName: e.target.value })
+                        }
+                    />
+
+                    <div className={styles.ageInput}>
+                        <Input
+                            placeholder="Age"
+                            value={storyData.age}
+                            onChange={(e) =>
+                                updateStoryData({ age: e.target.value })
+                            }
+                        />
+                    </div>
+                </div>
 
                 <Dropdown
                     label="SIDEKICK"
