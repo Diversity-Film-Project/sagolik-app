@@ -21,16 +21,3 @@
     width: 100%;
     gap: 20px;
 }
-
-.deleteIconButton {
-    position: relative;
-
-    background-color: white;
-    border: solid 1px #eee;
-    border-radius: 50%;
-    padding: 6px;
-    width: fit-content;
-
-    cursor: pointer;
-    display: flex;
-}

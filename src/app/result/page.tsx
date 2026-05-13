@@ -34,6 +34,7 @@ export default function ResultPage() {
     const [error, setError] = useState<string | null>(null)
     const [showNewVideoConfirm, setShowNewVideoConfirm] = useState(false)
     const [downloading, setDownloading] = useState(false)
+    const [downloadError, setDownloadError] = useState<string | null>(null)
     const hasFetched = useRef(false)
 
     const videoUrl = isMock ? MOCK_VIDEO_URL : storyData.videoUrl
@@ -182,11 +183,24 @@ export default function ResultPage() {
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    const handleDownload = () => {
+    const handleDownload = async () => {
         if (downloading) return
+        setDownloadError(null)
         setDownloading(true)
-        downloadVideo(videoUrl, `${storyData.characterName || 'story'}-video`)
-        setTimeout(() => setDownloading(false), 1500)
+        try {
+            await downloadVideo(
+                videoUrl,
+                `${storyData.characterName || 'story'}-video`,
+            )
+        } catch (err) {
+            setDownloadError(
+                err instanceof Error
+                    ? err.message
+                    : 'Could not download the video. Please try again.',
+            )
+        } finally {
+            setDownloading(false)
+        }
     }
 
     return (
@@ -234,6 +248,7 @@ export default function ResultPage() {
                         disabled={downloading}
                         onClick={handleDownload}
                     />
+                    {downloadError && <p className="error">{downloadError}</p>}
                     <Button
                         label="Create new video"
                         variant="primary"
