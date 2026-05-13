@@ -51,7 +51,7 @@ export default function PreferencesPage() {
     }
 
     return (
-        <PageLayout currentStep={2} href="/preferences">
+        <PageLayout currentStep={2}>
             <div className={styles.margin}>
                 <PageTitle
                     text="Personalise the story"

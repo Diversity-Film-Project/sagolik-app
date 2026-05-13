@@ -44,6 +44,13 @@ export default function HistoryPage() {
     const handleDownload = async (entry: HistoryEntry) => {
         if (downloadingId) return
         setDownloadingId(entry.id)
+
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            window.open(entry.videoUrl, '_blank')
+            setDownloadingId(null)
+            return
+        }
+
         try {
             await downloadVideo(
                 entry.videoUrl,

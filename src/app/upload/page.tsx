@@ -27,7 +27,7 @@ export default function UploadPhotoPage() {
     }
 
     return (
-        <PageLayout currentStep={1} href="/upload">
+        <PageLayout currentStep={1}>
             <div className={styles.margin}>
                 <PageTitle
                     text="Add your child's photo"

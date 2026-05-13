@@ -1,12 +1,8 @@
+// This function handles desktop only.
 export async function downloadVideo(
     url: string,
     fileName: string,
 ): Promise<void> {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-    if (isIOS) {
-        window.open(url, '_blank')
-        return
-    }
     try {
         const res = await fetch(url)
         const blob = await res.blob()

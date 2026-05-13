@@ -9,10 +9,9 @@ import { TopSheet } from '@/components/common/TopSheet/TopSheet'
 interface PageLayoutProps {
     children: React.ReactNode
     currentStep: 1 | 2 | 3 | 4
-    href: string
 }
 
-export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
+export function PageLayout({ children, currentStep }: PageLayoutProps) {
     const [isInfoOpen, setIsInfoOpen] = useState(false)
 
     return (
@@ -24,10 +23,10 @@ export function PageLayout({ children, currentStep, href }: PageLayoutProps) {
             <header className={styles.header}>
                 <div className={styles.container}>
                     <div className={styles.logoSection}>
-                        <Link className={styles.logoContainer} href={href}>
+                        <div className={styles.logoContainer}>
                             <span className={styles.logo}>Tales</span>
                             <span className={styles.dot}></span>
-                        </Link>
+                        </div>
                         <button
                             className={styles.infoButton}
                             onClick={() => setIsInfoOpen(!isInfoOpen)}
