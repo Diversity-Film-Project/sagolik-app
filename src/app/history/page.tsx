@@ -41,24 +41,11 @@ export default function HistoryPage() {
         router.push('/upload')
     }
 
-    const handleDownload = async (entry: HistoryEntry) => {
+    const handleDownload = (entry: HistoryEntry) => {
         if (downloadingId) return
         setDownloadingId(entry.id)
-
-        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-            window.open(entry.videoUrl, '_blank')
-            setDownloadingId(null)
-            return
-        }
-
-        try {
-            await downloadVideo(
-                entry.videoUrl,
-                `${entry.characterName || 'tales'}-story`,
-            )
-        } finally {
-            setDownloadingId(null)
-        }
+        downloadVideo(entry.videoUrl, `${entry.characterName || 'tales'}-story`)
+        setTimeout(() => setDownloadingId(null), 1500)
     }
 
     return (

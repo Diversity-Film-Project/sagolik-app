@@ -182,24 +182,11 @@ export default function ResultPage() {
         runGeneration()
     }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    const handleDownload = async () => {
+    const handleDownload = () => {
         if (downloading) return
         setDownloading(true)
-
-        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-            window.open(videoUrl, '_blank')
-            setDownloading(false)
-            return
-        }
-
-        try {
-            await downloadVideo(
-                videoUrl,
-                `${storyData.characterName || 'story'}-video`,
-            )
-        } finally {
-            setDownloading(false)
-        }
+        downloadVideo(videoUrl, `${storyData.characterName || 'story'}-video`)
+        setTimeout(() => setDownloading(false), 1500)
     }
 
     return (
