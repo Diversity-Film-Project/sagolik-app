@@ -31,11 +31,10 @@ export async function GET(request: NextRequest) {
         return new Response('Failed to fetch video', { status: 502 })
     }
 
-    const contentType = upstream.headers.get('content-type') ?? 'video/mp4'
     const contentLength = upstream.headers.get('content-length')
 
     const headers: HeadersInit = {
-        'Content-Type': contentType,
+        'Content-Type': 'application/octet-stream',
         'Content-Disposition': `attachment; filename="${filename}"`,
         'Cache-Control': 'private, max-age=3600',
     }
