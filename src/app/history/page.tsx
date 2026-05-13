@@ -22,6 +22,10 @@ export default function HistoryPage() {
     const { resetStory } = useStory()
     const [entries, setEntries] = useState<HistoryEntry[]>([])
     const [downloadingId, setDownloadingId] = useState<string | null>(null)
+    const [downloadError, setDownloadError] = useState<{
+        id: string
+        message: string
+    } | null>(null)
 
     useEffect(() => {
         const load = async () => {
@@ -41,11 +45,26 @@ export default function HistoryPage() {
         router.push('/upload')
     }
 
-    const handleDownload = (entry: HistoryEntry) => {
+    const handleDownload = async (entry: HistoryEntry) => {
         if (downloadingId) return
+        setDownloadError(null)
         setDownloadingId(entry.id)
-        downloadVideo(entry.videoUrl, `${entry.characterName || 'tales'}-story`)
-        setTimeout(() => setDownloadingId(null), 1500)
+        try {
+            await downloadVideo(
+                entry.videoUrl,
+                `${entry.characterName || 'tales'}-story`,
+            )
+        } catch (err) {
+            setDownloadError({
+                id: entry.id,
+                message:
+                    err instanceof Error
+                        ? err.message
+                        : 'Could not download the video. Please try again.',
+            })
+        } finally {
+            setDownloadingId(null)
+        }
     }
 
     return (
@@ -125,6 +144,11 @@ export default function HistoryPage() {
                                         onClick={() => handleDownload(entry)}
                                     />
                                 </div>
+                                {downloadError?.id === entry.id && (
+                                    <p className="error">
+                                        {downloadError.message}
+                                    </p>
+                                )}
                                 {entry.finalPrompt && (
                                     <details className={styles.promptDetails}>
                                         <summary
